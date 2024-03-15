@@ -30,7 +30,6 @@ if ($result->num_rows > 0) {
     var_dump($result);
     while ($row = $result->fetch_assoc()) {
 
-        $title[$i];
         echo "<td>" . $row["Title"] . "</td>";
     }
 }
