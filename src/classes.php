@@ -27,10 +27,17 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     $i = 0;
-    var_dump($result);
-    while ($row = $result->fetch_assoc()) {
 
-        echo "<td>" . $row["Title"] . "</td>";
+    while ($row = $result->fetch_assoc()) {
+        $title[$i] = $row["Tilte"];
     }
 }
+$params = [
+    'title' => $title,
+];
+
+
+// kresli na výstup
+$latte->render('template/classes.latte', $params);
+
 $conn->close();
