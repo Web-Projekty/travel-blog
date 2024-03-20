@@ -3,7 +3,7 @@
 require_once "../vendor/autoload.php";
 $latte = new Latte\Engine;
 
-$latte->setTempDirectory('temp');
+$latte->setTempDirectory('../temp');
 
 include("../config/mysql.php");
 

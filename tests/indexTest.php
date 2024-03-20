@@ -4,6 +4,7 @@ use Tester\Assert;
 
 #require "bootstrap.php";
 require "../index.php";
+$latte->setTempDirectory('../temp');
 
 class IndexTest extends Tester\TestCase
 {
