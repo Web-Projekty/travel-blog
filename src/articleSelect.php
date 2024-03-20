@@ -6,44 +6,36 @@ $latte = new Latte\Engine;
 $latte->setTempDirectory('temp');
 
 
-class articleSelect
-{
-    function __construct()
-    {
-        include("../config/mysql.php");
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
-        $sql = "SELECT Title FROM Articles";
+include("../config/mysql.php");
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-        $result = $conn->query($sql);
+$sql = "SELECT Title FROM Articles";
 
-        if ($result->num_rows > 0) {
-            // output data of each row
-            $i = 0;
+$result = $conn->query($sql);
 
-            while ($row = $result->fetch_assoc()) {
-                $title[$i] = $row['Title'];
-                $id[$i] = $i;
-                $i++;
-            }
-        }
-        $conn->close();
-    }
-    public function getData()
-    {
+if ($result->num_rows > 0) {
+    // output data of each row
+    $i = 0;
+
+    while ($row = $result->fetch_assoc()) {
+        $title[$i] = $row['Title'];
+        $id[$i] = $i;
+        $i++;
     }
 }
-$articleSelect = new articleSelect;
+$conn->close();
+
+
 
 $params = [
-    'article' => $articleSelect
+    'title' => $title,
+    'id' => $id
 ];
 
 
 // kresli na výstup
 $latte->render('../templates/articleSelect.latte', $params);
-
-
