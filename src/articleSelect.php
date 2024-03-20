@@ -19,11 +19,10 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-    $i = 0;
 
+    $i = 0;
     while ($row = $result->fetch_assoc()) {
         $title[$i] = $row['Title'];
-        $id[$i] = $i;
         $i++;
     }
 }
@@ -32,8 +31,7 @@ $conn->close();
 
 
 $params = [
-    'title' => $title,
-    'id' => $id
+    'title' => $title
 ];
 
 
