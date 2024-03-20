@@ -12,6 +12,14 @@
     <script src="../scripts/script.js"></script>
 </head>
 <body>
-    
+    <header>
+        <h1>Travel Blog</h1>
+    </header>
+    <main>
+
+    </main>
+    <footer>
+
+    </footer>
 </body>
 </html>
