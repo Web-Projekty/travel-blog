@@ -8,10 +8,17 @@ $latte->setTempDirectory('../temp');
 
 Class ArticleDetailTest extends Tester\TestCase
 {
+    public function ItJustWorks()
+    {
+
+    }
+    
     public function isEmpty()
     {
-        
+
     }
+
+
 }
 
 ?>
