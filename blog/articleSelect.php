@@ -11,11 +11,11 @@ include("../src/articleClasses.php");
 
 $Articles = new Articles();
 
-
+############### Latte stuff ###############
 $params = [
     'title' => $Articles->getTitleArray()
 ];
 
 
-// kresli na výstup
+
 $latte->render('../templates/articleSelect.latte', $params);
