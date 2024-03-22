@@ -5,33 +5,39 @@ $latte = new Latte\Engine;
 
 $latte->setTempDirectory('../temp');
 
+class articleSelect
+{
+    public $title;
 
+    function getTitle()
+    {
+        include("../config/mysql.php");
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT Title FROM Articles";
 
-include("../config/mysql.php");
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+        $result = $conn->query($sql);
 
-$sql = "SELECT Title FROM Articles";
+        if ($result->num_rows > 0) {
+            // output data of each row
 
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-
-    $i = 0;
-    while ($row = $result->fetch_assoc()) {
-        $title[$i] = $row['Title'];
-        $i++;
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $title[$i] = $row['Title'];
+                $i++;
+            }
+            return $title;
+            $conn->close();
+        }
     }
 }
-$conn->close();
-
+$acrticleSelect = new articleSelect();
 
 
 $params = [
-    'title' => $title
+    'title' => $acrticleSelect->getTitle()
 ];
 
 
