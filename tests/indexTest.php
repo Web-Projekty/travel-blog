@@ -28,3 +28,4 @@ class IndexTest extends Tester\TestCase
 }
 
 (new IndexTest)->run();
+?>
