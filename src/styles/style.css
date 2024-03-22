@@ -20,15 +20,25 @@ body {
 }
 
 header {
+    top: 0%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+
+}
+
+header img {
+    width: 20%;
+    height: 20%;
 }
 
 nav {
+    margin-right: 10%;
+    width: 100%;
     display: flex;
-    gap: 1rem;
+    justify-content: right;
+    gap: 3rem;
 }
 
 li {
@@ -40,10 +50,61 @@ a {
     color: black;
 }
 
+main {
+    margin-top: 2rem;
+    width: 75%;
+    padding: 20px;
+
+    
+}
+
 footer {
-    margin: auto;
+    width: 100%;
+    position: absolute;
+    bottom: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    header img {
+        height: 50%;
+        width: 50%;
+    }
+
+    nav {
+        margin: auto;
+        margin-bottom: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer {
+        position: relative;
+        margin-top: 20px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: .6vw;
+}
+  
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #df7700;
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #202020;
 }
