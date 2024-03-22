@@ -15,10 +15,10 @@ Class ArticleDetailTest extends Tester\TestCase
     
     public function isEmpty()
     {
+        Assert::isEmpty();
 
     }
-
-
 }
 
+(new ArticleDetailTest())->run();
 ?>
