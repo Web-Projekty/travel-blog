@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Výběr článku</title>
+    </head>
+    <body>
+        <form action="articleDetail.php" method="get">
+            <select name="articleId">
+                <option n:foreach="$title as $titleKey" value="{$iterator->counter}">{$titleKey}</option>
+            </select>
+            <button type="submit">submit</button>
+        </form>
+    </body>
+</html>
