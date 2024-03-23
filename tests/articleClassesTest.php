@@ -4,17 +4,21 @@ use Tester\Assert;
 
 require_once "../vendor/autoload.php";
 require "../src/articleClasses.php";
-
+#include("../src/articleClasses.php");
 
 class articleClassesTest extends Tester\TestCase
 {
-    public function testItJustWorks()
+    public $Article = 0;
+    function __construct()
     {
-        Assert::same(0, 0);
+        $this->Article = new Articles;
     }
 
-    public function isEmpty()
+    public function testGetTittleArray()
     {
+        $titles = $this->Article->getTitleArray();
+        Assert::type("array",$titles);
+        
     }
 }
 

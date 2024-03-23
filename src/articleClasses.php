@@ -25,7 +25,7 @@ class Articles
             $conn->close();
         }
     }
-    function getArticleById()
+    function getArticleById($articleId)
     {
         include("../config/mysql.php");
 
@@ -34,7 +34,7 @@ class Articles
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        $articleId = $_GET['articleId'];
+
         $sql = "SELECT * FROM Articles WHERE idArticles = $articleId";
 
         $result = $conn->query($sql);
