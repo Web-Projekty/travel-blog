@@ -4,9 +4,9 @@ use Tester\Assert;
 
 require_once "../vendor/autoload.php";
 require "../src/articleClasses.php";
-#include("../src/articleClasses.php");
+require "../config/mysql.php";
 
-class articleClassesTest extends Tester\TestCase
+class ArticleClassesTest extends Tester\TestCase
 {
     public $Article = 0;
     function __construct()
@@ -17,9 +17,26 @@ class articleClassesTest extends Tester\TestCase
     public function testGetTittleArray()
     {
         $titles = $this->Article->getTitleArray();
-        Assert::type("array",$titles);
-        
+        ### tests for data type ###
+        Assert::type("array", $titles);
+
+        ### tests for empty fields ###
+        foreach ($titles as $title) {
+            Assert::notNull($title);
+        }
+
+        ### checks if funciton selected all titles ###
+        $sql = "SELECT COUNT(title) FROM `Articles` ";
+        include("../config/mysql.php");
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $result = $conn->query($sql);
+
+        Assert::count($result->fetch_array()[0], $titles);
+        $conn->close();
+    }
+    public function testGetArticleById()
+    {
     }
 }
 
-(new articleClassesTest())->run();
+(new ArticleClassesTest())->run();

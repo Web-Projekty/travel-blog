@@ -70,4 +70,25 @@ class Articles
         $conn->close();
         return $article;
     }
+    function countRows($database)
+    {
+        ### set sql for specific database ###
+        switch ($database) {
+            case 1:
+                $sql = "SELECT COUNT(title) FROM `Articles`";
+                break;
+            case 2:
+                $sql = "SELECT COUNT(title) FROM `Destinations`";
+                break;
+            case 3:
+                $sql = "SELECT COUNT(title) FROM `Users`";
+                break;
+            default:
+                return "This table doesnt exist";
+        }
+        include("../config/mysql.php");
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $result = $conn->query($sql);
+        return $result->fetch_array()[0];
+    }
 }
