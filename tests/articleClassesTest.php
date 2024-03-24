@@ -22,7 +22,8 @@ class ArticleClassesTest extends Tester\TestCase
 
         ### tests for empty fields ###
         foreach ($titles as $title) {
-            Assert::notNull($title);
+            Assert::notNull($title[0]);
+            Assert::notNull($title[1]);
         }
 
         ### checks if funciton selected all titles ###
@@ -37,7 +38,7 @@ class ArticleClassesTest extends Tester\TestCase
 
     function getLoopArgs()
     {
-        return [[-1], [0], [1], [2], [5]];
+        return [[-1], [0], [1], [2], [1654], [$this->Article->getLastId(1)]];
     }
     /**
      *@dataProvider getLoopArgs
@@ -46,8 +47,7 @@ class ArticleClassesTest extends Tester\TestCase
     {
         ### checks for different cases of input ###
         $article = $this->Article->getArticleById($id);
-        $max =  $this->Article->getLastId(1); ## 
-        if ($id > 0 && $id < $max) {
+        if (array_search($id, $this->Article->getIdArray()) != false) {
             Assert::true($article['succesfull']);
             foreach ($article as $key) {
                 Assert::notNull($key);
