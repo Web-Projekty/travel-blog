@@ -14,7 +14,7 @@ class ArticleClassesTest extends Tester\TestCase
         $this->Article = new Articles;
     }
 
-    public function testGetTittleArray()
+    function testGetTittleArray()
     {
         $titles = $this->Article->getTitleArray();
         ### tests for data type ###
@@ -34,8 +34,27 @@ class ArticleClassesTest extends Tester\TestCase
         Assert::count($result->fetch_array()[0], $titles);
         $conn->close();
     }
-    public function testGetArticleById()
+
+    function getLoopArgs()
     {
+        return [[-1], [0], [1], [2], [5]];
+    }
+    /**
+     *@dataProvider getLoopArgs
+     */
+    function testGetArticleById($id)
+    {
+        ### checks for different cases of input ###
+        $article = $this->Article->getArticleById($id);
+        $max =  $this->Article->getLastId(1); ## 
+        if ($id > 0 && $id < $max) {
+            Assert::true($article['succesfull']);
+            foreach ($article as $key) {
+                Assert::notNull($key);
+            }
+        } else {
+            Assert::false($article['succesfull']);
+        }
     }
 }
 

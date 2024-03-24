@@ -91,4 +91,11 @@ class Articles
         $result = $conn->query($sql);
         return $result->fetch_array()[0];
     }
+    function getLastId($database){
+        include("../config/mysql.php");
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $result = $conn->query($sql);
+        return $result->fetch_array()[0];
+        
+    }
 }
