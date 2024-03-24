@@ -11,21 +11,21 @@ class Articles
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        $sql = "SELECT Title FROM Articles";
+        $sql = "SELECT idArticles, title FROM Articles";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             $i = 0;
             while ($row = $result->fetch_assoc()) {
-                $title[$i] = $row['Title'];
+                $title[$i] = [$row['idArticles'], $row['title']];
                 $i++;
             }
             return $title;
             $conn->close();
         }
     }
-    function getArticleById()
+    function getArticleById($articleId)
     {
         include("../config/mysql.php");
 
@@ -34,7 +34,7 @@ class Articles
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        $articleId = $_GET['articleId'];
+
         $sql = "SELECT * FROM Articles WHERE idArticles = $articleId";
 
         $result = $conn->query($sql);
@@ -69,5 +69,78 @@ class Articles
 
         $conn->close();
         return $article;
+    }
+    function countRows($database)
+    {
+        ### set sql for specific database ###
+        switch ($database) {
+            case 1:
+                $sql = "SELECT COUNT(title) FROM `Articles`";
+                break;
+            case 2:
+                $sql = "SELECT COUNT(title) FROM `Destinations`";
+                break;
+            case 3:
+                $sql = "SELECT COUNT(title) FROM `Users`";
+                break;
+            default:
+                return "This table doesnt exist";
+        }
+
+        ### db stuff ###
+        include("../config/mysql.php");
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $result = $conn->query($sql);
+        return $result->fetch_array()[0];
+    }
+    ### fetches the last id used ###
+    function getLastId($database)
+    {
+        ### chooses the right db and connects to mysql ###
+        include("../config/mysql.php");
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        switch ($database) {
+            case 1:
+                "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
+                break;
+            case 2:
+                "SELECT * FROM `Destinations` ORDER BY `Articles`.`idArticles` DESC";
+                break;
+            case 3:
+                $sql = "SELECT * FROM `Users` ORDER BY `Articles`.`idArticles` DESC";
+                break;
+            default:
+                return "This table doesnt exist";
+        }
+
+        ### executes sql query ###
+        $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_array()[0];
+    }
+    ### get all ids from (any - will come back to this later) database ###
+    function getIdArray()
+    {
+        ############### connect to sql ###############
+        include("../config/mysql.php");
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT idArticles FROM Articles";
+
+        $result = $conn->query($sql);
+
+        ### adds values to array $ids
+        if ($result->num_rows > 0) {
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $ids[$i] = $row['idArticles'];
+                $i++;
+            }
+            return $ids;
+            $conn->close();
+        }
     }
 }

@@ -9,16 +9,16 @@ $latte->setTempDirectory('../temp');
 ########### redirect to selection if form not filled ###########
 if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
     header("location: articleSelect.php");
-}
-else{
-############### main php import ###############
+} else {
+    ############### main php import ###############
 
-include("../src/articleClasses.php");
+    include("../src/articleClasses.php");
 
-$Articles = new Articles();
+    $Articles = new Articles();
 
-$article = $Articles->getArticleById();
+    $articleId = $_GET['articleId'];
 
+    $article = $Articles->getArticleById($articleId);
 }
 
 

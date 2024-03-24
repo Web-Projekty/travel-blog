@@ -19,7 +19,7 @@ class IndexTest extends Tester\TestCase
         # Úklid
     }
 
-  /*  public function getLoopArgs()
+    /*  public function getLoopArgs()
     {
         return [
             #array hodnot
@@ -28,4 +28,3 @@ class IndexTest extends Tester\TestCase
 }
 
 (new IndexTest)->run();
-?>

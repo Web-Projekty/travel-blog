@@ -8,7 +8,7 @@
     <body>
         <form action="articleDetail.php" method="get">
             <select name="articleId">
-                <option n:foreach="$title as $titleKey" value="{$iterator->counter}">{$titleKey}</option>
+                <option n:foreach="$title as $titleKey" value="{$titleKey[0]}">{$titleKey[1]}</option>
             </select>
             <button type="submit">submit</button>
         </form>
