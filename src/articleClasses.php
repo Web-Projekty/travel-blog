@@ -86,13 +86,17 @@ class Articles
             default:
                 return "This table doesnt exist";
         }
+
+        ### db stuff ###
         include("../config/mysql.php");
         $conn = new mysqli($servername, $username, $password, $dbname);
         $result = $conn->query($sql);
         return $result->fetch_array()[0];
     }
+    ### fetches the last id used ###
     function getLastId($database)
     {
+        ### chooses the right db and connects to mysql ###
         include("../config/mysql.php");
         $conn = new mysqli($servername, $username, $password, $dbname);
         switch ($database) {
@@ -108,11 +112,14 @@ class Articles
             default:
                 return "This table doesnt exist";
         }
+
+        ### executes sql query ###
         $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
         $result = $conn->query($sql);
         $conn->close();
         return $result->fetch_array()[0];
     }
+    ### get all ids from (any - will come back to this later) database ###
     function getIdArray()
     {
         ############### connect to sql ###############
@@ -125,6 +132,7 @@ class Articles
 
         $result = $conn->query($sql);
 
+        ### adds values to array $ids
         if ($result->num_rows > 0) {
             $i = 0;
             while ($row = $result->fetch_assoc()) {
