@@ -11,14 +11,14 @@ class Articles
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        $sql = "SELECT Title FROM Articles";
+        $sql = "SELECT idArticles, title FROM Articles";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             $i = 0;
             while ($row = $result->fetch_assoc()) {
-                $title[$i] = $row['Title'];
+                $title[$i] = [$row['idArticles'], $row['title']];
                 $i++;
             }
             return $title;
@@ -91,11 +91,48 @@ class Articles
         $result = $conn->query($sql);
         return $result->fetch_array()[0];
     }
-    function getLastId($database){
+    function getLastId($database)
+    {
         include("../config/mysql.php");
         $conn = new mysqli($servername, $username, $password, $dbname);
+        switch ($database) {
+            case 1:
+                "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
+                break;
+            case 2:
+                "SELECT * FROM `Destinations` ORDER BY `Articles`.`idArticles` DESC";
+                break;
+            case 3:
+                $sql = "SELECT * FROM `Users` ORDER BY `Articles`.`idArticles` DESC";
+                break;
+            default:
+                return "This table doesnt exist";
+        }
+        $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
         $result = $conn->query($sql);
+        $conn->close();
         return $result->fetch_array()[0];
-        
+    }
+    function getIdArray()
+    {
+        ############### connect to sql ###############
+        include("../config/mysql.php");
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT idArticles FROM Articles";
+
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $ids[$i] = $row['idArticles'];
+                $i++;
+            }
+            return $ids;
+            $conn->close();
+        }
     }
 }
