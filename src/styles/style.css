@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header {
+    top: 0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+header img {
+    width: 20%;
+    height: 20%;
+}
+
+nav {
+    margin-right: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    gap: 3rem;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+main {
+    width: 75%;
+    padding: 20px;
+}
+
+footer {
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    header img {
+        height: 50%;
+        width: 50%;
+    }
+
+    nav {
+        margin: auto;
+        margin-bottom: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer {
+        position: relative;
+        margin-top: 20px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: .6vw;
+}
+  
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #df7700;
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #202020;
+}
