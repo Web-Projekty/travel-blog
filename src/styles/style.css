@@ -25,7 +25,6 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-
 }
 
 header img {
@@ -51,17 +50,13 @@ a {
 }
 
 main {
-    margin-top: 2rem;
     width: 75%;
     padding: 20px;
-
-    
 }
 
 footer {
     width: 100%;
-    position: absolute;
-    bottom: 5%;
+    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
