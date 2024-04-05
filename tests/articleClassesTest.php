@@ -38,7 +38,7 @@ class ArticleClassesTest extends Tester\TestCase
 
     function getLoopArgs()
     {
-        return [[-1], [0], [1], [2], [1654], [$this->Article->getLastId(1)]];
+        return [[-1], [0], [1], [2], [1654], [intval($this->Article->getLastId(1))]];
     }
     /**
      *@dataProvider getLoopArgs
@@ -47,7 +47,7 @@ class ArticleClassesTest extends Tester\TestCase
     {
         ### checks for different cases of input ###
         $article = $this->Article->getArticleById($id);
-        if (array_search($id, $this->Article->getIdArray()) != false) {
+        if (is_int(array_search($id, $this->Article->getIdArray()))) {
             Assert::true($article['succesfull']);
             foreach ($article as $key) {
                 Assert::notNull($key);

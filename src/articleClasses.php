@@ -117,7 +117,9 @@ class Articles
         $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
         $result = $conn->query($sql);
         $conn->close();
-        return $result->fetch_array()[0];
+        //var_dump($result->fetch_array());
+        $array = $result->fetch_array();
+        return $array[0];
     }
     ### get all ids from (any - will come back to this later) database ###
     function getIdArray()
@@ -136,7 +138,7 @@ class Articles
         if ($result->num_rows > 0) {
             $i = 0;
             while ($row = $result->fetch_assoc()) {
-                $ids[$i] = $row['idArticles'];
+                $ids[$i] = intval($row['idArticles']);
                 $i++;
             }
             return $ids;
