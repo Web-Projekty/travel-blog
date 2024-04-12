@@ -14,6 +14,9 @@ $Articles = new Articles();
 ############### Latte stuff ###############
 $params = [
     'title' => $Articles->getTitleArray()
+
+    'searchInput' => $Articles->searchInput()
+    'orderBy' => $Articles->filterInput()
 ];
 
 

@@ -32,6 +32,19 @@
           </select>
           <button type="submit">submit</button>
         </form>
+
+        <form action="articleSelect.php" method="get">
+          <input type="text" name="searchInput" value="$searchInput" placeholder="..."> 
+          <input type="submit" value="search" name="search">
+
+          <select name="orderBy">
+            <option value="title ASC">A-Z</option>
+            <option value="title DESC">Z-A</option>
+            <option value="author ASC">Author A-Z</option>
+            <option value="destination ASC">Destination A-Z</option>
+          </select>
+          <input type="submit" value="order" name="order">
+        </form>
       </main>
 
       <footer>
