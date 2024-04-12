@@ -1,8 +1,10 @@
 <?php
 class ArticleList
 {
-    function getArticleList($sql, $page)
+    function getArticleList($page, $orderBy)
     {
+        ######## build SQL ########
+        $sql = "SELECT * FROM `Articles` ORDER BY " . $orderBy;
         ######## SQL connect ########
         include("../config/mysql.php");
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,11 +14,12 @@ class ArticleList
 
         $result = $conn->query($sql);
         $i = 0;
-        ######## get needed info ########
+        ######## pages config ########
         $articlesPerPage = 5;
         $firstPage = $articlesPerPage * ($page - 1);
         $lastPage = $firstPage + $articlesPerPage;
         $lists = [[null, null, null]];
+        ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
                 $lists[$i] = [$row['title'], $row['datePublic'], $row['destination']];
