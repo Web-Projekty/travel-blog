@@ -5,11 +5,13 @@ $latte = new Latte\Engine;
 
 include "../src/listClasses.php";
 $latte->setTempDirectory('../temp');
+
 ######## class declaration ########
 $Lists = new ArticleList();
+
 ######## search data processing ########
-$searchInput = "";
-if (isset($_GET["searchInput"])) {
+$searchInput = null;
+if (isset($_GET["searchInput"]) && !empty($_GET['searchInput'])) {
     $searchInput = $_GET["searchInput"];
 }
 $orderBy = "datePublic DESC";
@@ -20,8 +22,9 @@ $page = 1;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 }
+
 ######## article list data processing ########
-$lists = $Lists->getArticleList($page, $orderBy);
+$lists = $Lists->getArticleList($page, $orderBy, $searchInput);
 
 $params = [
     'lists' => $lists,

@@ -1,10 +1,10 @@
 <?php
 class ArticleList
 {
-    function getArticleList($page, $orderBy)
+    function getArticleList($page, $orderBy, $search)
     {
         ######## build SQL ########
-        $sql = "SELECT * FROM `Articles` ORDER BY " . $orderBy;
+        $sql = "SELECT * FROM `Articles`"  . " WHERE title LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
         ######## SQL connect ########
         include("../config/mysql.php");
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -27,6 +27,9 @@ class ArticleList
 
             $i++;
         }
+        echo "Found " . $i . " results";
+        echo "<br>SQL Query: ";
+        echo $sql;
         return $lists;
     }
 }
