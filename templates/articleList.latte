@@ -6,6 +6,19 @@
         <title>List</title>
     </head>
     <body>
+        <form action="articleList.php" method="get">
+            <input type="text" name="searchInput" value='{$searchInput}' placeholder="..."> 
+            <input type="submit" value="search" name="search">
+  
+            <select name="orderBy">
+                <option value="title ASC" {if $orderBy === "title ASC"}selected{/if}>A-Z</option>
+                <option value="title DESC" {if $orderBy === "title DESC"}selected{/if}>Z-A</option>
+                <option value="datePublic ASC" {if $orderBy === "datePublic ASC"}selected{/if}>Date A-Z</option>
+                <option value="destination ASC" {if $orderBy === "destination ASC"}selected{/if}>Destination A-Z</option>
+            </select>
+            <input type="submit" value="order" name="order">
+        </form>
+
         {foreach $lists as $list}
         <div>
             <h2>{$list['0']}</h2>
