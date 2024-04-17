@@ -32,4 +32,4 @@ $params = [
     'searchInput' => $searchInput
 ];
 
-$latte->render('../templates/articleList.latte', $params);
+$latte->render('../templates/articleSearch.latte', $params);
