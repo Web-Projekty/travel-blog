@@ -22,7 +22,7 @@ class ArticleSearch
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
-                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination']];
+                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination'],$row['idArticles']];
             }
             $i++;
         }
