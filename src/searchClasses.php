@@ -28,4 +28,25 @@ class ArticleSearch
         }
         return $lists;
     }
+    function filterInput()
+    {
+        $orderByInput = "datePublic DESC";
+        if (isset($_GET['orderBy'])) {
+            $orderByInput = $_GET["orderBy"];
+            return $orderByInput;
+        } else {
+            return $orderByInput;
+        }
+    }
+    ############ remembers search input ############
+    function searchInput()
+    {
+        $searchInput = "";
+        if (isset($_GET['searchInput'])) {
+            $searchInput = $_GET["searchInput"];
+            return $searchInput;
+        } else {
+            return $searchInput;
+        }
+    }
 }
