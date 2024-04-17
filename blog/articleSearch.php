@@ -3,11 +3,11 @@
 require_once "../vendor/autoload.php";
 $latte = new Latte\Engine;
 
-include "../src/listClasses.php";
+include "../src/searchClasses.php";
 $latte->setTempDirectory('../temp');
 
 ######## class declaration ########
-$Lists = new ArticleList();
+$Lists = new ArticleSearch();
 
 ######## search data processing ########
 $searchInput = null;
@@ -25,7 +25,6 @@ if (isset($_GET['page'])) {
 
 ######## article list data processing ########
 $lists = $Lists->getArticleList($page, $orderBy, $searchInput);
-
 $params = [
     'lists' => $lists,
     'orderBy' => $orderBy,

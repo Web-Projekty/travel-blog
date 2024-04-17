@@ -1,5 +1,5 @@
 <?php
-class ArticleList
+class ArticleSearch
 {
     function getArticleList($page, $orderBy, $search)
     {
@@ -24,12 +24,8 @@ class ArticleList
             if ($i >= $firstPage && $i < $lastPage) {
                 $lists[$i] = [$row['title'], $row['datePublic'], $row['destination']];
             }
-
             $i++;
         }
-        echo "Found " . $i . " results";
-        echo "<br>SQL Query: ";
-        echo $sql;
         return $lists;
     }
 }
