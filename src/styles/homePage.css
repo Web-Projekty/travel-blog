@@ -76,7 +76,6 @@ nav ul {
     position: absolute;
     top: calc(100% + 10px);
     width: 100%;
-    background: rgba(168, 166, 166, 0.5);
     z-index: 2;
 }
 
@@ -90,8 +89,8 @@ nav ul li a {
     text-decoration: none;
 }
 
-nav ul li a:hover {
-    background-color: #999;
+nav ul li:hover {
+    transform: scale(1.1);
 }
 
 .dotPlace {
