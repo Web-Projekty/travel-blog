@@ -17,12 +17,15 @@ $orderBy = $ArticleSearch->filterInput();
 
 $searchInput = $ArticleSearch->searchInput();
 
+$pages = $ArticleSearch->getPages();
+
 ######## article list data processing ########
 $lists = $ArticleSearch->getArticleList($page, $orderBy, $searchInput);
 $params = [
     'lists' => $lists,
     'searchInput' => $searchInput,
-    'orderBy' => $orderBy
+    'orderBy' => $orderBy,
+    'pages' => $pages
 ];
 
 $latte->render('../templates/articleSearch.latte', $params);

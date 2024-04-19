@@ -1,12 +1,14 @@
 <?php
 class ArticleSearch
 {
-    function getArticleList($page, $orderBy, $search)
+    public $counter;
+    public $articlesPerPage = 5;
+    public function getArticleList($page, $orderBy, $search)
     {
         ######## build SQL ########
-        $sql = "SELECT * FROM `Articles`"  . " WHERE title LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+        $sql = "SELECT * FROM `Articles`" . " WHERE title LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
         ######## SQL connect ########
-        include("../config/mysql.php");
+        include "../config/mysql.php";
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -15,20 +17,20 @@ class ArticleSearch
         $result = $conn->query($sql);
         $i = 0;
         ######## pages config ########
-        $articlesPerPage = 5;
-        $firstPage = $articlesPerPage * ($page - 1);
-        $lastPage = $firstPage + $articlesPerPage;
+        $firstPage = $this->articlesPerPage * ($page - 1);
+        $lastPage = $firstPage + $this->articlesPerPage;
         $lists = [[null, null, null]];
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
-                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination'],$row['idArticles']];
+                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination'], $row['idArticles']];
             }
             $i++;
+            $this->counter = $i;
         }
         return $lists;
     }
-    function filterInput()
+    public function filterInput()
     {
         $orderByInput = "datePublic DESC";
         if (isset($_GET['orderBy'])) {
@@ -39,7 +41,7 @@ class ArticleSearch
         }
     }
     ############ remembers search input ############
-    function searchInput()
+    public function searchInput()
     {
         $searchInput = "";
         if (isset($_GET['searchInput'])) {
@@ -48,5 +50,17 @@ class ArticleSearch
         } else {
             return $searchInput;
         }
+    }
+    public function getPages()
+    {
+        $page = 1;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        while($){
+
+        }
+
+        return $pages;
     }
 }
