@@ -2,8 +2,5 @@
     "require": {
         "latte/latte": "^2.10",
         "nette/tester": "^2.4"
-    },
-    "autoload": {
-        "files": ["src/articleClasses.php"]
     }
 }

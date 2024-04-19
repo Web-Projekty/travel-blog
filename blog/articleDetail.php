@@ -12,7 +12,7 @@ if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
 } else {
     ############### main php import ###############
 
-    include("../src/articleClasses.php");
+    require_once("../src/articleClasses.php");
 
     $Articles = new Articles();
 
