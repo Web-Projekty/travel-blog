@@ -17,10 +17,13 @@ $orderBy = $ArticleSearch->filterInput();
 
 $searchInput = $ArticleSearch->searchInput();
 
-$pages = $ArticleSearch->getPages();
+
+
 
 ######## article list data processing ########
 $lists = $ArticleSearch->getArticleList($page, $orderBy, $searchInput);
+
+$pages = $ArticleSearch->getPages();
 $params = [
     'lists' => $lists,
     'searchInput' => $searchInput,

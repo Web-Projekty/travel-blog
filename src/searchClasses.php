@@ -1,7 +1,7 @@
 <?php
 class ArticleSearch
 {
-    public $counter;
+    public $counter = 0;
     public $articlesPerPage = 5;
     public function getArticleList($page, $orderBy, $search)
     {
@@ -57,8 +57,14 @@ class ArticleSearch
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
         }
-        while($){
+        $resultCount = $this->counter;
+        $pageCount = ceil($this->counter / $this->articlesPerPage);
+        $maxPage = $this->articlesPerPage*$page;
 
+        for ($i = 1; $i <= $pageCount; $i++) {
+            if($i){
+                $pages[$i] = $i;
+            }   
         }
 
         return $pages;
