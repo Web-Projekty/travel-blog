@@ -17,12 +17,12 @@
 
     <script src="src/scripts/script.js"></script>
   </head>
-  <body>
+  <body onload="showSlides(1)">
     <div class="slideshow">
       <!-- Video slideshow, genereted by ChatGpt since i have no idea how to do a slideshow -->
       <div class="Slides fade">
         <video autoplay muted loop onended="nextSlide()">
-          <source src="src/res/img1.jpg" type="video/mp4" />
+          <source src="src/res/v1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -62,9 +62,9 @@
           <ul>
             <li><a href="#">Domů</a></li>
             |
-            <li><a href="#">O nás</a></li>
+            <li><a href="templates/articleDetail.latte">Destinace</a></li>
             |
-            <li><a href="#">Destinace</a></li>
+            <li><a href="#">O nás</a></li>
             |
             <li><a href="#">Kontakt</a></li>
           </ul>

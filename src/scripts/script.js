@@ -1,5 +1,4 @@
 var slideIndex = 1;
-showSlides(slideIndex);
 
 function plusSlides(n) {
   showSlides((slideIndex += n));
@@ -13,6 +12,7 @@ function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("Slides");
   var dots = document.getElementsByClassName("dot");
+
   if (n > slides.length) {
     slideIndex = 1;
   }
