@@ -24,6 +24,7 @@ $searchInput = $ArticleSearch->searchInput();
 $lists = $ArticleSearch->getArticleList($page, $orderBy, $searchInput);
 
 $pages = $ArticleSearch->getPages();
+
 $params = [
     'lists' => $lists,
     'searchInput' => $searchInput,

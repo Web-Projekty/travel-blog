@@ -32,7 +32,9 @@
 
     {/foreach}
     <div style="display: flex;">
-        {foreach $pages as $page}<div>{$page}</div>{/foreach}
+        {foreach $pages as $page} 
+        <a href="{$page[1]}"><div>{$page[0]}</div></a>
+        {/foreach}
 
     </div>
 </body>

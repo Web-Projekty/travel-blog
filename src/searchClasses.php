@@ -3,6 +3,7 @@ class ArticleSearch
 {
     public $counter = 0;
     public $articlesPerPage = 5;
+    public $pagesPerList = 5;
     public function getArticleList($page, $orderBy, $search)
     {
         ######## build SQL ########
@@ -53,20 +54,47 @@ class ArticleSearch
     }
     public function getPages()
     {
+        ### get $_GET variables ###
         $page = 1;
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
         }
-        $resultCount = $this->counter;
-        $pageCount = ceil($this->counter / $this->articlesPerPage);
-        $maxPage = $this->articlesPerPage*$page;
-
-        for ($i = 1; $i <= $pageCount; $i++) {
-            if($i){
-                $pages[$i] = $i;
-            }   
+        if (isset($_GET['searchInput'])) {
+            $searchInput = $_GET['searchInput'];
+        }
+        if (isset($_GET['orderBy'])) {
+            $orderBy = $_GET['orderBy'];
         }
 
+        ### variable setting ###
+        $resultCount = $this->counter;
+        $pageCount = ceil($resultCount / $this->articlesPerPage);
+        $firstPage = $page - 2;
+        $lastPage = $pageCount;
+
+        if ($firstPage < 1) {
+            $firstPage = 1;
+        }
+
+        if ($lastPage - $this->pagesPerList < $firstPage) {
+            $firstPage = $lastPage - $this->pagesPerList;
+        }
+        for ($i = $firstPage; $i <= $firstPage + $this->pagesPerList; $i++) {
+            if ($i <= $pageCount) {
+                if ($i > 0) {
+                    $url = $_SERVER['PHP_SELF'] . "?" . "page=" . $i;
+
+                    if (isset($_GET['searchInput'])) {
+                        $url = $url."&&searchInput=".$_GET['searchInput'];
+                    }
+                    if (isset($_GET['orderBy'])) {
+                        $url = $url."&&orderBy=".$_GET['orderBy'];
+                    }
+
+                    $pages[$i] = [$i, $url];
+                }
+            }
+        }
         return $pages;
     }
 }
