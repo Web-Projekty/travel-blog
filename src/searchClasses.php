@@ -9,8 +9,8 @@ class ArticleSearch
 
     public function getArticleList($page, $orderBy, $search)
     {
-        $locale = "ja_JP";
-        setlocale(LC_TIME, $locale);
+        require_once("databaseClasses.php");
+        $Database = new Database();
         //var_dump(locale);
         ######## build SQL ########
         $sql = "SELECT * FROM `Articles`" . " WHERE title LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
@@ -22,6 +22,8 @@ class ArticleSearch
         }
 
         $result = $conn->query($sql);
+        $conn->close();
+
         $i = 0;
         ######## pages config ########
         $firstPage = $this->articlesPerPage * ($page - 1);
@@ -31,10 +33,11 @@ class ArticleSearch
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
-
-                $datePublic = "Datum: " . date_format(new DateTime($row['datePublic']), "F j, Y G:i");
-
-                $lists[$i] = [$row['title'], $datePublic, $row['destination'], $row['idArticles'], $row['author']];
+                ### setting variables ###
+                $datePublic = "Zveřejněno: " . date_format(new DateTime($row['datePublic']), "j/m/y G:i");
+                $destination = "Destinace: " . $Database->getDestination(intval($row['destination']));
+                $author = "Autor: " . $Database->getAuthor($row['author']);;
+                $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author];
                 $this->foundResults = true;
             }
             $i++;

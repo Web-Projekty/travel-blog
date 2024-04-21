@@ -60,6 +60,7 @@ class Articles
             $result = $conn->query($sql);
             $article['author'] = $result->fetch_row()[0];
             $article['succesfull'] = true;
+            
         }
         ############### setting error code
         else {
@@ -91,6 +92,7 @@ class Articles
         include("../config/mysql.php");
         $conn = new mysqli($servername, $username, $password, $dbname);
         $result = $conn->query($sql);
+        $conn->close();
         return $result->fetch_array()[0];
     }
     ### fetches the last id used ###
