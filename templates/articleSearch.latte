@@ -12,10 +12,10 @@
         <input type="text" name="searchInput" value='{$searchInput}' placeholder="...">
 
         <select name="orderBy">
-            <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>Název A-Z</option>
-            <option value="destination ASC" {if $orderBy==="destination ASC" }selected{/if}>Destination A-Z</option>
             <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
             <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Nejstarší</option>
+            <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>Název A-Z</option>
+            <option value="destination ASC" {if $orderBy==="destination ASC" }selected{/if}>Destination A-Z</option>
             <option value="author ASC" {if $orderBy==="author ASC" }selected{/if}>Autor A-Z</option>
         </select>
         <input type="submit" value="search">

@@ -9,6 +9,9 @@ class ArticleSearch
 
     public function getArticleList($page, $orderBy, $search)
     {
+        $locale = "ja_JP";
+        setlocale(LC_TIME, $locale);
+        //var_dump(locale);
         ######## build SQL ########
         $sql = "SELECT * FROM `Articles`" . " WHERE title LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
         ######## SQL connect ########
@@ -28,7 +31,10 @@ class ArticleSearch
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
-                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination'], $row['idArticles'], $row['author']];
+
+                $datePublic = "Datum: " . date_format(new DateTime($row['datePublic']), "F j, Y G:i");
+
+                $lists[$i] = [$row['title'], $datePublic, $row['destination'], $row['idArticles'], $row['author']];
                 $this->foundResults = true;
             }
             $i++;
