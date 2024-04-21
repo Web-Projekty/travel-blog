@@ -85,10 +85,10 @@ class ArticleSearch
                     $url = $_SERVER['PHP_SELF'] . "?" . "page=" . $i;
 
                     if (isset($_GET['searchInput'])) {
-                        $url = $url."&&searchInput=".$_GET['searchInput'];
+                        $url = $url . "&&searchInput=" . $_GET['searchInput'];
                     }
                     if (isset($_GET['orderBy'])) {
-                        $url = $url."&&orderBy=".$_GET['orderBy'];
+                        $url = $url . "&&orderBy=" . $_GET['orderBy'];
                     }
 
                     $pages[$i] = [$i, $url];
