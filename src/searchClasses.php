@@ -4,6 +4,9 @@ class ArticleSearch
     public $counter = 0;
     public $articlesPerPage = 5;
     public $pagesPerList = 5;
+
+    public $foundResults = false;
+
     public function getArticleList($page, $orderBy, $search)
     {
         ######## build SQL ########
@@ -20,16 +23,21 @@ class ArticleSearch
         ######## pages config ########
         $firstPage = $this->articlesPerPage * ($page - 1);
         $lastPage = $firstPage + $this->articlesPerPage;
-        
-        $lists = [[null, null, null, null]];
+
+
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
-                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination'],$row['idArticles'],$row['author']];
+                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination'], $row['idArticles'], $row['author']];
+                $this->foundResults = true;
             }
             $i++;
             $this->counter = $i;
         }
+        if (!isset($lists)) {
+            $lists = [[null, null, null, null]];
+        }
+
         return $lists;
     }
     public function filterInput()
@@ -95,6 +103,9 @@ class ArticleSearch
                     $pages[$i] = [$i, $url];
                 }
             }
+        }
+        if (!isset($pages)) {
+            $pages = [[null, null]];
         }
         return $pages;
     }

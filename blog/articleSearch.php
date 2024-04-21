@@ -29,7 +29,8 @@ $params = [
     'lists' => $lists,
     'searchInput' => $searchInput,
     'orderBy' => $orderBy,
-    'pages' => $pages
+    'pages' => $pages,
+    'foundResults' => $ArticleSearch->foundResults
 ];
 
 $latte->render('../templates/articleSearch.latte', $params);
