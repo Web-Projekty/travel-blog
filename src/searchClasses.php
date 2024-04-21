@@ -20,11 +20,12 @@ class ArticleSearch
         ######## pages config ########
         $firstPage = $this->articlesPerPage * ($page - 1);
         $lastPage = $firstPage + $this->articlesPerPage;
-        $lists = [[null, null, null]];
+        
+        $lists = [[null, null, null, null]];
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
-                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination'], $row['idArticles']];
+                $lists[$i] = [$row['title'], $row['datePublic'], $row['destination'],$row['idArticles'],$row['author']];
             }
             $i++;
             $this->counter = $i;

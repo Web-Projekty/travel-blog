@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>List</title>
+    </head>
+    <body>
+        <form action="articleSearch.php" method="get">
+            <input type="text" name="searchInput" value='{$searchInput}' placeholder="..."> 
+            
+            <select name="orderBy">
+                <option value="title ASC" {if $orderBy === "title ASC"}selected{/if}>Název A-Z</option>
+                <option value="destination ASC" {if $orderBy === "destination ASC"}selected{/if}>Destination A-Z</option>
+                <option value="datePublic DESC" {if $orderBy === "datePublic DESC"}selected{/if}>Nejnovější</option>
+                <option value="datePublic ASC" {if $orderBy === "datePublic ASC"}selected{/if}>Nejstarší</option>
+                <option value="author ASC" {if $orderBy === "author ASC"}selected{/if}>Autor A-Z</option>
+            </select>
+            <input type="submit" value="search">
+        </form>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>List</title>
-</head>
-
-<body>
-    <form action="articleSearch.php" method="get">
-        <input type="text" name="searchInput" value='{$searchInput}' placeholder="...">
-
-        <select name="orderBy">
-            <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>A-Z</option>
-            <option value="title DESC" {if $orderBy==="title DESC" }selected{/if}>Z-A</option>
-            <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Date A-Z</option>
-            <option value="destination ASC" {if $orderBy==="destination ASC" }selected{/if}>Destination A-Z</option>
-        </select>
-        <input type="submit" value="search">
-    </form>
-
-    {foreach $lists as $list}
-    <div>
-        <a href="articleDetail.php?articleId={$list['3']}">
-            <h2>{$list['0']}</h2>
-        </a>
-        <p>{$list['1']}</p>
-        <p>{$list['2']}</p>
-        <hr />
-    </div>
-
-    {/foreach}
-    <div style="display: flex;">
-        {foreach $pages as $page} 
-        <a href="{$page[1]}"><div>{$page[0]}</div></a>
+        {foreach $lists as $list}
+        <div>
+            <a href="articleDetail.php?articleId={$list['3']}"><h2>{$list['0']}</h2></a>
+            <p>{$list['1']}</p>
+            <p>{$list['2']}</p>
+            <p>{$list['4']}</p>
+            <hr />
+        </div>{/foreach}
+<div style="display: flex;">
+    {foreach $pages as $page} 
+    <a href="{$page[1]}"><div>{$page[0]}</div></a>
         {/foreach}
 
     </div>
