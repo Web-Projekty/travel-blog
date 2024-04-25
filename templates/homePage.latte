@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,8 +7,8 @@
 
     <link rel="stylesheet" href="src/styles/style.css" />
     <link rel="stylesheet" href="src/styles/homePage.css" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Font, can be changed but this one is decent -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
@@ -19,58 +19,61 @@
   </head>
   <body onload="showSlides(1)">
     <div class="slideshow">
+      <!-- Video slideshow, genereted by ChatGpt since i have no idea how to do a slideshow -->
       <div class="Slides fade">
         <video autoplay muted loop onended="nextSlide()">
-          <source src="templates/Sources/v1.mp4" type="video/mp4" />
+          <source src="src/res/v1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
 
       <div class="Slides fade">
         <video autoplay muted loop onended="nextSlide()">
-          <source src="templates/Sources/v2.mp4" type="video/mp4" />
+          <source src="src/res/v2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
 
       <div class="Slides fade">
         <video autoplay muted loop onended="nextSlide()">
-          <source src="templates/Sources/v3.mp4" type="video/mp4" />
+          <source src="src/res/v3.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
 
       <div class="Slides fade">
         <video autoplay muted loop onended="nextSlide()">
-          <source src="templates/Sources/v4.mp4" type="video/mp4" />
+          <source src="src/res/v4.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
 
       <div class="Slides fade">
         <video autoplay muted loop onended="nextSlide()">
-          <source src="templates/Sources/v5.mp4" type="video/mp4" />
+          <source src="src/res/v5.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
 
       <div class="header">
+        <!-- Header but not header, overlay on video slideshow -->
         <h1>Traveler's Trove</h1>
         <nav>
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="#">Domů</a></li>
             |
-            <li><a href="#">About</a></li>
+            <li><a href="templates/articleDetail.latte">Destinace</a></li>
             |
-            <li><a href="#">Destinations</a></li>
+            <li><a href="#">O nás</a></li>
             |
-            <li><a href="#">Contact</a></li>
+            <li><a href="#">Kontakt</a></li>
           </ul>
         </nav>
       </div>
     </div>
 
     <div class="dotPlace">
+      <!-- Can go to any slide you want -->
       <span class="dot" onclick="currentSlide(1)"></span>
       <span class="dot" onclick="currentSlide(2)"></span>
       <span class="dot" onclick="currentSlide(3)"></span>
@@ -80,35 +83,37 @@
 
     <div class="searchbar">
       <input type="text" placeholder="Search..." />
+      <!-- Search for specific blogposts with keywords, titles or specific places -->
     </div>
 
     <div class="blogpost">
+      <!-- Most recent blog posts, would display from DB -->
       <h2>Recent Blog Posts</h2>
       <div class="postPlace">
         <div class="post">
-          <img src="templates/Sources/img1.jpg" alt="Post Image" />
+          <img src="src/res/img1.jpg" alt="Post Image" />
           <h3>Placeholder + placeholder img</h3>
         </div>
         <div class="post">
-          <img src="templates/Sources/img2.jpg" alt="Post Image" />
+          <img src="src/res/img2.jpg" alt="Post Image" />
           <h3>Placeholder + placeholder img</h3>
         </div>
         <div class="post">
-          <img src="templates/Sources/img3.jpg" alt="Post Image" />
+          <img src="src/res/img3.jpg" alt="Post Image" />
           <h3>Placeholder + placeholder img</h3>
         </div>
       </div>
       <div class="postPlace">
         <div class="post">
-          <img src="templates/Sources/img4.jpg" alt="Post Image" />
+          <img src="src/res/img1.jpg" alt="Post Image" />
           <h3>Placeholder + placeholder img</h3>
         </div>
         <div class="post">
-          <img src="templates/Sources/img5.jpg" alt="Post Image" />
+          <img src="src/res/img2.jpg" alt="Post Image" />
           <h3>Placeholder + placeholder img</h3>
         </div>
         <div class="post">
-          <img src="templates/Sources/img1.jpg" alt="Post Image" />
+          <img src="src/res/img3.jpg" alt="Post Image" />
           <h3>Placeholder + placeholder img</h3>
         </div>
       </div>

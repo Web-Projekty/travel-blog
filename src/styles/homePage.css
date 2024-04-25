@@ -81,7 +81,7 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin-right: 10px; 
+    margin-right: 10px;
 }
 
 nav ul li a {
@@ -91,6 +91,9 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: #999;
+}
+nav ul li:hover {
+    transform: scale(1.1);
 }
 
 .dotPlace {
@@ -114,7 +117,8 @@ nav ul li a:hover {
     background-color: #717171;
 }
 
-.prev, .next {
+.prev,
+.next {
     display: none;
 }
 
@@ -122,7 +126,6 @@ nav ul li a:hover {
     text-align: center;
     margin-top: 20px;
     z-index: 2;
-    
 }
 
 .searchbar input {
