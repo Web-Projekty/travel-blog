@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="cs">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
 
-    <title>Travel Blog - Detail článku</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
 
-    <link rel="stylesheet" href="../src/styles/style.css" />
-    <link rel="stylesheet" href="../src/styles/homePage.css" />
-    <script src="../src/scripts/script.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <img src="../src/images/travel-blog-logo.jpg" alt="Travel Blog Logo" />
+  <title>Travel Blog - Detail článku</title>
 
-        <nav>
-          <li><a href="../">Home</a></li>
-          <li><a href="../blog/articleSelect.php">Select</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Sign In/Up</a></li>
-        </nav>
-      </header>
+  <link rel="stylesheet" href="../src/styles/style.css" />
+  <link rel="stylesheet" href="../src/styles/homePage.css" />
+  <script src="../src/scripts/script.js"></script>
+</head>
 
-      <main>
-        <h1>{$title}</h1>
-        <p>{$content}</p>
-        <p>{$img}</p>
-        <p>{$author}</p>
-        <p>{$destination}</p>
-        <p>{$date}</p>
-      </main>
+<body>
+  <div class="container">
+    <header>
+      <img src="../src/images/travel-blog-logo.jpg" alt="Travel Blog Logo" />
 
-      <footer>
-        <p>Made by: Vlček, Pták, Rehák, Duchek</p>
-      </footer>
-    </div>
-  </body>
+      <nav>
+        <li><a href="../">Home</a></li>
+        <li><a href="../blog/articleSearch.php">Search</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Sign In/Up</a></li>
+      </nav>
+    </header>
+
+    <main>
+      <h1>{$title}</h1>
+      <p>{$content}</p>
+      <p>{$img}</p>
+      <p>{$author}</p>
+      <p>{$destination}</p>
+      <p>{$date}</p>
+    </main>
+
+    <footer>
+      <p>Made by: Vlček, Pták, Rehák, Duchek</p>
+    </footer>
+  </div>
+</body>
+
 </html>
