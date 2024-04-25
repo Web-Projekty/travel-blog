@@ -60,9 +60,9 @@
         <h1>Traveler's Trove</h1>
         <nav>
           <ul>
-            <li><a href="#">Domů</a></li>
+            <li><a href="../index.php">Domů</a></li>
             |
-            <li><a href="blog/articleSearch.php">Články</a></li>
+            <li><a href="#">Články</a></li>
             |
             <li><a href="#">O nás</a></li>
             |
@@ -89,34 +89,31 @@
     </div>
 
     <form action="articleSearch.php" method="get">
-
-        <select name="orderBy">
-            <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
-            <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Nejstarší</option>
-            <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>Název A-Z</option>
-            <option value="destination ASC" {if $orderBy==="destination ASC" }selected{/if}>Destination A-Z</option>
-            <option value="author ASC" {if $orderBy==="author ASC" }selected{/if}>Autor A-Z</option>
-        </select>
-        <input type="submit" value="search">
+      <select name="orderBy">
+        <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
+        <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Nejstarší</option>
+        <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>Název A-Z</option>
+        <option value="destination ASC" {if $orderBy==="destination ASC" }selected{/if}>Destination A-Z</option>
+        <option value="author ASC" {if $orderBy==="author ASC" }selected{/if}>Autor A-Z</option></select>
+      <input type="submit" value="Filter" />
     </form>
-    {if $foundResults}
-    {foreach $lists as $list}
+    {if $foundResults} {foreach $lists as $list}
     <div>
-        <a href="articleDetail.php?articleId={$list['3']}">
-            <h2>{$list['0']}</h2>
-        </a>
-        <p>{$list['1']}</p>
-        <p>{$list['2']}</p>
-        <p>{$list['4']}</p>
-        <hr />
-    </div>{/foreach}
-    <div style="display: flex;">
-        {foreach $pages as $page}
-        <a href="{$page[1]}">
-            <div>{$page[0]}</div>
-        </a>
-        {/foreach}
-
+      <a href="articleDetail.php?articleId={$list['3']}">
+        <h2>{$list['0']}</h2>
+      </a>
+      <p>{$list['1']}</p>
+      <p>{$list['2']}</p>
+      <p>{$list['4']}</p>
+      <hr />
+    </div>
+    {/foreach}
+    <div style="display: flex">
+      {foreach $pages as $page}
+      <a href="{$page[1]}">
+        <div>{$page[0]}</div>
+      </a>
+      {/foreach}
     </div>
     {else}
     <p>nebyly nalezeny žádné výsledky</p>
