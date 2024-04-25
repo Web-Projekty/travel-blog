@@ -50,7 +50,7 @@ header {
 /* Text overlay */
 .header {
     position: absolute;
-    top: 10%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -76,7 +76,6 @@ nav ul {
     position: absolute;
     top: calc(100% + 10px);
     width: 100%;
-    background: rgba(168, 166, 166, 0.5);
     z-index: 2;
 }
 
