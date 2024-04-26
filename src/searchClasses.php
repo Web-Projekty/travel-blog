@@ -36,8 +36,9 @@ class ArticleSearch
                 ### setting variables ###
                 $datePublic = "Zveřejněno: " . date_format(new DateTime($row['datePublic']), "j/m/y G:i");
                 $destination = "Destinace: " . $Database->getDestination(intval($row['destination']));
-                $author = "Autor: " . $Database->getAuthor($row['author']);;
-                $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author];
+                $author = "Autor: " . $Database->getAuthor($row['author']);
+                $img = $row['profileImg'];
+                $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author,$img];
                 $this->foundResults = true;
             }
             $i++;
