@@ -6,7 +6,7 @@
     <title>Travel Blog</title>
 
     <link rel="stylesheet" href="../src/styles/style.css" />
-    <link rel="stylesheet" href="../src/styles/articleSearch.css" />
+    <link rel="stylesheet" href="../src/styles/articleDetail.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <!-- Font, can be changed but this one is decent -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -56,7 +56,6 @@
       </div>
 
       <div class="header">
-        <!-- Header but not header, overlay on video slideshow -->
         <h1>Traveler's Trove</h1>
         <nav>
           <ul>
@@ -73,7 +72,6 @@
     </div>
 
     <div class="dotPlace">
-      <!-- Can go to any slide you want -->
       <span class="dot" onclick="currentSlide(1)"></span>
       <span class="dot" onclick="currentSlide(2)"></span>
       <span class="dot" onclick="currentSlide(3)"></span>
@@ -82,12 +80,16 @@
     </div>
 
     <main>
-      <h1>{$title}</h1>
-      <p>{$content}</p>
-      <img src="../src/images/{$img}" width="600px" ></img>
-      <p>{$author}</p>
-      <p>{$destination}</p>
-      <p>{$date}</p>
+      <div>
+        <h1>{$title}</h1>
+        <p>{$author} {$destination} {$date}</p>
+      </div>
+      <div class="content">
+        
+        <p>{$content}</p>
+        <img src="../src/images/{$img}" />
+      </div>
+      
     </main>
 
     <footer>

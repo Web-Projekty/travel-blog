@@ -1,0 +1,19 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    margin: auto;
+    width: 75%;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.content img {
+    float: left;
+    width: 600px;
+}
+
