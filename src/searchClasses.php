@@ -15,13 +15,13 @@ class ArticleSearch
         ######## build SQL ########
         switch ($type) {
             case "title":
-                echo $sql = "SELECT * FROM `Articles` WHERE '" . $type . "' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+                $sql = "SELECT * FROM `Articles` WHERE '" . $type . "' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
                 break;
             case "author":
-                echo $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Articles.author = Users.idUsers WHERE Users.userName LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Articles.author = Users.idUsers WHERE Users.userName LIKE '%" . $search . "%' ORDER BY " . $orderBy;
                 break;
             case "destination":
-                echo $sql = "SELECT * FROM `Articles` INNER JOIN Destinations ON Articles.destination = Destinations.idDestination WHERE Destinations.name LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                $sql = "SELECT * FROM `Articles` INNER JOIN Destinations ON Articles.destination = Destinations.idDestination WHERE Destinations.name LIKE '%" . $search . "%' ORDER BY " . $orderBy;
                 break;
         }
 
