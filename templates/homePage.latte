@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="src/styles/style.css" />
         <link rel="stylesheet" href="src/styles/homePage.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <!-- Font, can be changed but this one is decent -->
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
@@ -73,7 +72,6 @@
         </div>
 
         <div class="dotPlace">
-            <!-- Can go to any slide you want -->
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
@@ -83,13 +81,12 @@
 
         <div class="searchbar">
             <form action="blog/articleSearch.php?searchInput=hi" method="get">
-                <input name="searchInput" type="text" placeholder="Vyhledávání..." />
+                <input id="search" name="searchInput" type="text" placeholder="Vyhledávání..." />
                 <input id="hiddenSearchInput" type="submit" />
             </form>
         </div>
 
         <div class="blogpost">
-            <!-- Most recent blog posts, would display from DB -->
             <h2>Recent Blog Posts</h2>
             <div class="postPlace">
                 <div class="post">

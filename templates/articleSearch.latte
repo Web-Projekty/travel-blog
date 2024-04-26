@@ -6,7 +6,7 @@
     <title>Travel Blog</title>
 
     <link rel="stylesheet" href="../src/styles/style.css" />
-    <link rel="stylesheet" href="../src/styles/homePage.css" />
+    <link rel="stylesheet" href="../src/styles/articleSearch.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <!-- Font, can be changed but this one is decent -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -81,22 +81,18 @@
       <span class="dot" onclick="currentSlide(5)"></span>
     </div>
 
-    <div class="searchbar">
-      <form action="articleSearch.php?searchInput=hi" method="get">
-        <input name="searchInput" type="text" placeholder="Vyhledávání..." />
-        <input id="hiddenSearchInput" type="submit" />
-      </form>
-    </div>
-
-    <form action="articleSearch.php" method="get">
+    <form class="searchbar" action="articleSearch.php?searchInput=hi" method="get">
+      <input name="searchInput" type="text" placeholder="Vyhledávání..." />
       <select name="orderBy">
         <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
         <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Nejstarší</option>
         <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>Název A-Z</option>
         <option value="destination ASC" {if $orderBy==="destination ASC" }selected{/if}>Destination A-Z</option>
-        <option value="author ASC" {if $orderBy==="author ASC" }selected{/if}>Autor A-Z</option></select>
-      <input type="submit" value="Filter" />
+        <option value="author ASC" {if $orderBy==="author ASC" }selected{/if}>Autor A-Z</option>
+      </select>
+      <input id="hiddenSearchInput" type="submit" />
     </form>
+
     {if $foundResults} {foreach $lists as $list}
     <div>
       <a href="articleDetail.php?articleId={$list['3']}">
@@ -108,7 +104,7 @@
       <hr />
     </div>
     {/foreach}
-    <div style="display: flex">
+    <div class="pages-number">
       {foreach $pages as $page}
       <a href="{$page[1]}">
         <div>{$page[0]}</div>
