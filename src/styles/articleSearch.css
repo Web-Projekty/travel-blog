@@ -1,0 +1,44 @@
+.filter {
+  display: flex;
+  align-items: center;
+}
+
+#search {
+  border-radius: 25px;
+}
+
+.article-container {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 10px;
+  box-shadow: 5px 1px 5px 1px rgba(0, 0, 0, 0.166);
+  border-radius: 12px;
+}
+
+.articles-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.articles img {
+  object-fit: contain;
+  width: 256px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.pages-number {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
