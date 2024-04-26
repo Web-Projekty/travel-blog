@@ -7,13 +7,24 @@ class ArticleSearch
 
     public $foundResults = false;
 
-    public function getArticleList($page, $orderBy, $search)
+    public function getArticleList($page, $type, $orderBy, $search)
     {
-        require_once("databaseClasses.php");
+        require_once "databaseClasses.php";
         $Database = new Database();
         //var_dump(locale);
         ######## build SQL ########
-        $sql = "SELECT * FROM `Articles`" . " WHERE title LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+        switch ($type) {
+            case "title":
+                echo $sql = "SELECT * FROM `Articles` WHERE '" . $type . "' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+                break;
+            case "author":
+                echo $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Articles.author = Users.idUsers WHERE Users.userName LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                break;
+            case "destination":
+                echo $sql = "SELECT * FROM `Articles` INNER JOIN Destinations ON Articles.destination = Destinations.idDestination WHERE Destinations.name LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                break;
+        }
+
         ######## SQL connect ########
         include "../config/mysql.php";
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,7 +39,6 @@ class ArticleSearch
         ######## pages config ########
         $firstPage = $this->articlesPerPage * ($page - 1);
         $lastPage = $firstPage + $this->articlesPerPage;
-
 
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
@@ -50,6 +60,17 @@ class ArticleSearch
 
         return $lists;
     }
+    public function typeInput()
+    {
+        $typeInput = "title";
+        if (isset($_GET['type'])) {
+            $typeInput = $_GET["type"];
+            return $typeInput;
+        } else {
+            return $typeInput;
+        }
+    }
+
     public function filterInput()
     {
         $orderByInput = "datePublic DESC";
@@ -77,6 +98,9 @@ class ArticleSearch
         $page = 1;
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
+        }
+        if (isset($_GET['type'])) {
+            $typeInput = $_GET["type"];
         }
         if (isset($_GET['searchInput'])) {
             $searchInput = $_GET['searchInput'];

@@ -82,7 +82,13 @@
     </div>
 
     <form class="searchbar" action="articleSearch.php?searchInput=hi" method="get">
+      <select name="type">
+        <option value="title" {if $type==="title" }selected{/if}>Titul</option>
+        <option value="author" {if $type==="author" }selected{/if}>Autor</option>
+        <option value="destination" {if $type==="destination" }selected{/if}>Destinace</option>
+    </select>
       <input name="searchInput" type="text" placeholder="Vyhledávání..." />
+      
       <select name="orderBy">
         <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
         <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Nejstarší</option>
