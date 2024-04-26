@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style> 
+        * {
+            font-family: "Courier Prime", monospace;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Courier Prime", monospace;
+            background-color: #eb910a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .LContainer {
+            display: flex;
+            background-color: #ffffff;
+            width: 1200px;
+            height: 90%;
+            overflow: hidden;
+            border-radius: 8px;
+            -webkit-box-shadow: -5px 5px 30px 9px rgba(43, 43, 43, 0.75);
+            -moz-box-shadow: -5px 5px 30px 9px rgba(43, 43, 43, 0.75);
+            box-shadow: -5px 5px 30px 9px rgba(43, 43, 43, 0.75);
+        }
+
+        .left-side, .right-side {
+            flex: 1;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .left-side h1,h3,label {
+            line-height: 0.5;
+        }
+
+        .left-side {
+            border-right: 1px solid #ccc;
+        }
+
+        .left-side h2, .right-side h2 {
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .right-side {
+            background-image: url("Sources/LoginImg.jpg");
+            background-size: cover;
+        }
+        .right-side h2 {
+            color: #ffffff;
+        }
+
+        .LForm input[type="text"],
+        .LForm input[type="password"] {
+            width: calc(100% - 100px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .LForm input[type="submit"] {
+            width: calc(100% - 50px) ;
+            padding: 10px;
+            background-color: #FF8C00;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .LForm input[type="submit"]:hover {
+            background-color: #c97612;
+        }
+        #imbedimage {
+            width: 83%;
+            height: 32%;
+            position: relative;
+            margin: 20px;
+
+        }
+        #SText {
+            color: #a8a8a8;
+        }
+
+    </style>
+     <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Font, can be changed but this one is decent -->
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="LContainer">
+        <div class="left-side">
+            <img src="Sources/Logo.PNG" alt="" id="imbedimage">
+            <h1>Welcome back!</h2>
+            <h3 id="SText">Enter your details</h3>
+            <form class="LForm" action="#" method="post">
+                <label for="email">Email</label><br>
+                <input type="text" name="email" placeholder="Enter your email" required><br>
+                <label for="password">Password</label><br>
+                <input type="password" name="password" placeholder="Enter your password" required><br>
+                <input type="submit" value="Sign in">
+                <p>Don't have an account? <a href="">Sign up</a></p>
+            </form>
+        </div>
+        <div class="right-side">
+            <h2>Dream. Travel. Explore.</h2>
+            
+        </div>
+    </div>
+</body>
+</html>
