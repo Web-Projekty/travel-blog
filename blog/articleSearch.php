@@ -13,10 +13,8 @@ $page = 1;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 }
-$type = "title";
-if (isset($_GET['type'])) {
-    $type = $_GET['type'];
-}
+
+$type = $ArticleSearch->typeInput();
 
 $orderBy = $ArticleSearch->filterInput();
 

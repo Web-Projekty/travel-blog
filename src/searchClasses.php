@@ -49,17 +49,17 @@ class ArticleSearch
 
         return $lists;
     }
-    /*public function filterInput()
+    public function typeInput()
     {
-        $orderByInput = "datePublic DESC";
-        if (isset($_GET['orderBy'])) {
-            $orderByInput = $_GET["orderBy"];
-            return $orderByInput;
+        $typeInput = "title";
+        if (isset($_GET['type'])) {
+            $typeInput = $_GET["type"];
+            return $typeInput;
         } else {
-            return $orderByInput;
+            return $typeInput;
         }
     }
-*/
+
     public function filterInput()
     {
         $orderByInput = "datePublic DESC";
@@ -87,6 +87,9 @@ class ArticleSearch
         $page = 1;
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
+        }
+        if (isset($_GET['type'])) {
+            $typeInput = $_GET["type"];
         }
         if (isset($_GET['searchInput'])) {
             $searchInput = $_GET['searchInput'];

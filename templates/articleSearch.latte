@@ -10,9 +10,9 @@
 <body>
     <form action="articleSearch.php" method="get">
         <select name="type">
-            <option value="title" {if $orderBy==="title" }selected{/if}>Titul</option>
-            <option value="author" {if $orderBy==="author" }selected{/if}>Autor</option>
-            <option value="destination" {if $orderBy==="destination" }selected{/if}>Destinace</option>
+            <option value="title" {if $type==="title" }selected{/if}>Titul</option>
+            <option value="author" {if $type==="author" }selected{/if}>Autor</option>
+            <option value="destination" {if $type==="destination" }selected{/if}>Destinace</option>
         </select>
 
         <input type="text" name="searchInput" value='{$searchInput}' placeholder="...">
