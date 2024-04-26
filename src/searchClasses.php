@@ -7,13 +7,13 @@ class ArticleSearch
 
     public $foundResults = false;
 
-    public function getArticleList($page, $orderBy, $search)
+    public function getArticleList($page, $type, $orderBy, $search)
     {
         require_once("databaseClasses.php");
         $Database = new Database();
         //var_dump(locale);
         ######## build SQL ########
-        $sql = "SELECT * FROM `Articles`" . " WHERE title LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+        echo $sql = "SELECT * FROM `Articles` WHERE '" . $type . "' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
         ######## SQL connect ########
         include "../config/mysql.php";
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -49,6 +49,17 @@ class ArticleSearch
 
         return $lists;
     }
+    /*public function filterInput()
+    {
+        $orderByInput = "datePublic DESC";
+        if (isset($_GET['orderBy'])) {
+            $orderByInput = $_GET["orderBy"];
+            return $orderByInput;
+        } else {
+            return $orderByInput;
+        }
+    }
+*/
     public function filterInput()
     {
         $orderByInput = "datePublic DESC";

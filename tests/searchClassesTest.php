@@ -8,7 +8,7 @@ require "../config/mysql.php";
 
 class searchClassesTest extends Tester\TestCase
 {
-    private $articleSearch;
+    public $articleSearch;
 
     protected function setUp(): void
     {
@@ -18,6 +18,7 @@ class searchClassesTest extends Tester\TestCase
     public function testGetArticleList()
     {
         $result = $this->articleSearch->getArticleList(1, "datePublic DESC", "šumava");
+        Assert::isArray($result);
         $this->assertIsArray($result);
         $this->assertNotEmpty($result);
     }
@@ -43,4 +44,5 @@ class searchClassesTest extends Tester\TestCase
         $this->assertNotEmpty($result);
     }
 }
+(new searchClassesTest())->run();
 ?>
