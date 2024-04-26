@@ -87,7 +87,7 @@
         <option value="author" {if $type==="author" }selected{/if}>Autor</option>
         <option value="destination" {if $type==="destination" }selected{/if}>Destinace</option>
     </select>
-      <input name="searchInput" type="text" placeholder="Vyhledávání..." />
+      <input name="searchInput" type="text" placeholder="Vyhledávání..." value="{$searchInput}"/>
       
       <select name="orderBy">
         <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
