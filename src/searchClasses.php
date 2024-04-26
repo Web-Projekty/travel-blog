@@ -9,11 +9,22 @@ class ArticleSearch
 
     public function getArticleList($page, $type, $orderBy, $search)
     {
-        require_once("databaseClasses.php");
+        require_once "databaseClasses.php";
         $Database = new Database();
         //var_dump(locale);
         ######## build SQL ########
-        echo $sql = "SELECT * FROM `Articles` WHERE '" . $type . "' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+        switch ($type) {
+            case "title":
+                echo $sql = "SELECT * FROM `Articles` WHERE '" . $type . "' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+                break;
+            case "author":
+                echo $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Articles.author = Users.idUsers WHERE Users.userName LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                break;
+            case "destination":
+                echo $sql = "SELECT * FROM `Articles` INNER JOIN Destinations ON Articles.destination = Destinations.idDestination WHERE Destinations.name LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                break;
+        }
+
         ######## SQL connect ########
         include "../config/mysql.php";
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,14 +40,13 @@ class ArticleSearch
         $firstPage = $this->articlesPerPage * ($page - 1);
         $lastPage = $firstPage + $this->articlesPerPage;
 
-
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
                 ### setting variables ###
                 $datePublic = "Zveřejněno: " . date_format(new DateTime($row['datePublic']), "j/m/y G:i");
                 $destination = "Destinace: " . $Database->getDestination(intval($row['destination']));
-                $author = "Autor: " . $Database->getAuthor($row['author']);;
+                $author = "Autor: " . $Database->getAuthor($row['author']);
                 $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author];
                 $this->foundResults = true;
             }
