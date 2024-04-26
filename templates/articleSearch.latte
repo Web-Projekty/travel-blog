@@ -92,29 +92,31 @@
       </select>
       <input id="hiddenSearchInput" type="submit" />
     </form>
-
-    {if $foundResults} {foreach $lists as $list}
-    <div>
-      <a href="articleDetail.php?articleId={$list['3']}">
-        <h2>{$list['0']}</h2>
-      </a>
-      <p>{$list['1']}</p>
-      <p>{$list['2']}</p>
-      <p>{$list['4']}</p>
-      <img src="../src/images/{$list['5']}">
-      <hr />
-    </div>
-    {/foreach}
-    <div class="pages-number">
-      {foreach $pages as $page}
-      <a href="{$page[1]}">
-        <div>{$page[0]}</div>
-      </a>
+    <div class="article-container">
+      {if $foundResults} {foreach $lists as $list}
+      <div class="articles">
+        <div class="articles-info">
+          <a href="articleDetail.php?articleId={$list['3']}">
+          <h2>{$list['0']}</h2>
+          </a>
+          <p>{$list['1']}</p>
+          <p>{$list['2']}</p>
+          <p>{$list['4']}</p>
+        </div>
+        <img src="../src/images/{$list['5']}">
+      </div>
       {/foreach}
+      <div class="pages-number">
+        {foreach $pages as $page}
+        <a href="{$page[1]}">
+          <div>{$page[0]}</div>
+        </a>
+        {/foreach}
+      </div>
+      {else}
+      <p>Nebyly nalezeny žádné výsledky</p>
+      {/if}
     </div>
-    {else}
-    <p>nebyly nalezeny žádné výsledky</p>
-    {/if}
 
     <footer>
       <!-- Nothing yet but it should be the basic stuff-->
