@@ -7,13 +7,24 @@ class ArticleSearch
 
     public $foundResults = false;
 
-    public function getArticleList($page, $orderBy, $search)
+    public function getArticleList($page, $type, $orderBy, $search)
     {
-        require_once("databaseClasses.php");
+        require_once "databaseClasses.php";
         $Database = new Database();
         //var_dump(locale);
         ######## build SQL ########
-        $sql = "SELECT * FROM `Articles`" . " WHERE title LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+        switch ($type) {
+            case "title":
+                $sql = "SELECT * FROM `Articles` WHERE '" . $type . "' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+                break;
+            case "author":
+                $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Articles.author = Users.idUsers WHERE Users.userName LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                break;
+            case "destination":
+                $sql = "SELECT * FROM `Articles` INNER JOIN Destinations ON Articles.destination = Destinations.idDestination WHERE Destinations.name LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                break;
+        }
+
         ######## SQL connect ########
         include "../config/mysql.php";
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,15 +40,15 @@ class ArticleSearch
         $firstPage = $this->articlesPerPage * ($page - 1);
         $lastPage = $firstPage + $this->articlesPerPage;
 
-
         ######## get array of article details info ########
         while ($row = $result->fetch_assoc()) {
             if ($i >= $firstPage && $i < $lastPage) {
                 ### setting variables ###
                 $datePublic = "Zveřejněno: " . date_format(new DateTime($row['datePublic']), "j/m/y G:i");
                 $destination = "Destinace: " . $Database->getDestination(intval($row['destination']));
-                $author = "Autor: " . $Database->getAuthor($row['author']);;
-                $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author];
+                $author = "Autor: " . $Database->getAuthor($row['author']);
+                $img = $row['profileImg'];
+                $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author,$img];
                 $this->foundResults = true;
             }
             $i++;
@@ -49,6 +60,17 @@ class ArticleSearch
 
         return $lists;
     }
+    public function typeInput()
+    {
+        $typeInput = "title";
+        if (isset($_GET['type'])) {
+            $typeInput = $_GET["type"];
+            return $typeInput;
+        } else {
+            return $typeInput;
+        }
+    }
+
     public function filterInput()
     {
         $orderByInput = "datePublic DESC";
@@ -76,6 +98,9 @@ class ArticleSearch
         $page = 1;
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
+        }
+        if (isset($_GET['type'])) {
+            $typeInput = $_GET["type"];
         }
         if (isset($_GET['searchInput'])) {
             $searchInput = $_GET['searchInput'];

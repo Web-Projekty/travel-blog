@@ -13,6 +13,9 @@ $page = 1;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 }
+
+$type = $ArticleSearch->typeInput();
+
 $orderBy = $ArticleSearch->filterInput();
 
 $searchInput = $ArticleSearch->searchInput();
@@ -21,12 +24,13 @@ $searchInput = $ArticleSearch->searchInput();
 
 
 ######## article list data processing ########
-$lists = $ArticleSearch->getArticleList($page, $orderBy, $searchInput);
+$lists = $ArticleSearch->getArticleList($page, $type, $orderBy, $searchInput);
 
 $pages = $ArticleSearch->getPages();
 
 $params = [
     'lists' => $lists,
+    'type' => $type,
     'searchInput' => $searchInput,
     'orderBy' => $orderBy,
     'pages' => $pages,

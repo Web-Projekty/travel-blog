@@ -1,47 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="cs">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>List</title>
-</head>
+    <title>Travel Blog</title>
 
-<body>
-    <form action="articleSearch.php" method="get">
-        <input type="text" name="searchInput" value='{$searchInput}' placeholder="...">
+    <link rel="stylesheet" href="../src/styles/style.css" />
+    <link rel="stylesheet" href="../src/styles/articleSearch.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Font, can be changed but this one is decent -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
 
-        <select name="orderBy">
-            <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
-            <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Nejstarší</option>
-            <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>Název A-Z</option>
-            <option value="destination ASC" {if $orderBy==="destination ASC" }selected{/if}>Destination A-Z</option>
-            <option value="author ASC" {if $orderBy==="author ASC" }selected{/if}>Autor A-Z</option>
-        </select>
-        <input type="submit" value="search">
+    <script src="../src/scripts/script.js"></script>
+  </head>
+  <body onload="showSlides(1)">
+    <div class="slideshow">
+      <!-- Video slideshow, genereted by ChatGpt since i have no idea how to do a slideshow -->
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/v1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/v2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/v3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/v4.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/v5.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="header">
+        <!-- Header but not header, overlay on video slideshow -->
+        <h1>Traveler's Trove</h1>
+        <nav>
+          <ul>
+            <li><a href="../index.php">Domů</a></li>
+            |
+            <li><a href="#">Články</a></li>
+            |
+            <li><a href="#">O nás</a></li>
+            |
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="dotPlace">
+      <!-- Can go to any slide you want -->
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+
+    <form class="searchbar" action="articleSearch.php?searchInput=hi" method="get">
+      <select name="type">
+        <option value="title" {if $type==="title" }selected{/if}>Titul</option>
+        <option value="author" {if $type==="author" }selected{/if}>Autor</option>
+        <option value="destination" {if $type==="destination" }selected{/if}>Destinace</option>
+    </select>
+      <input name="searchInput" type="text" placeholder="Vyhledávání..." value="{$searchInput}"/>
+      
+      <select name="orderBy">
+        <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
+        <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Nejstarší</option>
+        <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>Název A-Z</option>
+        <option value="destination ASC" {if $orderBy==="destination ASC" }selected{/if}>Destination A-Z</option>
+        <option value="author ASC" {if $orderBy==="author ASC" }selected{/if}>Autor A-Z</option>
+      </select>
+      <input id="hiddenSearchInput" type="submit" />
     </form>
-    {if $foundResults}
-    {foreach $lists as $list}
-    <div>
-        <a href="articleDetail.php?articleId={$list['3']}">
-            <h2>{$list['0']}</h2>
-        </a>
-        <p>{$list['1']}</p>
-        <p>{$list['2']}</p>
-        <p>{$list['4']}</p>
-        <hr />
-    </div>{/foreach}
-    <div style="display: flex;">
+    <div class="article-container">
+      {if $foundResults} {foreach $lists as $list}
+      <div class="articles">
+        <div class="articles-info">
+          <a href="articleDetail.php?articleId={$list['3']}">
+          <h2>{$list['0']}</h2>
+          </a>
+          <p>{$list['1']}</p>
+          <p>{$list['2']}</p>
+          <p>{$list['4']}</p>
+        </div>
+        <img src="../src/images/{$list['5']}">
+      </div>
+      {/foreach}
+      <div class="pages-number">
         {foreach $pages as $page}
         <a href="{$page[1]}">
-            <div>{$page[0]}</div>
+          <div>{$page[0]}</div>
         </a>
         {/foreach}
-
+      </div>
+      {else}
+      <p>Nebyly nalezeny žádné výsledky</p>
+      {/if}
     </div>
-    {else}
-    <p>nebyly nalezeny žádné výsledky</p>
-    {/if}
-</body>
 
+    <footer>
+      <!-- Nothing yet but it should be the basic stuff-->
+    </footer>
+  </body>
 </html>
