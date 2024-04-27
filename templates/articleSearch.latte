@@ -98,20 +98,22 @@
       </select>
       <input id="hiddenSearchInput" type="submit" />
     </form>
+
     <div class="article-container">
-      {if $foundResults} {foreach $lists as $list}
-      <div class="articles">
-        <div class="articles-info">
-          <a href="articleDetail.php?articleId={$list['3']}">
-          <h2>{$list['0']}</h2>
-          </a>
-          <p>{$list['1']}</p>
-          <p>{$list['2']}</p>
-          <p>{$list['4']}</p>
+      {if $foundResults}
+        {foreach $lists as $list}
+        <div class="article">
+          <div class="article-info">
+            <a href="articleDetail.php?articleId={$list['3']}">
+            <h2>{$list['0']}</h2>
+            </a>
+            <p>{$list['1']}</p>
+            <p>{$list['2']}</p>
+            <p>{$list['4']}</p>
+          </div>
+          <img src="../src/images/{$list['5']}" />
         </div>
-        <img src="../src/images/{$list['5']}">
-      </div>
-      {/foreach}
+        {/foreach} 
       <div class="pages-number">
         {foreach $pages as $page}
         <a href="{$page[1]}">
@@ -121,8 +123,8 @@
       </div>
       {else}
       <p>Nebyly nalezeny žádné výsledky</p>
-      {/if}
     </div>
+    {/if}
 
     <footer>
       <!-- Nothing yet but it should be the basic stuff-->
