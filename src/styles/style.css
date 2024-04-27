@@ -133,9 +133,10 @@ nav ul li:hover {
 }
 
 .searchbar input {
-  width: 400px;
+  width: 500px;
   height: 40px;
   border-radius: 12px;
+  padding-left: 2%;
 }
 
 #hiddenSearchInput {
