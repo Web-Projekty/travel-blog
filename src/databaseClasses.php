@@ -1,35 +1,38 @@
-<?php class Database
+<?php
+require_once "../vendor/autoload.php";
+### a class for all database queries
+class Database
 {
-    public function getDestination($id)
+    public $servername;
+    public $username;
+    public $password;
+    public $dbname;
+    public function __construct()
     {
-
-        ######## build SQL ########
-        $sql = "SELECT `name` FROM Destinations WHERE `idDestination` = " . $id;
-        ######## SQL connect ########
-        include "../config/mysql.php";
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $result = $conn->query($sql);
-        $conn->close();
-        return $result->fetch_array()[0];
+        $Config = new Config;
+        $this->servername = $Config->servername;
+        $this->username = $Config->username;
+        $this->password = $Config->password;
+        $this->dbname = $Config->dbname;
     }
-    public function getAuthor($id)
+    public function connect()
     {
 
-        ######## build SQL ########
-        $sql = "SELECT `user` FROM Users WHERE `idUsers` = " . $id;
-        ######## SQL connect ########
-        include "../config/mysql.php";
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        return $conn;
+    }
+    public function query($sql)
+    {
+        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
         $result = $conn->query($sql);
         $conn->close();
-        return $result->fetch_array()[0];
+        return $result;
     }
 }

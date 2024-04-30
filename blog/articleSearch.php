@@ -2,8 +2,6 @@
 ############### autoload ###############
 require_once "../vendor/autoload.php";
 $latte = new Latte\Engine;
-
-include "../src/searchClasses.php";
 $latte->setTempDirectory('../temp');
 
 ######## class declaration ########
@@ -19,9 +17,6 @@ $type = $ArticleSearch->typeInput();
 $orderBy = $ArticleSearch->filterInput();
 
 $searchInput = $ArticleSearch->searchInput();
-
-
-
 
 ######## article list data processing ########
 $lists = $ArticleSearch->getArticleList($page, $type, $orderBy, $searchInput);

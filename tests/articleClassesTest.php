@@ -3,18 +3,19 @@
 use Tester\Assert;
 
 require_once "../vendor/autoload.php";
-require "../src/articleClasses.php";
-require "../config/mysql.php";
+
 
 class ArticleClassesTest extends Tester\TestCase
 {
-    public $Article = 0;
+    public $Article;
+    public $Database;
     function __construct()
     {
         $this->Article = new Articles;
+        $this->Database = new Database;
     }
 
-    function testGetTittleArray()
+    function testGetTitleArray()
     {
         $titles = $this->Article->getTitleArray();
         ### tests for data type ###
@@ -28,12 +29,11 @@ class ArticleClassesTest extends Tester\TestCase
 
         ### checks if funciton selected all titles ###
         $sql = "SELECT COUNT(title) FROM `Articles` ";
-        include("../config/mysql.php");
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        $result = $conn->query($sql);
+
+
+        $result = $this->Database->query($sql);
 
         Assert::count($result->fetch_array()[0], $titles);
-        $conn->close();
     }
 
     function getLoopArgs()
