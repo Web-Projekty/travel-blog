@@ -82,10 +82,10 @@ class Articles
         ### chooses the right db and connects to mysql ###
         switch ($database) {
             case 1:
-                "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
+               $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
                 break;
             case 2:
-                "SELECT * FROM `Destinations` ORDER BY `Articles`.`idArticles` DESC";
+                $sql = "SELECT * FROM `Destinations` ORDER BY `Articles`.`idArticles` DESC";
                 break;
             case 3:
                 $sql = "SELECT * FROM `Users` ORDER BY `Articles`.`idArticles` DESC";
