@@ -11,7 +11,6 @@ class ArticleSearch
     {
         require_once "databaseClasses.php";
         $Database = new Database();
-        //var_dump(locale);
         ######## build SQL ########
         switch ($type) {
             case "title":
@@ -48,7 +47,7 @@ class ArticleSearch
                 $destination = "Destinace: " . $Database->getDestination(intval($row['destination']));
                 $author = "Autor: " . $Database->getAuthor($row['author']);
                 $img = $row['profileImg'];
-                $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author,$img];
+                $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author, $img];
                 $this->foundResults = true;
             }
             $i++;
@@ -60,6 +59,7 @@ class ArticleSearch
 
         return $lists;
     }
+    ############ remembers type input ############
     public function typeInput()
     {
         $typeInput = "title";
@@ -70,7 +70,7 @@ class ArticleSearch
             return $typeInput;
         }
     }
-
+    ############ remembers filter input ############
     public function filterInput()
     {
         $orderByInput = "datePublic DESC";
@@ -92,6 +92,7 @@ class ArticleSearch
             return $searchInput;
         }
     }
+    ### gets completed array of clickable page links ###
     public function getPages()
     {
         ### get $_GET variables ###

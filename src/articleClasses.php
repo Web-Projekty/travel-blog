@@ -25,6 +25,7 @@ class Articles
             $conn->close();
         }
     }
+    ### returns article for the provided article id ###
     function getArticleById($articleId)
     {
         include("../config/mysql.php");
@@ -60,7 +61,6 @@ class Articles
             $result = $conn->query($sql);
             $article['author'] = $result->fetch_row()[0];
             $article['succesfull'] = true;
-            
         }
         ############### setting error code
         else {
@@ -71,6 +71,7 @@ class Articles
         $conn->close();
         return $article;
     }
+    ### returns count of rows in specified database ###
     function countRows($database)
     {
         ### set sql for specific database ###
@@ -145,44 +146,6 @@ class Articles
             }
             return $ids;
             $conn->close();
-        }
-    }
-    ############ remembers order option ############
-    function filterInput()
-    {
-        $orderByInput = "";
-        if (isset($GET["orderBy"])) {
-            $orderByInput = $GET["orderBy"];
-            return $orderByInput;
-        }
-    }
-    ############ remembers search input ############
-    function searchInput()
-    {
-        $searchInput = "";
-        if (isset($GET["searchInput"])) {
-            $searchInput = $GET["searchInput"];
-            return $searchInput;
-        }
-    }
-    ############ returns articles depending on search and order inputs ############
-    function searchResults()
-    {
-        ############### connect to sql ###############
-        include("../config/mysql.php");
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        $sql = "SELECT * FROM `Articles`";
-        if (isset($GET['search'])) {
-            $searchInput = $GET["searchInput"];
-            $sql .= " WHERE title LIKE '%$searchInput%' ORDER BY $order";
-        }
-        if (isset($GET["order"])) {
-            $order = $GET["order"];
-            $searchInput = $GET["searchInput"];
-            $sql = "SELECT * FROM 'Articles' WHERE title LIKE '%$searchInput%' ORDER BY $order";
         }
     }
 }
