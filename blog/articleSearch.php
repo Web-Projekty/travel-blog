@@ -2,8 +2,6 @@
 ############### autoload ###############
 require_once "../vendor/autoload.php";
 $latte = new Latte\Engine;
-
-include "../src/searchClasses.php";
 $latte->setTempDirectory('../temp');
 
 ######## class declaration ########

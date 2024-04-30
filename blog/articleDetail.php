@@ -10,9 +10,6 @@ $latte->setTempDirectory('../temp');
 if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
     header("location: articleSelect.php");
 } else {
-    ############### main php import ###############
-
-    require_once("../src/articleClasses.php");
 
     $Articles = new Articles();
 
