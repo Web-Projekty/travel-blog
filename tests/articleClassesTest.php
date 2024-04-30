@@ -8,10 +8,12 @@ require "../config/mysql.php";
 
 class ArticleClassesTest extends Tester\TestCase
 {
-    public $Article = 0;
+    public $Article;
+    public $Database;
     function __construct()
     {
         $this->Article = new Articles;
+        $this->Database = new Database;
     }
 
     function testGetTittleArray()

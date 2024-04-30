@@ -1,4 +1,5 @@
 <?php
+require_once "../vendor/autoload.php";
 class ArticleSearch
 {
     public $counter = 0;
@@ -7,33 +8,29 @@ class ArticleSearch
 
     public $foundResults = false;
 
+    public $Database;
+
+    ### creates new Database object ###
+    public function __construct()
+    {
+        $this->Database = new Database;
+    }
+    ### searches based on filter and returns all nessecary data in array ###
     public function getArticleList($page, $type, $orderBy, $search)
     {
-        require_once "databaseClasses.php";
-        $Database = new Database();
         ######## build SQL ########
         switch ($type) {
             case "title":
-                $sql = "SELECT * FROM `Articles` WHERE '" . $type . "' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
+                $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Users.idUsers = Articles.author INNER JOIN Destinations ON Destinations.idDestination = Articles.destination WHERE 'title' LIKE '%" . $search . "%' OR content LIKE '%" . $search . "%'" . " ORDER BY " . $orderBy;
                 break;
             case "author":
-                $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Articles.author = Users.idUsers WHERE Users.userName LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Users.idUsers = Articles.author INNER JOIN Destinations ON Destinations.idDestination = Articles.destination WHERE Users.userName LIKE '%" . $search . "%'  OR user LIKE '%" . $search . "%' ORDER BY " . $orderBy;
                 break;
             case "destination":
-                $sql = "SELECT * FROM `Articles` INNER JOIN Destinations ON Articles.destination = Destinations.idDestination WHERE Destinations.name LIKE '%" . $search . "%' ORDER BY " . $orderBy;
+                $sql = "SELECT * FROM `Articles` INNER JOIN Users ON Users.idUsers = Articles.author INNER JOIN Destinations ON Destinations.idDestination = Articles.destination WHERE Destinations.name LIKE '%" . $search . "%' ORDER BY " . $orderBy;
                 break;
         }
-
-        ######## SQL connect ########
-        include "../config/mysql.php";
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $result = $conn->query($sql);
-        $conn->close();
-
+        $result = $this->Database->query($sql);
         $i = 0;
         ######## pages config ########
         $firstPage = $this->articlesPerPage * ($page - 1);
@@ -44,8 +41,8 @@ class ArticleSearch
             if ($i >= $firstPage && $i < $lastPage) {
                 ### setting variables ###
                 $datePublic = "Zveřejněno: " . date_format(new DateTime($row['datePublic']), "j/m/y G:i");
-                $destination = "Destinace: " . $Database->getDestination(intval($row['destination']));
-                $author = "Autor: " . $Database->getAuthor($row['author']);
+                $destination = "Destinace: " . $row['name'];
+                $author = "Autor: " . $row['user'];
                 $img = $row['profileImg'];
                 $lists[$i] = [$row['title'], $datePublic, $destination, $row['idArticles'], $author, $img];
                 $this->foundResults = true;

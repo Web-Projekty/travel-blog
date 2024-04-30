@@ -18,9 +18,6 @@ $orderBy = $ArticleSearch->filterInput();
 
 $searchInput = $ArticleSearch->searchInput();
 
-
-
-
 ######## article list data processing ########
 $lists = $ArticleSearch->getArticleList($page, $type, $orderBy, $searchInput);
 

@@ -1,19 +1,18 @@
 <?php
+require_once "../vendor/autoload.php";
 class Articles
 {
+    public $Database;
+    public function __construct()
+    {
+        $this->Database = new Database;
+    }
     public $title;
     ############### returns array of all article titles ###############
     function getTitleArray()
     {
-        ############### connect to sql ###############
-        include("../config/mysql.php");
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
         $sql = "SELECT idArticles, title FROM Articles";
-
-        $result = $conn->query($sql);
+        $result = $this->Database->query($sql);
 
         if ($result->num_rows > 0) {
             $i = 0;
@@ -22,23 +21,14 @@ class Articles
                 $i++;
             }
             return $title;
-            $conn->close();
         }
     }
     ### returns article for the provided article id ###
     function getArticleById($articleId)
     {
-        include("../config/mysql.php");
+        $sql = "SELECT * FROM Articles INNER JOIN Users ON Users.idUsers = Articles.author INNER JOIN Destinations ON Destinations.idDestination = Articles.destination WHERE idArticles = $articleId";
 
-        ############### sql connection ###############
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT * FROM Articles WHERE idArticles = $articleId";
-
-        $result = $conn->query($sql);
+        $result = $this->Database->query($sql);
 
         ############### sql data extraction ###############
         if ($result->num_rows > 0) {
@@ -46,20 +36,10 @@ class Articles
                 $article['title'] = $row['title'];
                 $article['content'] = $row['content'];
                 $article['img'] = $row['profileImg'];
-                $article['author'] = $row['author'];
-                $article['destination'] = $row['destination'];
+                $article['author'] = $row['user'];
+                $article['destination'] = $row['name'];
                 $article['date'] = $row['datePublic'];
             }
-
-            ########### foreign key get data ###########
-            # for destination
-            $sql = "SELECT name FROM Destinations WHERE idDestination = " . $article['destination'] . ";";
-            $result = $conn->query($sql);
-            $article['destination'] = $result->fetch_row()[0];
-            # for user
-            $sql = "SELECT user FROM Users WHERE idUsers = " . $article['author'];
-            $result = $conn->query($sql);
-            $article['author'] = $result->fetch_row()[0];
             $article['succesfull'] = true;
         }
         ############### setting error code
@@ -68,7 +48,7 @@ class Articles
             $article['errorMsg'] = "Database request failed.";
         }
 
-        $conn->close();
+
         return $article;
     }
     ### returns count of rows in specified database ###
@@ -90,18 +70,16 @@ class Articles
         }
 
         ### db stuff ###
-        include("../config/mysql.php");
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        $result = $conn->query($sql);
-        $conn->close();
+
+
+        $result = $this->Database->query($sql);
+
         return $result->fetch_array()[0];
     }
     ### fetches the last id used ###
     function getLastId($database)
     {
         ### chooses the right db and connects to mysql ###
-        include("../config/mysql.php");
-        $conn = new mysqli($servername, $username, $password, $dbname);
         switch ($database) {
             case 1:
                 "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
@@ -117,9 +95,7 @@ class Articles
         }
 
         ### executes sql query ###
-        $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
-        $result = $conn->query($sql);
-        $conn->close();
+        $result = $this->Database->query($sql);
         //var_dump($result->fetch_array());
         $array = $result->fetch_array();
         return $array[0];
@@ -127,15 +103,8 @@ class Articles
     ### get all ids from (any - will come back to this later) database ###
     function getIdArray()
     {
-        ############### connect to sql ###############
-        include("../config/mysql.php");
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
         $sql = "SELECT idArticles FROM Articles";
-
-        $result = $conn->query($sql);
+        $result = $this->Database->query($sql);
 
         ### adds values to array $ids
         if ($result->num_rows > 0) {
@@ -145,7 +114,6 @@ class Articles
                 $i++;
             }
             return $ids;
-            $conn->close();
         }
     }
 }
