@@ -1,5 +1,4 @@
 <?php
-
 class Auth
 {
     public $Session;
@@ -13,13 +12,16 @@ class Auth
     
     public function login($username, $password)
     {
+        
         $sql = "SELECT password FROM `Users` WHERE `userName` = '$username'";
         $result = $this->Database->query($sql);
         $hash = $result->fetch_row();
 
         if (password_verify($password, $hash[0])) {
+            echo "good";
             return true;
         } else {
+            echo "bad";
             return false;
         }
     }
