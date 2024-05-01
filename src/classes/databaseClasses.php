@@ -1,5 +1,5 @@
 <?php
-require_once "../vendor/autoload.php";
+
 ### a class for all database queries
 class Database
 {
