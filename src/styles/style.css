@@ -143,3 +143,14 @@ nav ul li:hover {
   visibility: hidden;
   position: absolute;
 }
+
+@media screen and (max-width: 768px) {
+
+  #searchInput {
+    font-size: 25px;
+  }
+
+  .order, .type {
+    font-size: 25px;
+  }
+}

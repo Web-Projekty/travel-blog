@@ -25,13 +25,12 @@
   padding: 10px;
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.166);
   border-radius: 12px;
-  width: 55rem;
+  width: 62rem;
   height: 20rem;
 }
 
-.article-info {
-  display: flex;
-  flex-direction: column;
+h2 {
+  color: black;
 }
 
 .article img {
@@ -51,11 +50,11 @@
 
 @media screen and (max-width: 768px) {
   .article {
-    font-size: 25px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
+    font-size: 25px;
     gap: 2rem;
     padding: 10px;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.166);
@@ -64,10 +63,16 @@
     height: auto;
   }
 
+  .article-info {
+    text-align: center;
+  }
+
   .article img {
     object-fit: contain;
     width: 328px;
     height: auto;
     border-radius: 12px;
   }
+
+  
 }
