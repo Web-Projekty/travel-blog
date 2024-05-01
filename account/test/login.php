@@ -23,8 +23,10 @@
     $Auth = new Auth;
 
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
-        // $Auth->login($_POST['username'], $_POST['password']);
+        $Auth->login($_POST['username'], $_POST['password']);
     }
+
+    /* debug */
     echo "<br>";
     switch (session_status()) {
         case PHP_SESSION_NONE: {
