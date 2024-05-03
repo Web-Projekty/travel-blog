@@ -27,6 +27,12 @@
   border-radius: 12px;
   width: 62rem;
   height: 20rem;
+
+  transition: var(--hover-transition);
+}
+
+.article:hover {
+  transform: var(--hover-translateY);
 }
 
 h2 {
@@ -38,6 +44,11 @@ h2 {
   width: 256px;
   height: auto;
   border-radius: 12px;
+}
+
+.article-info {
+  text-align: left;
+  margin-right: auto;
 }
 
 .pages-number {
@@ -73,6 +84,12 @@ h2 {
     height: auto;
     border-radius: 12px;
   }
-
   
+  .article {
+    transition: none;
+  }
+
+  .article:hover {
+    transform: none;
+  }
 }
