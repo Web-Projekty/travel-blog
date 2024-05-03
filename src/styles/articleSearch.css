@@ -35,7 +35,7 @@
   transform: var(--hover-translateY);
 }
 
-h2 {
+.article-info h2 {
   color: black;
 }
 
