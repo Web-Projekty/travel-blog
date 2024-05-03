@@ -35,4 +35,11 @@ class Database
         $conn->close();
         return $result;
     }
+    public function rowExists($db, $column, $row)
+    {
+        $sql = "SELECT $column FROM $db WHERE $column = '$row'";
+        $result = $this->query($sql);
+
+        return !empty($result->fetch_column());
+    }
 }

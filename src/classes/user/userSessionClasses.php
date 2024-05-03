@@ -40,7 +40,6 @@ class Session
             $_SESSION['timeout'] = time();
         } else {
             $this->logout();
-            header("location: logout.php");
         }
     }
     public function setSession($uid)
@@ -54,5 +53,6 @@ class Session
     public function logout()
     {
         session_unset();
+        header("location: /travel-blog/account/test/logout.php");
     }
 }

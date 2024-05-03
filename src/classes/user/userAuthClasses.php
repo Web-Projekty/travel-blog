@@ -33,4 +33,8 @@ class Auth
             return false;
         }
     }
+    public function register($username, $password)
+    {
+        $this->Database->rowExists("Users", "userName", "admin");
+    }
 }
