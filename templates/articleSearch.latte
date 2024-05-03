@@ -103,9 +103,9 @@
       {if $foundResults}
         {foreach $lists as $list}
         <div class="article">
-          <a href="articleDetail.php?articleId={$list['3']}">
           <div class="article-info">
-            <h2>{$list['0']}</h2>
+            <a href="articleDetail.php?articleId={$list['3']}">
+              <h2 id="article-title">{$list['0']}</h2>
             </a>
             <p>{$list['1']}</p>
             <p>{$list['2']}</p>

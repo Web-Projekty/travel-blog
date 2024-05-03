@@ -51,6 +51,10 @@ h2 {
   margin-right: auto;
 }
 
+#article-title {
+  max-width: 600px;
+}
+
 .pages-number {
   position: relative;
   display: flex;
