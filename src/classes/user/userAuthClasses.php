@@ -17,7 +17,6 @@ class Auth
         $result = $this->Database->query($sql);
         $row = $result->fetch_row();
 
-        var_dump($row);
         if (isset($row)) {
             $hash = $row[0];
             $uid = $row[1];

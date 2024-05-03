@@ -4,6 +4,7 @@ session_start();
 class Session
 // used variables:
 // timeout, uid, auth
+
 {
     public $timeout;
     public $uid;
@@ -24,7 +25,6 @@ class Session
                 $_SESSION['uid'] = -1;
             }
 
-
             $this->timeout = $_SESSION['timeout'];
             $this->uid = $_SESSION['uid'];
             $this->auth = $_SESSION['auth'];
@@ -36,8 +36,11 @@ class Session
     }
     public function isTimedOut()
     {
-        if (time() - $this->timeout > 30) {
+        if (time() - $this->timeout < 5) {
             $_SESSION['timeout'] = time();
+        } else {
+            $this->logout();
+            header("location: logout.php");
         }
     }
     public function setSession($uid)
@@ -47,5 +50,9 @@ class Session
             $_SESSION['uid'] = $uid;
             $this->runCheck();
         }
+    }
+    public function logout()
+    {
+        session_unset();
     }
 }
