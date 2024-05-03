@@ -25,7 +25,7 @@ class Auth
                 $this->Session->setSession($uid);
                 return true;
             } else {
-                echo "bad";
+                echo "bad password";
                 return false;
             }
         } else {
@@ -33,8 +33,19 @@ class Auth
             return false;
         }
     }
-    public function register($username, $password)
+    public function register($username, $password, $cpassword)
     {
-        $this->Database->rowExists("Users", "userName", "admin");
+        if (!$this->Database->rowExists("Users", "userName", $username)) {
+            echo $username;
+            echo $password;
+            echo $cpassword;
+        } else {
+            echo "user exists";
+        }
+    }
+    public function getUserRole($uid)
+    {
+        $sql = "SELECT role FROM Users WHERE idUsers = $uid";
+        $this->Database->query($sql);
     }
 }

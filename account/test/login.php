@@ -14,7 +14,7 @@
         <label for="password">Heslo</label><br />
         <input type="password" name="password" placeholder="Enter your password" required /><br />
         <input type="submit" value="Přihlásit se" />
-        <p>Nemáte účet? <a href="">Registrovat se</a></p>
+        <p>Nemáte účet? <a href="register.php">Registrovat se</a></p>
     </form>
     <?php
 ############### autoload ###############
