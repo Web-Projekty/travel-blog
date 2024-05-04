@@ -36,7 +36,7 @@ class Session
     }
     public function isTimedOut()
     {
-        if (time() - $this->timeout < 5) {
+        if (time() - $this->timeout < 1200) {
             $_SESSION['timeout'] = time();
         } else {
             $this->logout();

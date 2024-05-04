@@ -33,14 +33,20 @@ class Auth
             return false;
         }
     }
-    public function register($username, $password, $cpassword)
+    public function register($username, $password, $cpassword, $name, $email)
     {
-        if (!$this->Database->rowExists("Users", "userName", $username)) {
-            echo $username;
-            echo $password;
-            echo $cpassword;
+        if ($this->Database->rowExists("Users", "userName", $username)) {
+            echo "user already exists";
         } else {
-            echo "user exists";
+            echo "user not exists";
+            if ($password == $cpassword) {
+                $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+                $sql = "INSERT INTO `Users` (`idUsers`, `userName`, `user`, `userEmail`, `password`, `role`) VALUES (NULL, '$username', '$name', '$email', '$hashedPassword', 'delegate');";
+                $this->Database->query($sql);
+                echo "<br>succesful registration";
+            } else {
+                echo "<br>passwords do not match";
+            }
         }
     }
     public function getUserRole($uid)

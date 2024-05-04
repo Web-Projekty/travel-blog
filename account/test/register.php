@@ -9,8 +9,12 @@
 
 <body>
     <form class="LForm" action="#" method="post">
-        <label for="email">Email</label><br>
-        <input type="text" name="username" placeholder="Enter your email" required><br>
+        <label for="email">jméno a příjmení</label><br>
+        <input type="text" name="name" placeholder="méno a příjm" required><br>
+        <label for="email">Username</label><br>
+        <input type="text" name="username" placeholder="Enter your uname" required><br>
+        <label for="email">e-mail</label><br>
+        <input type="text" name="email" placeholder="Enter your email" required><br>
         <label for="password">Password</label><br>
         <input type="password" name="password" placeholder="Enter your password" required><br>
         <label for="password">Confirm password</label><br>
@@ -20,10 +24,9 @@
     </form>
     <?php
     require_once "../../vendor/autoload.php";
-    $Database = new Database;
     $Auth = new Auth;
 
-    $Auth->register($_POST['username'], $_POST['password'], $_POST['Cpassword']);
+    $Auth->register($_POST['username'], $_POST['password'], $_POST['Cpassword'], $_POST['name'], $_POST['email']);
     ?>
 </body>
 
