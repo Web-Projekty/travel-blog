@@ -37,6 +37,8 @@ class Auth
     {
         if ($this->Database->rowExists("Users", "userName", $username)) {
             echo "user already exists";
+        } elseif ($this->Database->rowExists("Users", "userEmail", $email)) {
+            echo "someone is using this email already";
         } else {
             echo "user not exists";
             if ($password == $cpassword) {
