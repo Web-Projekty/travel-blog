@@ -8,7 +8,7 @@ $latte->setTempDirectory('../temp');
 
 ########### redirect to selection if form not filled ###########
 if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
-    header("location: articleSelect.php");
+    header("location: articleSearch.php");
 } else {
 
     $Articles = new Articles();
@@ -32,4 +32,9 @@ if ($article['succesfull']) {
     $latte->render('../templates/articleDetail.latte', $params);
 } else {
     echo $article['errorMsg'];
+    echo "<script>
+    setTimeout(function() {
+        window.location.href = 'articleSearch.php';
+    }, 2000);
+</script>";
 }

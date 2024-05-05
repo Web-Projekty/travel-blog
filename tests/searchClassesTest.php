@@ -1,48 +1,56 @@
 <?php
+
 ############### autoload ###############
 use Tester\Assert;
 
 require_once "../vendor/autoload.php";
-require "../src/searchClasses.php";
-require "../config/mysql.php";
+require "../src/classes/searchClasses.php";
 
 class searchClassesTest extends Tester\TestCase
 {
-    public $articleSearch;
+    private $articleSearch;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->articleSearch = new ArticleSearch();
     }
 
-    public function testGetArticleList()
+    public function testTypeInput()
     {
-        $result = $this->articleSearch->getArticleList(1, "datePublic DESC", "šumava");
-        Assert::isArray($result);
-        $this->assertIsArray($result);
-        $this->assertNotEmpty($result);
+        $_GET['type'] = "title";
+        Assert::same("title", $this->articleSearch->typeInput());
+
+        $_GET['type'] = "author";
+        Assert::same("author", $this->articleSearch->typeInput());
+
+        unset($_GET['type']);
+        Assert::same("title", $this->articleSearch->typeInput());
     }
 
     public function testFilterInput()
     {
         $_GET['orderBy'] = "datePublic DESC";
-        $result = $this->articleSearch->filterInput();
-        $this->assertEquals("datePublic DESC", $result);
+        Assert::same("datePublic DESC", $this->articleSearch->filterInput());
+
+        unset($_GET['orderBy']);
+        Assert::same("datePublic DESC", $this->articleSearch->filterInput());
     }
 
     public function testSearchInput()
     {
-        $_GET['searchInput'] = "šumava";
-        $result = $this->articleSearch->searchInput();
-        $this->assertEquals("šumava", $result);
-    }
+        $_GET['searchInput'] = "test";
+        Assert::same("test", $this->articleSearch->searchInput());
 
+        unset($_GET['searchInput']);
+        Assert::same("", $this->articleSearch->searchInput());
+    }
     public function testGetPages()
     {
-        $result = $this->articleSearch->getPages();
-        $this->assertIsArray($result);
-        $this->assertNotEmpty($result);
+        $_SERVER['PHP_SELF'] = "/test.php";
+
+        // Test with no GET parameters
+        $pages = $this->articleSearch->getPages();
+        Assert::same([[null, null]], $pages);
     }
 }
 (new searchClassesTest())->run();
-?>
