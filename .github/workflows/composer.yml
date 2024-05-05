@@ -19,4 +19,4 @@ jobs:
               run: composer install
 
             - name: Run Latte Tests
-              run: cd tests ; php articleClassesTest.php;
+              run: cd tests ; php testAutorun.php;
