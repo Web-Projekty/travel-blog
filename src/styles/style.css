@@ -97,6 +97,10 @@ nav ul li a {
   text-decoration: none;
 }
 
+nav ul li a:hover {
+  color: #eb910a;
+}
+
 .dotPlace {
   text-align: center;
   margin-top: 20px;

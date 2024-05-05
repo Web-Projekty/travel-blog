@@ -36,8 +36,13 @@
   transform: var(--hover-translateY);
 }
 
-.article-info h2 {
+.article-info a {
   color: black;
+  text-decoration: none;
+}
+
+.article-info a:hover {
+  color: #eb910a;
 }
 
 .article img {
