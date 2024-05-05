@@ -1,5 +1,5 @@
 <?php
-/*
+
 ############### autoload ###############
 use Tester\Assert;
 
@@ -46,44 +46,11 @@ class searchClassesTest extends Tester\TestCase
     }
     public function testGetPages()
     {
-    $_SERVER['PHP_SELF'] = "/test.php";
+        $_SERVER['PHP_SELF'] = "/test.php";
 
-    // Test with no GET parameters
-    $pages = $this->articleSearch->getPages();
-    Assert::same([[null, null]], $pages);
+        // Test with no GET parameters
+        $pages = $this->articleSearch->getPages();
+        Assert::same([[null, null]], $pages);
     }
 }
-(new searchClassesTest())->run();*/
-
-use Tester\Assert;
-
-$latte = new Latte\Engine;
-#require "bootstrap.php";
-
-$latte->setTempDirectory('../temp');
-
-class searchClassesTest extends Tester\TestCase
-{
-
-    public function setUp()
-    {
-        echo "hello1";
-    }
-
-    public function tearDown()
-    {
-        # Úklid
-    }
-
-    /*  public function getLoopArgs()
-    {
-        return [
-            #array hodnot
-        ];
-    }*/
-    function testRandomStuff2(){
-        Assert::false(false);
-    }
-}
-
-(new searchClassesTest)->run();
+(new searchClassesTest())->run();
