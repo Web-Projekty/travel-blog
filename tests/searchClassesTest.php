@@ -1,4 +1,5 @@
 <?php
+/*
 ############### autoload ###############
 use Tester\Assert;
 
@@ -52,5 +53,37 @@ class searchClassesTest extends Tester\TestCase
     Assert::same([[null, null]], $pages);
     }
 }
-(new searchClassesTest())->run();
-?>
+(new searchClassesTest())->run();*/
+
+use Tester\Assert;
+
+$latte = new Latte\Engine;
+#require "bootstrap.php";
+
+$latte->setTempDirectory('../temp');
+
+class searchClassesTest extends Tester\TestCase
+{
+
+    public function setUp()
+    {
+        echo "hello1";
+    }
+
+    public function tearDown()
+    {
+        # Úklid
+    }
+
+    /*  public function getLoopArgs()
+    {
+        return [
+            #array hodnot
+        ];
+    }*/
+    function testRandomStuff2(){
+        Assert::false(false);
+    }
+}
+
+(new searchClassesTest)->run();
