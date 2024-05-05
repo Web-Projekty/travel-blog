@@ -56,4 +56,17 @@ class Auth
         $sql = "SELECT role FROM Users WHERE idUsers = $uid";
         $this->Database->query($sql);
     }
+    # note: přesunout do Session a rozdělit na dvě metody
+    public function getAuthDetail()
+    {
+        if($uid = $this->Session->getUid())
+        $uid = $this->Session->getUid();
+        $sql = "SELECT user FROM Users WHERE idUsers = $uid";
+        $username = $this->Database->query($sql)->fetch_column();
+
+
+        $status = $this->Session->getAuthStatus();
+
+        return [$status, $username];
+    }
 }

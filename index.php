@@ -11,6 +11,10 @@ $Auth = new Auth;
 if (isset($_GET['searchInput'])) {
     header("location: blog/articleSearch?searchInput");
 }
+$authDetail = $Auth->getAuthDetail();
 
-$params = [];
+$params = [
+    'authStatus' => $authDetail[0],
+    'username' => $authDetail[1]
+];
 $latte->render('templates/homePage.latte', $params);

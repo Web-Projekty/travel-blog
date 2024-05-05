@@ -55,4 +55,20 @@ class Session
         session_unset();
         header("location: /travel-blog/account/logout.php");
     }
+    public function getAuthStatus()
+    {
+        if (isset($_SESSION['auth'])) {
+            return $_SESSION['auth'];
+        } else {
+            return false;
+        }
+    }
+    public function getUid()
+    {
+        if (isset($_SESSION['uid'])) {
+            return $_SESSION['uid'];
+        } else {
+            return -1;
+        }
+    }
 }
