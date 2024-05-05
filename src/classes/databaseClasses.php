@@ -1,5 +1,5 @@
 <?php
-require_once "../vendor/autoload.php";
+
 ### a class for all database queries
 class Database
 {
@@ -34,5 +34,12 @@ class Database
         $result = $conn->query($sql);
         $conn->close();
         return $result;
+    }
+    public function rowExists($db, $column, $row)
+    {
+        $sql = "SELECT $column FROM $db WHERE $column = '$row'";
+        $result = $this->query($sql);
+
+        return !empty($result->fetch_column());
     }
 }
