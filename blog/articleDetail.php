@@ -5,6 +5,7 @@ $latte = new Latte\Engine;
 
 $latte->setTempDirectory('../temp');
 
+$Auth = new Auth;
 
 ########### redirect to selection if form not filled ###########
 if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {

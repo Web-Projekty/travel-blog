@@ -2,7 +2,10 @@
 ############### autoload ###############
 require_once "../vendor/autoload.php";
 $latte = new Latte\Engine;
+
 $latte->setTempDirectory('../temp');
+
+$Auth = new Auth;
 
 ######## class declaration ########
 $ArticleSearch = new ArticleSearch();
