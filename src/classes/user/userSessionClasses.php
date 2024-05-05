@@ -53,6 +53,6 @@ class Session
     public function logout()
     {
         session_unset();
-        header("location: /travel-blog/account/test/logout.php");
+        header("location: /travel-blog/account/logout.php");
     }
 }

@@ -1,4 +1,4 @@
-<p>you have been logged out</p>
+<p>Byli jste úspěšně odhlášeni</p>
 <script>
     setTimeout(function() {
         window.location.href = 'login.php';
