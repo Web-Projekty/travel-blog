@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Traveler's Trove - Příhlášení</title>
+        <title>Traveler's Trove - Registrace</title>
 
         <link rel="stylesheet" href="../src/styles/style.css" />
-        <link rel="stylesheet" href="../src/styles/login.css" />
+        <link rel="stylesheet" href="../src/styles/signUp.css" />
         <script src="../src/scripts/script.js"></script>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,7 @@
     </head>
     <body>
         <div class="container">
-            <div class="left-side">
+            <div class="register">
                 <img src="../src/res/Logo.PNG" alt="Logo" id="imbedimage" />
                 <form class="form" action="#" method="post">
                     <label for="username">Uživatelské jméno</label><br />
@@ -33,14 +33,22 @@
                         placeholder="Zadejte své uživatelské jméno"
                         required
                     /><br />
+                    <label for="name">Jmnéno a příjmení</label><br />
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Zadejte svoje jméno a příjmení"
+                        required
+                    /><br />
+                    <label for="email">E-Mail</label><br />
+                    <input type="email" name="email" placeholder="Zadejte svůj E-Mail" required /><br />
                     <label for="password">Heslo</label><br />
                     <input type="password" name="password" placeholder="Zadejte své heslo" required /><br />
-                    <input type="submit" value="Přihlásit se" />
-                    <p>Ještě nemáte účet? <a href="register.php">Registrujte se</a></p>
+                    <label for="Cpassword">Potvrďte heslo</label><br />
+                    <input type="password" name="Cpassword" placeholder="Potvrďte své heslo" required /><br />
+                    <input type="submit" value="Registrovat se" />
+                    <p>Máte již účet? <a href="login.php">Přihlásit se</a></p>
                 </form>
-            </div>
-            <div class="right-side">
-                <h2>Dream. Travel. Explore.</h2>
             </div>
         </div>
     </body>
