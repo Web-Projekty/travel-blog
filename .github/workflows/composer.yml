@@ -13,7 +13,7 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: "7.1" # Choose the PHP version you need
+                  php-version: "8.3" # Choose the PHP version you need
 
             - name: Install Composer Dependencies
               run: composer install
