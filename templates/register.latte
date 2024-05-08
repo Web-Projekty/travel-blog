@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Traveler's Trove - Registrace</title>
+
+        <link rel="stylesheet" href="../src/styles/style.css" />
+        <link rel="stylesheet" href="../src/styles/register.css" />
+        <script src="../src/scripts/script.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <!-- Font, can be changed but this one is decent -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="apple-touch-icon" sizes="180x180" href="../src/res/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../src/res/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../src/res/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../src/res/favicon/site.webmanifest" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="register">
+                <img src="../src/res/Logo.PNG" alt="Logo" id="imbedimage" />
+                <form class="form" action="#" method="post">
+                    <label for="name">Jmnéno a příjmení</label><br />
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Zadejte svoje jméno a příjmení"
+                        required
+                    /><br />
+                    <label for="email">E-Mail</label><br />
+                    <input type="email" name="email" placeholder="Zadejte svůj E-Mail" required /><br />
+                    <label for="password">Heslo</label><br />
+                    <input type="password" name="password" placeholder="Zadejte své heslo" required /><br />
+                    <label for="Cpassword">Potvrďte heslo</label><br />
+                    <input type="password" name="Cpassword" placeholder="Potvrďte své heslo" required /><br />
+                    <input type="submit" value="Registrovat se" />
+                    <p>Máte již účet? <a href="login.php">Přihlásit se</a></p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

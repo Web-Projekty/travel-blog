@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Travel Blog</title>
+        <meta name="description" content="Cestovní blog o destinacích." />
+        <meta name="author" content="Ondřej Pták, Adam Vlček, Jan Rehák, Matyáš Duchek" />
+        <title>Traveler's Trove - Domů</title>
 
         <link rel="stylesheet" href="src/styles/style.css" />
         <link rel="stylesheet" href="src/styles/homePage.css" />
@@ -66,8 +68,12 @@
                         <li><a href="#">O nás</a></li>
                         |
                         <li><a href="#">Kontakt</a></li>
-                        |
-                        <li><a href="account/login.php">Přihlásit se</a></li>
+                        | {if $authStatus}
+                        <li><a href="account/login.php">{$username}</a></li>
+                        {else}
+                        <li><a href="account/login.php">Účet</a></li>
+
+                        {/if}
                     </ul>
                 </nav>
             </div>
@@ -82,14 +88,14 @@
         </div>
 
         <div class="searchbar">
-            <form action="blog/articleSearch.php?searchInput=hi" method="get">
+            <form action="blog/articleSearch.php" method="get">
                 <input id="search" name="searchInput" type="text" placeholder="Vyhledávání..." />
                 <input id="hiddenSearchInput" type="submit" />
             </form>
         </div>
 
         <div class="blogpost">
-            <h2>Recent Blog Posts</h2>
+            <h2>Nejnovější články</h2>
             <div class="postPlace">
                 <div class="post">
                     <img src="src/res/img1.jpg" alt="Post Image" />

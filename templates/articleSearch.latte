@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel Blog</title>
+    <title>Traveler's Trove - Seznam článků</title>
 
     <link rel="stylesheet" href="../src/styles/style.css" />
     <link rel="stylesheet" href="../src/styles/articleSearch.css" />
@@ -82,14 +82,14 @@
     </div>
 
     <form class="searchbar" action="articleSearch.php?searchInput=hi" method="get">
-      <select name="type">
+      <select class="type" name="type">
         <option value="title" {if $type==="title" }selected{/if}>Titul</option>
         <option value="author" {if $type==="author" }selected{/if}>Autor</option>
         <option value="destination" {if $type==="destination" }selected{/if}>Destinace</option>
-    </select>
-      <input name="searchInput" type="text" placeholder="Vyhledávání..." value="{$searchInput}"/>
+      </select>
+      <input id="searchInput" name="searchInput" type="text" placeholder="Vyhledávání..." value="{$searchInput}"/>
       
-      <select name="orderBy">
+      <select class="order" name="orderBy">
         <option value="datePublic DESC" {if $orderBy==="datePublic DESC" }selected{/if}>Nejnovější</option>
         <option value="datePublic ASC" {if $orderBy==="datePublic ASC" }selected{/if}>Nejstarší</option>
         <option value="title ASC" {if $orderBy==="title ASC" }selected{/if}>Název A-Z</option>
@@ -98,20 +98,22 @@
       </select>
       <input id="hiddenSearchInput" type="submit" />
     </form>
+
     <div class="article-container">
-      {if $foundResults} {foreach $lists as $list}
-      <div class="articles">
-        <div class="articles-info">
-          <a href="articleDetail.php?articleId={$list['3']}">
-          <h2>{$list['0']}</h2>
-          </a>
-          <p>{$list['1']}</p>
-          <p>{$list['2']}</p>
-          <p>{$list['4']}</p>
+      {if $foundResults}
+        {foreach $lists as $list}
+        <div class="article">
+          <div class="article-info">
+            <a href="articleDetail.php?articleId={$list['3']}">
+              <h2 id="article-title">{$list['0']}</h2>
+            </a>
+            <p>{$list['1']}</p>
+            <p>{$list['2']}</p>
+            <p>{$list['4']}</p>
+          </div>
+          <img src="../src/images/{$list['5']}" />
         </div>
-        <img src="../src/images/{$list['5']}">
-      </div>
-      {/foreach}
+        {/foreach} 
       <div class="pages-number">
         {foreach $pages as $page}
         <a href="{$page[1]}">
@@ -121,8 +123,8 @@
       </div>
       {else}
       <p>Nebyly nalezeny žádné výsledky</p>
-      {/if}
     </div>
+    {/if}
 
     <footer>
       <!-- Nothing yet but it should be the basic stuff-->
