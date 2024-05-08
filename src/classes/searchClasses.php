@@ -6,9 +6,9 @@ class ArticleSearch
     public int $articlesPerPage = 5;
     public int $pagesPerList = 5;
     public bool $foundResults = false;
+    public int $counter = 0;
 
     private $Database;
-    private int $counter = 0;
     ### creates new Database object ###
     public function __construct()
     {

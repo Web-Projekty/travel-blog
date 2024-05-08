@@ -70,13 +70,36 @@ class searchClassesTest extends Tester\TestCase
 
         Assert::type("string", $this->ArticleSearch->searchInput());
     }
-    public function testGetPages()
+    function getRandomNumbers()
+    {
+        for ($i = 0; $i < 9253; $i++) {
+            $nums[$i] = [rand(-1000, 1000), rand(-1000, 1000)];
+        }
+        return $nums;
+    }
+    /**
+     *@dataProvider getRandomNumbers
+     */
+
+    public function testGetPages($counter, $pagesPerList)
     {
         $_SERVER['PHP_SELF'] = "/test.php";
 
         // Test with no GET parameters
-        $pages = $this->ArticleSearch->getPages();
-        Assert::same([[null, null]], $pages);
+        Assert::same([[null, null]], $this->ArticleSearch->getPages());
+
+        // Test with GET parameters
+        Assert::same([[null, null]], $this->ArticleSearch->getPages());
+        //$_GET[]
+
+        // echo $this->ArticleSearch->counter = $counter;
+        //echo $this->ArticleSearch->pagesPerList = $pagesPerList;
+        //var_dump($this->ArticleSearch->getPages());
+        if (ceil($this->ArticleSearch->counter / $this->ArticleSearch->articlesPerPage) >= 1) {
+            Assert::count(ceil($this->ArticleSearch->counter / $this->ArticleSearch->articlesPerPage), $this->ArticleSearch->getPages());
+        } else {
+            Assert::count(1, $this->ArticleSearch->getPages());
+        }
     }
 }
 (new searchClassesTest())->run();
