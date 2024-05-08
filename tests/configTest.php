@@ -1,20 +1,15 @@
 <?php
-
+############### autoload ###############
 use Tester\Assert;
 
-$latte = new Latte\Engine;
-#require "bootstrap.php";
-//require "../index.php";
-$latte->setTempDirectory('../temp');
+require_once "../vendor/autoload.php";
 
-class IndexTest extends Tester\TestCase
+class ConfigTest extends Tester\TestCase
 {
 
     public function setUp()
     {
         # Příprava
-
-        echo "hello 2";
     }
 
     public function tearDown()
@@ -28,9 +23,11 @@ class IndexTest extends Tester\TestCase
             #array hodnot
         ];
     }*/
-    function testRandomStuff(){
-        Assert::same(0,0);
+
+    function testConfig()
+    {
+        Assert::same(0, 0);
     }
 }
 
-(new IndexTest)->run();
+(new ConfigTest)->run();
