@@ -2,9 +2,9 @@
 class Config
 {
     public $servername = "vlastas.cc";
-    public $username = 1;
-    public $password = null;
-    //public $dbname = "travelblog";
+    public $username = "travelblog";
+    public $password = "heslovymyslim";
+    public $dbname = "travelblog";
 }
 
 ### example of usage (when correctly implemented with composer) ###
