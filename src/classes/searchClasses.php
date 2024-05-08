@@ -3,12 +3,12 @@ require_once "../vendor/autoload.php";
 class ArticleSearch
 {
 
-    public $articlesPerPage = 5;
-    public $pagesPerList = 5;
-    public $foundResults = false;
+    public int $articlesPerPage = 5;
+    public int $pagesPerList = 5;
+    public bool $foundResults = false;
 
     private $Database;
-    private $counter = 0;
+    private int $counter = 0;
     ### creates new Database object ###
     public function __construct()
     {
