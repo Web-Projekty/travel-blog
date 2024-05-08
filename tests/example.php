@@ -7,10 +7,11 @@ require_once "../vendor/autoload.php";
 class IndexTest extends Tester\TestCase
 /**
  * TEST: Basic database query test.
- *
- * @dataProvider getLoopArgs
  * 
  * @phpVersion 8.0
+ */
+/**
+ *@dataProvider getData
  */
 {
 

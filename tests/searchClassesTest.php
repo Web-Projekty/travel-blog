@@ -9,10 +9,10 @@ require "../src/classes/searchClasses.php";
 class searchClassesTest extends Tester\TestCase
 {
     /**
- * TEST: Basic database query test.
- *
- * @phpVersion 8.0
- */
+     * TEST: Basic database query test.
+     *
+     * @phpVersion 8.0
+     */
     private $ArticleSearch;
 
     protected function setUp()
@@ -20,34 +20,55 @@ class searchClassesTest extends Tester\TestCase
         $this->ArticleSearch = new ArticleSearch();
     }
 
-    public function testTypeInput()
+    function getRandomString()
     {
-        $_GET['type'] = "title";
-        Assert::same("title", $this->ArticleSearch->typeInput());
+        return [["apple"], ["banana"], ["cat"], ["dog"], ["sun"], ["moon"], ["book"], ["pen"], ["red"], ["blue"], ["happy"], ["sad"], ["tree"], ["flower"], ["ocean"], ["river"], ["mountain"], ["valley"], ["star"], ["planet"]];
+    }
+    /**
+     *@dataProvider getRandomString
+     */
+    public function testTypeInput($randomString)
+    {
 
-        $_GET['type'] = "author";
-        Assert::same("author", $this->ArticleSearch->typeInput());
+        $_GET['type'] = $randomString;
+        Assert::same($randomString, $this->ArticleSearch->typeInput());
 
         unset($_GET['type']);
         Assert::same("title", $this->ArticleSearch->typeInput());
-    }
 
-    public function testFilterInput()
+        Assert::notNull($this->ArticleSearch->typeInput());
+
+        Assert::type("string", $this->ArticleSearch->typeInput());
+    }
+    /**
+     *@dataProvider getRandomString
+     */
+    public function testFilterInput($randomString)
     {
-        $_GET['orderBy'] = "datePublic DESC";
-        Assert::same("datePublic DESC", $this->ArticleSearch->filterInput());
+        $_GET['orderBy'] = $randomString;
+        Assert::same($randomString, $this->ArticleSearch->filterInput());
 
         unset($_GET['orderBy']);
         Assert::same("datePublic DESC", $this->ArticleSearch->filterInput());
-    }
 
-    public function testSearchInput()
+        Assert::notNull($this->ArticleSearch->filterInput());
+
+        Assert::type("string", $this->ArticleSearch->filterInput());
+    }
+    /**
+     *@dataProvider getRandomString
+     */
+    public function testSearchInput($randomString)
     {
-        $_GET['searchInput'] = "test";
-        Assert::same("test", $this->ArticleSearch->searchInput());
+        $_GET['searchInput'] = $randomString;
+        Assert::same($randomString, $this->ArticleSearch->searchInput());
 
         unset($_GET['searchInput']);
         Assert::same("", $this->ArticleSearch->searchInput());
+
+        Assert::true(empty($this->ArticleSearch->searchInput()));
+
+        Assert::type("string", $this->ArticleSearch->searchInput());
     }
     public function testGetPages()
     {
