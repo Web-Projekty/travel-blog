@@ -5,6 +5,13 @@ use Tester\Assert;
 require_once "../vendor/autoload.php";
 
 class IndexTest extends Tester\TestCase
+/**
+ * TEST: Basic database query test.
+ *
+ * @dataProvider getLoopArgs
+ * 
+ * @phpVersion 8.0
+ */
 {
 
     public function setUp()
@@ -17,12 +24,13 @@ class IndexTest extends Tester\TestCase
         # Úklid
     }
 
-    /*  public function getLoopArgs()
+    public function getLoopArgs()
     {
         return [
             #array hodnot
         ];
-    }*/
+    }
+
     function testTestRun()
     {
         Assert::same(0, 0);

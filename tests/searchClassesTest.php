@@ -8,6 +8,11 @@ require "../src/classes/searchClasses.php";
 
 class searchClassesTest extends Tester\TestCase
 {
+    /**
+ * TEST: Basic database query test.
+ *
+ * @phpVersion 8.0
+ */
     private $articleSearch;
 
     protected function setUp()

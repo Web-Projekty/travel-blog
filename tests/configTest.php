@@ -6,23 +6,16 @@ require_once "../vendor/autoload.php";
 
 class ConfigTest extends Tester\TestCase
 {
+    /**
+     * TEST: Basic database query test.
+     *
+     * @phpVersion 8.0
+     */
     private $Config;
     public function setUp()
     {
         $this->Config = new Config;
     }
-
-    public function tearDown()
-    {
-        # Úklid
-    }
-
-    /*  public function getLoopArgs()
-    {
-        return [
-            #array hodnot
-        ];
-    }*/
 
     function testConfig()
     {

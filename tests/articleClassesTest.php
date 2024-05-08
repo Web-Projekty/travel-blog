@@ -6,6 +6,12 @@ require_once "../vendor/autoload.php";
 
 class ArticleClassesTest extends Tester\TestCase
 {
+    /**
+     * TEST: Basic database query test.
+     *
+     * @phpVersion 8.0
+     */
+
     public $Article;
     public $Database;
     function __construct()
