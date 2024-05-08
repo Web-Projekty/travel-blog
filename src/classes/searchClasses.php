@@ -2,21 +2,20 @@
 require_once "../vendor/autoload.php";
 class ArticleSearch
 {
-    public $counter = 0;
+
     public $articlesPerPage = 5;
     public $pagesPerList = 5;
-
     public $foundResults = false;
 
-    public $Database;
-
+    private $Database;
+    private $counter = 0;
     ### creates new Database object ###
     public function __construct()
     {
         $this->Database = new Database;
     }
     ### searches based on filter and returns all nessecary data in array ###
-    public function getArticleList($page, $type, $orderBy, $search)
+    public function getArticleList(int $page, string $type, string $orderBy, string $search)
     {
         ######## build SQL ########
         switch ($type) {
