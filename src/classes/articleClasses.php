@@ -66,11 +66,8 @@ class Articles
                 $sql = "SELECT COUNT(title) FROM `Users`";
                 break;
             default:
-                return "This table doesnt exist";
+                return false;
         }
-
-        ### db stuff ###
-
 
         $result = $this->Database->query($sql);
 
@@ -82,7 +79,7 @@ class Articles
         ### chooses the right db and connects to mysql ###
         switch ($database) {
             case 1:
-               $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
+                $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
                 break;
             case 2:
                 $sql = "SELECT * FROM `Destinations` ORDER BY `Articles`.`idArticles` DESC";
@@ -100,9 +97,22 @@ class Articles
         $array = $result->fetch_array();
         return $array[0];
     }
-    ### get all ids from (any - will come back to this later) database ###
-    function getIdArray()
+    ### get all ids from any database ###
+    function getIdArray($database)
     {
+        switch ($database) {
+            case 1:
+                $sql = "SELECT idArticles FROM `Articles`";
+                break;
+            case 2:
+                $sql = "SELECT idArticles FROM `Destinations`";
+                break;
+            case 3:
+                $sql = "SELECT idArticles FROM `Users`";
+                break;
+            default:
+                return false;
+        }
         $sql = "SELECT idArticles FROM Articles";
         $result = $this->Database->query($sql);
 
