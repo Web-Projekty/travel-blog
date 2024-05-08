@@ -12,7 +12,7 @@ class Auth
 
     public function login($username, $password)
     {
-
+        $loginResult['status'] = false;
         $sql = "SELECT password, idUsers FROM `Users` WHERE `userName` = '$username'";
         $result = $this->Database->query($sql);
         $row = $result->fetch_row();
@@ -21,16 +21,17 @@ class Auth
             $hash = $row[0];
             $uid = $row[1];
             if (password_verify($password, $hash)) {
-                echo "good";
+                $loginResult['status'] = true;
+                $loginResult['msg'] = "Přihlášení proběhlo úspěšně";
                 $this->Session->setSession($uid);
-                return true;
+                return $loginResult;
             } else {
-                echo "bad password";
-                return false;
+                $loginResult['msg'] = "Špatné heslo";
+                return $loginResult;
             }
         } else {
-            echo "user no exist";
-            return false;
+            $loginResult['msg'] = "Uživatel neexistuje";
+            return $loginResult;
         }
     }
     public function register($username, $password, $cpassword, $name, $email)
@@ -59,11 +60,10 @@ class Auth
     # note: přesunout do Session a rozdělit na dvě metody
     public function getAuthDetail()
     {
-        if($uid = $this->Session->getUid())
-        $uid = $this->Session->getUid();
+        if ($uid = $this->Session->getUid())
+            $uid = $this->Session->getUid();
         $sql = "SELECT user FROM Users WHERE idUsers = $uid";
         $username = $this->Database->query($sql)->fetch_column();
-
 
         $status = $this->Session->getAuthStatus();
 

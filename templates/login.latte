@@ -26,6 +26,11 @@
             <div class="left-side">
                 <img src="../src/res/Logo.PNG" alt="Logo" id="imbedimage" />
                 <form class="form" action="#" method="post">
+                    {if $login['status']}
+                    <p>{$login['msg']}</p>
+                    {else}
+                    <p>{$login['msg']}</p>
+                    {/if}
                     <label for="username">Uživatelské jméno</label><br />
                     <input
                         type="text"
