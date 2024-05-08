@@ -1,52 +1,71 @@
 <!DOCTYPE html>
 <html lang="cs">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Traveler's Trove - Příhlášení</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traveler's Trove - Příhlášení</title>
 
-        <link rel="stylesheet" href="../src/styles/style.css" />
-        <link rel="stylesheet" href="../src/styles/login.css" />
-        <script src="../src/scripts/script.js"></script>
+    <link rel="stylesheet" href="../src/styles/style.css" />
+    <link rel="stylesheet" href="../src/styles/login.css" />
+    <script src="../src/scripts/script.js"></script>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <!-- Font, can be changed but this one is decent -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="apple-touch-icon" sizes="180x180" href="../src/res/favicon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="../src/res/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="../src/res/favicon/favicon-16x16.png" />
-        <link rel="manifest" href="../src/res/favicon/site.webmanifest" />
-    </head>
-    <body>
-        <div class="container">
-            <div class="left-side">
-                <img src="../src/res/Logo.PNG" alt="Logo" id="imbedimage" />
-                <form class="form" action="#" method="post">
-                    {if $login['status']}
-                    <p>{$login['msg']}</p>
-                    {else}
-                    <p>{$login['msg']}</p>
-                    {/if}
-                    <label for="username">Uživatelské jméno</label><br />
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="Zadejte své uživatelské jméno"
-                        required
-                    /><br />
-                    <label for="password">Heslo</label><br />
-                    <input type="password" name="password" placeholder="Zadejte své heslo" required /><br />
-                    <input type="submit" value="Přihlásit se" />
-                    <p>Ještě nemáte účet? <a href="register.php">Registrujte se</a></p>
-                </form>
-            </div>
-            <div class="right-side">
-                <h2>Dream. Travel. Explore.</h2>
-            </div>
-        </div>
-    </body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Font, can be changed but this one is decent -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../src/res/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../src/res/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../src/res/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../src/res/favicon/site.webmanifest" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-side">
+        <img src="../src/res/Logo.PNG" alt="Logo" id="imbedimage" />
+        <form class="form" action="#" method="post">
+          <label for="username">Uživatelské jméno</label><br />
+          <input
+            type="text"
+            name="username"
+            placeholder="Zadejte své uživatelské jméno"
+            required
+          /><br />
+          <label for="password">Heslo</label><br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Zadejte své heslo"
+            required
+          /><br />
+          {if $login['status']}
+          <p>{$login['msg']}</p>
+          {else}
+          <p>{$login['msg']}</p>
+          {/if}
+          <input type="submit" value="Přihlásit se" />
+          <p>Ještě nemáte účet? <a href="register.php">Registrujte se</a></p>
+        </form>
+      </div>
+      <div class="right-side">
+        <h2>Dream. Travel. Explore.</h2>
+      </div>
+    </div>
+  </body>
 </html>
