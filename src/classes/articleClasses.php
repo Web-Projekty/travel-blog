@@ -87,7 +87,7 @@ class Articles
                 $sql = "SELECT * FROM `Users` ORDER BY `Articles`.`idArticles` DESC";
                 break;
             default:
-                return "This table doesnt exist";
+                return false;
         }
 
         ### executes sql query ###
