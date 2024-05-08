@@ -13,48 +13,48 @@ class searchClassesTest extends Tester\TestCase
  *
  * @phpVersion 8.0
  */
-    private $articleSearch;
+    private $ArticleSearch;
 
     protected function setUp()
     {
-        $this->articleSearch = new ArticleSearch();
+        $this->ArticleSearch = new ArticleSearch();
     }
 
     public function testTypeInput()
     {
         $_GET['type'] = "title";
-        Assert::same("title", $this->articleSearch->typeInput());
+        Assert::same("title", $this->ArticleSearch->typeInput());
 
         $_GET['type'] = "author";
-        Assert::same("author", $this->articleSearch->typeInput());
+        Assert::same("author", $this->ArticleSearch->typeInput());
 
         unset($_GET['type']);
-        Assert::same("title", $this->articleSearch->typeInput());
+        Assert::same("title", $this->ArticleSearch->typeInput());
     }
 
     public function testFilterInput()
     {
         $_GET['orderBy'] = "datePublic DESC";
-        Assert::same("datePublic DESC", $this->articleSearch->filterInput());
+        Assert::same("datePublic DESC", $this->ArticleSearch->filterInput());
 
         unset($_GET['orderBy']);
-        Assert::same("datePublic DESC", $this->articleSearch->filterInput());
+        Assert::same("datePublic DESC", $this->ArticleSearch->filterInput());
     }
 
     public function testSearchInput()
     {
         $_GET['searchInput'] = "test";
-        Assert::same("test", $this->articleSearch->searchInput());
+        Assert::same("test", $this->ArticleSearch->searchInput());
 
         unset($_GET['searchInput']);
-        Assert::same("", $this->articleSearch->searchInput());
+        Assert::same("", $this->ArticleSearch->searchInput());
     }
     public function testGetPages()
     {
         $_SERVER['PHP_SELF'] = "/test.php";
 
         // Test with no GET parameters
-        $pages = $this->articleSearch->getPages();
+        $pages = $this->ArticleSearch->getPages();
         Assert::same([[null, null]], $pages);
     }
 }
