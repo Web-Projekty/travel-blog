@@ -7,3 +7,5 @@ sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 sudo apt install composer php8.3 libapache2-mod-php8.3 php8.3-mysql php8.3-imap php8.3-ldap php8.3-xml php8.3-curl php8.3-mbstring php8.3-zip mc
 sudo service apache2 start
+cd /var/www/html/ ; composer install
+cd /var/www/ ;sudo chmod -vR 777 *
