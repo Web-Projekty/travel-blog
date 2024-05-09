@@ -1,20 +1,23 @@
 <?php
-
+############### autoload ###############
 use Tester\Assert;
 
-$latte = new Latte\Engine;
-#require "bootstrap.php";
-//require "../index.php";
-$latte->setTempDirectory('../temp');
+require_once "../vendor/autoload.php";
 
 class IndexTest extends Tester\TestCase
+/**
+ * TEST: Basic database query test.
+ * 
+ * @phpVersion 8.0
+ */
+/**
+ *@dataProvider getData
+ */
 {
 
     public function setUp()
     {
         # Příprava
-
-        echo "hello 2";
     }
 
     public function tearDown()
@@ -22,14 +25,16 @@ class IndexTest extends Tester\TestCase
         # Úklid
     }
 
-    /*  public function getLoopArgs()
+    public function getLoopArgs()
     {
         return [
             #array hodnot
         ];
-    }*/
-    function testRandomStuff(){
-        Assert::same(0,0);
+    }
+
+    function testTestRun()
+    {
+        Assert::same(0, 0);
     }
 }
 

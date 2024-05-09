@@ -2,12 +2,11 @@
 
 class Articles
 {
-    public $Database;
+    private $Database;
     public function __construct()
     {
         $this->Database = new Database;
     }
-    public $title;
     ############### returns array of all article titles ###############
     function getTitleArray()
     {
@@ -17,10 +16,10 @@ class Articles
         if ($result->num_rows > 0) {
             $i = 0;
             while ($row = $result->fetch_assoc()) {
-                $title[$i] = [$row['idArticles'], $row['title']];
+                $titles[$i] = [$row['idArticles'], $row['title']];
                 $i++;
             }
-            return $title;
+            return $titles;
         }
     }
     ### returns article for the provided article id ###
@@ -88,7 +87,7 @@ class Articles
                 $sql = "SELECT * FROM `Users` ORDER BY `Articles`.`idArticles` DESC";
                 break;
             default:
-                return "This table doesnt exist";
+                return false;
         }
 
         ### executes sql query ###
