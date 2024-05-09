@@ -47,7 +47,7 @@ class ArticleClassesTest extends Tester\TestCase
     {
         ### checks for different cases of input ###
         $article = $this->Article->getArticleById($id);
-        if (is_int(array_search($id, $this->Article->getIdArray()))) {
+        if (is_int(array_search($id, $this->Article->getIdArray(1)))) {
             Assert::true($article['succesfull']);
             foreach ($article as $key) {
                 Assert::notNull($key);
