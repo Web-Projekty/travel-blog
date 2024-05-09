@@ -1,5 +1,5 @@
 sudo mkdir -vp /var/www/html
-sudo mv -vt ../ /var/www/html
+sudo mv -v ../../travel-blog/* /var/www/html/
 sudo apt update
 sudo apt-get install ca-certificates apt-transport-https software-properties-common
 sudo add-apt-repository ppa:ondrej/php
