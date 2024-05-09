@@ -26,13 +26,17 @@ $lists = $ArticleSearch->getArticleList($page, $type, $orderBy, $searchInput);
 
 $pages = $ArticleSearch->getPages();
 
+$authDetail = $Auth->getAuthDetail();
+
 $params = [
     'lists' => $lists,
     'type' => $type,
     'searchInput' => $searchInput,
     'orderBy' => $orderBy,
     'pages' => $pages,
-    'foundResults' => $ArticleSearch->foundResults
+    'foundResults' => $ArticleSearch->foundResults,
+    'authStatus' => $authDetail[0],
+    'username' => $authDetail[1]
 ];
 
 $latte->render('../templates/articleSearch.latte', $params);

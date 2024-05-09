@@ -19,6 +19,7 @@ if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
     $article = $Articles->getArticleById($articleId);
 }
 
+$authDetail = $Auth->getAuthDetail();
 
 if ($article['succesfull']) {
     $params = [
@@ -27,7 +28,9 @@ if ($article['succesfull']) {
         'img' => $article['img'],
         'author' => $article['author'],
         'destination' => $article['destination'],
-        'date' => $article['date']
+        'date' => $article['date'],
+        'authStatus' => $authDetail[0],
+        'username' => $authDetail[1]
     ];
 
     $latte->render('../templates/articleDetail.latte', $params);
