@@ -7,30 +7,44 @@ require_once "../vendor/autoload.php";
 
 class userSessionClassesTest extends Tester\TestCase
 {
+
+    public $Session;
+    public function setUp()
+    {
+        $this->Session = new Session;
+        // disables redirection
+        $this->Session->isTest = true;
+
+        $this->Session->timeoutAfter = 1;
+        //session_start();
+
+    }
+
     public function testSession()
     {
-        $session = new Session();
-        
         // Test initial state
-        Assert::false($session->getAuthStatus());
-        Assert::equal($session->getUid(), -1);
-        
-        // Test setting session
-        $session->setSession(123);
-        Assert::true($session->getAuthStatus());
-        Assert::equal($session->getUid(), 123);
-        
-        // Test logout
-        $session->logout();
-        Assert::false($session->getAuthStatus());
+        Assert::false($this->Session->getAuthStatus());
+        Assert::equal($this->Session->getUid(), -1);
 
+        // Test setting Session
+        $this->Session->setSession(123);
+        Assert::true($this->Session->getAuthStatus());
+        Assert::equal($this->Session->getUid(), 123);
+    }
+    public function testLogout()
+    {
+        // Test logout
+        $this->Session->logout();
+        Assert::false($this->Session->getAuthStatus());
+    }
+    public function testTimeout()
+    {
         // Test timeout
-        $session->setSession(123);
-        sleep(1201); // simulate waiting for more than 20 minutes
-        $session->runCheck();
-        Assert::false($session->getAuthStatus());
+        $this->Session->setSession(123);
+        sleep(3); // simulate waiting for more than 3 seconds
+        $this->Session->runCheck();
+        Assert::false($this->Session->getAuthStatus());
     }
 }
 
 (new userSessionClassesTest())->run();
-?>

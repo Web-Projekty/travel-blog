@@ -9,6 +9,8 @@ class Session
     public $timeout;
     public $uid;
     public $auth;
+    public $isTest = false;
+    public $timeoutAfter = 1200;
     public function __construct()
     {
         $this->runCheck();
@@ -36,7 +38,7 @@ class Session
     }
     public function isTimedOut()
     {
-        if (time() - $this->timeout < 1200) {
+        if (time() - $this->timeout < $this->timeoutAfter) {
             $_SESSION['timeout'] = time();
         } else {
             $this->logout();
@@ -53,10 +55,13 @@ class Session
     public function logout()
     {
         session_unset();
-        header("location: /travel-blog/account/logout.php");
+        if (!$this->isTest) {
+            header("location: /travel-blog/account/logout.php");
+        }
     }
     public function getAuthStatus()
     {
+        var_dump($_SESSION['auth']);
         if (isset($_SESSION['auth'])) {
             return $_SESSION['auth'];
         } else {
