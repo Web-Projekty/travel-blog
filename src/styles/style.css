@@ -76,6 +76,24 @@ header h1 {
   padding: 10px 20px;
 }
 
+.account-status {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  z-index: 2;
+  color: white;
+  font-size: 20px;
+}
+
+.account-status a {
+  text-decoration: none;
+  color: white;
+}
+
+.account-status a:hover {
+  color: #eb910a;
+}
+
 nav ul {
   list-style: none;
   margin: 0;
@@ -161,6 +179,11 @@ img {
 
   .order, .type {
     font-size: 25px;
+  }
+
+  .account-status {
+    top: 10%;
+    left: 35%;
   }
 }
 
