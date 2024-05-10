@@ -57,17 +57,17 @@
         <h1>Traveler's Trove</h1>
         <nav>
           <ul>
-              <li><a href="#">Domů</a></li>
+              <li><a href="../">Domů</a></li>
               |
-              <li><a href="blog/articleSearch.php">Články</a></li>
+              <li><a href="#">Články</a></li>
               |
               <li><a href="#">O nás</a></li>
               |
               <li><a href="#">Kontakt</a></li>
               | {if $authStatus}
-              <li><a href="account/login.php">{$username}</a></li>
+              <li><a href="../account/login.php">{$username}</a></li>
               {else}
-              <li><a href="account/login.php">Účet</a></li>
+              <li><a href="../account/login.php">Účet</a></li>
 
               {/if}
           </ul>
