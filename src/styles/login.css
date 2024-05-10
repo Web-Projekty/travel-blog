@@ -1,0 +1,135 @@
+body {
+  /*background-color: #eb910a;*/
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  background-color: #ffffff;
+  width: 1200px;
+  height: 90%;
+  overflow: hidden;
+  border-radius: 8px;
+  -webkit-box-shadow: -5px 5px 30px 9px rgba(43, 43, 43, 0.75);
+  -moz-box-shadow: -5px 5px 30px 9px rgba(43, 43, 43, 0.75);
+  box-shadow: -5px 5px 30px 9px rgba(43, 43, 43, 0.75);
+}
+
+.left-side,
+.right-side {
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+}
+
+.left-side h1,
+h3,
+label {
+  line-height: 0.5;
+}
+
+.left-side {
+  border-right: 1px solid #ccc;
+}
+
+.left-side h2,
+.right-side h2 {
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.right-side {
+  background-image: url("../res/LoginImg.jpg");
+  background-size: cover;
+}
+.right-side h2 {
+  color: #ffffff;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+  width: calc(100% - 100px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form input[type="submit"] {
+  width: calc(100% - 50px);
+  padding: 10px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: #ff8c00;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #c97612;
+}
+#imbedimage {
+  width: 83%;
+  height: 32%;
+  position: relative;
+  margin: 20px;
+  object-fit: contain;
+}
+#SText {
+  color: #a8a8a8;
+}
+
+@media screen and (max-width: 1000px) {
+  * {
+    font-size: 20px;
+  }
+
+  .container {
+    width: 90%;
+    height: 80%;
+  }
+
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="password"] {
+    width: calc(100% - 50px);
+    height: 40px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .form input[type="submit"] {
+    width: calc(100% - 50px);
+    padding: 10px;
+    background-color: #ff8c00;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .right-side {
+    display: none;
+  }
+
+  #imbedimage {
+    width: 100%;
+    height: 32%;
+    position: relative;
+    margin: 20px;
+    padding-right: 20px;
+  }
+}
