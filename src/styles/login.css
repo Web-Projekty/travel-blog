@@ -43,7 +43,7 @@ label {
 }
 
 .right-side {
-  background-image: url("../res/LoginImg.jpg");
+  background-image: url("../res/login/LoginImg.jpg");
   background-size: cover;
 }
 .right-side h2 {
