@@ -56,9 +56,9 @@
       <div class="account-status">
         |
         {if $authStatus}
-          <a href="account/login.php">{$username}</a></li>
+          <a href="../account/login.php">{$username}</a></li>
         {else}
-          <a href="account/login.php">Účet</a></li>
+          <a href="../account/login.php">Účet</a></li>
         {/if}
         |
       </div>
@@ -66,32 +66,13 @@
         <h1>Traveler's Trove</h1>
         <nav>
           <ul>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-            <li><a href="#">Domů</a></li>
+            <li><a href="../">Domů</a></li>
             |
-            <li><a href="blog/articleSearch.php">Články</a></li>
+            <li><a href="./articleSearch.php">Články</a></li>
             |
             <li><a href="#">O nás</a></li>
             |
             <li><a href="#">Kontakt</a></li>
-=======
->>>>>>> Stashed changes
-              <li><a href="../">Domů</a></li>
-              |
-              <li><a href="#">Články</a></li>
-              |
-              <li><a href="#">O nás</a></li>
-              |
-              <li><a href="#">Kontakt</a></li>
-              | {if $authStatus}
-              <li><a href="../account/login.php">{$username}</a></li>
-              {else}
-              <li><a href="../account/login.php">Účet</a></li>
-
-              {/if}
->>>>>>> 90adad0313553b276cea5fe5b5cdc1d82e843794
           </ul>
         </nav>
       </div>

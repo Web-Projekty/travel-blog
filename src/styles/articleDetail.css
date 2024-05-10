@@ -19,6 +19,7 @@ main {
   height: auto;
 }
 
-.slide-show {
-  display: none;
+.slideshow {
+  height: 40vh;
+  width: 100%;
 }
