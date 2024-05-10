@@ -75,6 +75,10 @@ label {
   margin: 20px;
 }
 
+#imbedimage:hover {
+  cursor: pointer;
+}
+
 
 @media screen and (max-width: 768px) {
   * {
