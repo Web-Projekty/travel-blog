@@ -5,14 +5,12 @@ $latte = new Latte\Engine;
 
 $latte->setTempDirectory('../temp');
 
+$Auth = new Auth;
 
 ########### redirect to selection if form not filled ###########
 if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
-    header("location: articleSelect.php");
+    header("location: articleSearch.php");
 } else {
-    ############### main php import ###############
-
-    require_once("../src/articleClasses.php");
 
     $Articles = new Articles();
 
@@ -21,6 +19,7 @@ if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
     $article = $Articles->getArticleById($articleId);
 }
 
+$authDetail = $Auth->getAuthDetail();
 
 if ($article['succesfull']) {
     $params = [
@@ -29,10 +28,17 @@ if ($article['succesfull']) {
         'img' => $article['img'],
         'author' => $article['author'],
         'destination' => $article['destination'],
-        'date' => $article['date']
+        'date' => $article['date'],
+        'authStatus' => $authDetail[0],
+        'username' => $authDetail[1]
     ];
 
     $latte->render('../templates/articleDetail.latte', $params);
 } else {
     echo $article['errorMsg'];
+    echo "<script>
+    setTimeout(function() {
+        window.location.href = 'articleSearch.php';
+    }, 2000);
+</script>";
 }

@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel Blog</title>
+    <title>Traveler's Trove - {$title}</title>
 
     <link rel="stylesheet" href="../src/styles/style.css" />
     <link rel="stylesheet" href="../src/styles/articleDetail.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <!-- Font, can be changed but this one is decent -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
@@ -19,49 +18,41 @@
   </head>
   <body onload="showSlides(1)">
     <div class="slideshow">
-      <!-- Video slideshow, genereted by ChatGpt since i have no idea how to do a slideshow -->
       <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <img src="" alt="Image Slide">
       </div>
 
       <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <img src="" alt="Image Slide">
       </div>
 
       <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v3.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <img src="" alt="Image Slide">
       </div>
 
       <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v4.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <img src="" alt="Image Slide">
       </div>
 
       <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v5.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <img src="" alt="Image Slide">
       </div>
-
+      <div class="account-status">
+        |
+        {if $authStatus}
+          <a href="../account/login.php">{$username}</a></li>
+        {else}
+          <a href="../account/login.php">Účet</a></li>
+        {/if}
+        |
+      </div>
       <div class="header">
         <h1>Traveler's Trove</h1>
         <nav>
           <ul>
-            <li><a href="../index.php">Domů</a></li>
+            <li><a href="../">Domů</a></li>
             |
-            <li><a href="articleSearch.php">Články</a></li>
+            <li><a href="./articleSearch.php">Články</a></li>
             |
             <li><a href="#">O nás</a></li>
             |
@@ -80,20 +71,18 @@
     </div>
 
     <main>
-      <div>
-        <h1>{$title}</h1>
-        <p>{$author} {$destination} {$date}</p>
-      </div>
       <div class="content">
-        
-        <p>{$content}</p>
+        <div class="info">
+          <h1>{$title}</h1>
+          <p>{$author} {$destination} {$date}</p>
+          <p>{$content}</p>
+        </div>
+
         <img src="../src/images/{$img}" />
       </div>
-      
     </main>
 
     <footer>
-      <!-- Nothing yet but it should be the basic stuff-->
     </footer>
   </body>
 </html>
