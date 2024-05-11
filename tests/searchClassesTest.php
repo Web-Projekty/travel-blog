@@ -2,6 +2,7 @@
 
 ############### autoload ###############
 require_once "../vendor/autoload.php";
+
 use Tester\Assert;
 
 class searchClassesTest extends Tester\TestCase

@@ -1,6 +1,7 @@
 <?php
 ############### autoload ###############
 require_once "../vendor/autoload.php";
+
 use Tester\Assert;
 
 class DatabaseClassesTest extends Tester\TestCase
@@ -46,7 +47,7 @@ class DatabaseClassesTest extends Tester\TestCase
         Assert::false($result);
         Assert::notNull($result);
         Assert::true(empty($result));
-        
+
         $result = $this->Database->rowExists("Users", "idUsers", 1);
         Assert::true($result);
         Assert::notNull($result);
