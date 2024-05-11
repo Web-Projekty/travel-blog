@@ -47,23 +47,23 @@ class Auth
             $username = $emailParts[0];
 
             if ($this->Database->rowExists("Users", "userName", $username)) {
-                echo "user already exists";
+                $registerResult['msg'] =  "Uživatel s tímto uživatelským jménem již existuje";
             } elseif ($this->Database->rowExists("Users", "userEmail", $email)) {
-                echo "someone is using this email already";
+                $registerResult['msg'] =  "Někdo už používá tento e-mail";
             } else {
-                echo "user not exists";
                 if ($password == $cpassword) {
                     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
                     $sql = "INSERT INTO `Users` (`idUsers`, `userName`, `user`, `userEmail`, `password`, `role`) VALUES (NULL, '$username', '$name', '$email', '$hashedPassword', 'delegate');";
                     $this->Database->query($sql);
-                    echo "<br>succesful registration";
+                    $registerResult['msg'] = "Registrace proběhla úspěšně";
                 } else {
-                    echo "<br>passwords do not match";
+                    $registerResult['msg'] =  "Zadaná hesla nesouhlasí";
                 }
             }
         } else {
-            echo "oosps";
+            $registerResult['msg'] =  "Zadaný e-mail není validní";
         }
+        return $registerResult;
     }
     public function getUserRole($uid)
     {
