@@ -12,25 +12,33 @@ class userSessionClassesTest extends Tester\TestCase
     public function setUp()
     {
         $this->Session = new Session;
-        // disables redirection
+        // disables header redirection
         $this->Session->isTest = true;
-
+        // sets logout timeout to 1 so the test can run quicker
         $this->Session->timeoutAfter = 1;
-        //session_start();
-
     }
 
-    public function testSession()
+    public function testSetSession()
     {
+        // Test setting Session
+        $this->Session->setSession(123);
+        Assert::true($_SESSION['auth']);
+        Assert::equal($_SESSION['uid'], 123);
+
+        // Test session overwrite
+        $this->Session->setSession(1234);
+        Assert::true($_SESSION['auth']);
+        Assert::equal($_SESSION['uid'], 123);
+    }
+    public function testGetAuthStatus()
+    {
+        // resets session
+        session_unset();
         // Test initial state
         Assert::false($this->Session->getAuthStatus());
         Assert::equal($this->Session->getUid(), -1);
-
-        // Test setting Session
-        $this->Session->setSession(123);
-        Assert::true($this->Session->getAuthStatus());
-        Assert::equal($this->Session->getUid(), 123);
     }
+
     public function testLogout()
     {
         // Test logout

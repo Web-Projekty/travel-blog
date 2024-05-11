@@ -18,12 +18,15 @@ class AuthTest extends Tester\TestCase
     private $Auth;
     public function setUp()
     {
+
         $this->Auth = new Auth;
     }
 
     public function tearDown()
     {
-        # Úklid
+        // unsets variables after use
+        unset($this->Auth);
+        session_unset();
     }
 
     public function getLoopArgs()
@@ -49,7 +52,6 @@ class AuthTest extends Tester\TestCase
     }
     public function testRegister()
     {
-
     }
 }
 

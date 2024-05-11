@@ -1,6 +1,8 @@
 <?php
+if (session_status() != 2) {
+    session_start();
+}
 
-session_start();
 class Session
 // used variables:
 // timeout, uid, auth
@@ -54,6 +56,7 @@ class Session
     }
     public function logout()
     {
+
         session_unset();
         if (!$this->isTest) {
             header("location: /travel-blog/account/logout.php");
@@ -61,7 +64,8 @@ class Session
     }
     public function getAuthStatus()
     {
-        var_dump($_SESSION['auth']);
+        $this->runCheck();
+        //var_dump($_SESSION['auth']);
         if (isset($_SESSION['auth'])) {
             return $_SESSION['auth'];
         } else {
