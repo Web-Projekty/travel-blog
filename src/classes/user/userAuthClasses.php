@@ -34,23 +34,37 @@ class Auth
             return $loginResult;
         }
     }
-    public function register($username, $password, $cpassword, $name, $email)
+
+    ### registration function ###
+    public function register($password, $cpassword, $name, $email)
     {
-        if ($this->Database->rowExists("Users", "userName", $username)) {
-            echo "user already exists";
-        } elseif ($this->Database->rowExists("Users", "userEmail", $email)) {
-            echo "someone is using this email already";
-        } else {
-            echo "user not exists";
-            if ($password == $cpassword) {
-                $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-                $sql = "INSERT INTO `Users` (`idUsers`, `userName`, `user`, `userEmail`, `password`, `role`) VALUES (NULL, '$username', '$name', '$email', '$hashedPassword', 'delegate');";
-                $this->Database->query($sql);
-                echo "<br>succesful registration";
+        // sets basic variables
+        $registerResult['status'] = false;
+        // tests if email is in correct format
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // extracts username from email
+            $emailParts = explode("@", $email);
+            $username = $emailParts[0];
+
+            if ($this->Database->rowExists("Users", "userName", $username)) {
+                $registerResult['msg'] =  "Uživatel s tímto uživatelským jménem již existuje";
+            } elseif ($this->Database->rowExists("Users", "userEmail", $email)) {
+                $registerResult['msg'] =  "Někdo už používá tento e-mail";
             } else {
-                echo "<br>passwords do not match";
+                if ($password == $cpassword) {
+                    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+                    $sql = "INSERT INTO `Users` (`idUsers`, `userName`, `user`, `userEmail`, `password`, `role`) VALUES (NULL, '$username', '$name', '$email', '$hashedPassword', 'delegate');";
+                    $this->Database->query($sql);
+                    $registerResult['status'] = true;
+                    $registerResult['msg'] = "Registrace proběhla úspěšně";
+                } else {
+                    $registerResult['msg'] =  "Zadaná hesla nesouhlasí";
+                }
             }
+        } else {
+            $registerResult['msg'] =  "Zadaný e-mail není validní";
         }
+        return $registerResult;
     }
     public function getUserRole($uid)
     {
@@ -69,5 +83,9 @@ class Auth
         $status = $this->Session->getAuthStatus();
 
         return [$status, $username];
+    }
+    public function logout()
+    {
+        $this->Session->logout();
     }
 }
