@@ -2,7 +2,6 @@
 ############### autoload ###############
 require_once "../vendor/autoload.php";
 use Tester\Assert;
-Tester\Environment::setup();
 
 
 class ArticleClassesTest extends Tester\TestCase

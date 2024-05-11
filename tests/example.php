@@ -2,7 +2,7 @@
 ############### autoload ###############
 require_once "../vendor/autoload.php";
 use Tester\Assert;
-Tester\Environment::setup();
+
 
 class IndexTest extends Tester\TestCase
 /**

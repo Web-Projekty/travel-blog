@@ -3,7 +3,6 @@
 ############### autoload ###############
 require_once "../vendor/autoload.php";
 use Tester\Assert;
-Tester\Environment::setup();
 
 class searchClassesTest extends Tester\TestCase
 {

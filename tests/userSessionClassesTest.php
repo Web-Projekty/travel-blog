@@ -5,7 +5,6 @@ require_once "../vendor/autoload.php";
 
 use Tester\Assert;
 
-Tester\Environment::setup();
 
 class userSessionClassesTest extends Tester\TestCase
 {

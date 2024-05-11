@@ -3,7 +3,6 @@
 
 require_once "../vendor/autoload.php";
 use Tester\Assert;
-Tester\Environment::setup();
 
 class AuthTest extends Tester\TestCase
 /**
