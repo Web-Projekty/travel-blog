@@ -42,4 +42,27 @@ class Database
 
         return !empty($result->fetch_column());
     }
+    function getLastId($database)
+    {
+        ### chooses the right db and connects to mysql ###
+        switch ($database) {
+            case 1:
+                $sql = "SELECT * FROM `Articles` ORDER BY `idArticles` DESC";
+                break;
+            case 2:
+                $sql = "SELECT * FROM `Destinations` ORDER BY `idDestination` DESC";
+                break;
+            case 3:
+                $sql = "SELECT * FROM `Users` ORDER BY `idUsers` DESC";
+                break;
+            default:
+                return false;
+        }
+
+        ### executes sql query ###
+        $result = $this->query($sql);
+        //var_dump($result->fetch_array());
+        $array = $result->fetch_array();
+        return $array[0];
+    }
 }
