@@ -29,12 +29,6 @@ class AuthTest extends Tester\TestCase
         session_unset();
     }
 
-    public function getLoopArgs()
-    {
-        return [
-            #array hodnot
-        ];
-    }
     public function getCred()
     {
         return [["admin", "12345678", true], ["peppicek", "superheslo", false]];

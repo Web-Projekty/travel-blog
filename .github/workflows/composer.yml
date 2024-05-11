@@ -3,7 +3,7 @@ name: Composer
 on: [push, pull_request]
 
 jobs:
-    Nette_tests_linux:
+    Nette_tests:
         runs-on: ubuntu-latest
 
         steps:
