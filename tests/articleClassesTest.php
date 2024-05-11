@@ -44,7 +44,7 @@ class ArticleClassesTest extends Tester\TestCase
 
     function getLoopArgs()
     {
-        return [[-1], [0], [1], [2], [1654], [intval($this->Article->getLastId(1))]];
+        return [[-1], [0], [1], [2], [1654], [intval($this->Database->getLastId(1))]];
     }
     /**
      *@dataProvider getLoopArgs

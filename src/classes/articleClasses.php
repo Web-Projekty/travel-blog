@@ -73,29 +73,7 @@ class Articles
         return $result->fetch_array()[0];
     }
     ### fetches the last id used ###
-    function getLastId($database)
-    {
-        ### chooses the right db and connects to mysql ###
-        switch ($database) {
-            case 1:
-                $sql = "SELECT * FROM `Articles` ORDER BY `Articles`.`idArticles` DESC";
-                break;
-            case 2:
-                $sql = "SELECT * FROM `Destinations` ORDER BY `Articles`.`idArticles` DESC";
-                break;
-            case 3:
-                $sql = "SELECT * FROM `Users` ORDER BY `Articles`.`idArticles` DESC";
-                break;
-            default:
-                return false;
-        }
-
-        ### executes sql query ###
-        $result = $this->Database->query($sql);
-        //var_dump($result->fetch_array());
-        $array = $result->fetch_array();
-        return $array[0];
-    }
+    
     ### get all ids from any database ###
     function getIdArray($database)
     {
