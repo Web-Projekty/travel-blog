@@ -56,7 +56,6 @@ class Session
     }
     public function logout()
     {
-
         session_unset();
         if (!$this->isTest) {
             header("location: /travel-blog/account/logout.php");

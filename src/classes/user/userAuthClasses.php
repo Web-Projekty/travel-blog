@@ -70,4 +70,7 @@ class Auth
 
         return [$status, $username];
     }
+    public function logout(){
+        $this->Session->logout();
+    }
 }
