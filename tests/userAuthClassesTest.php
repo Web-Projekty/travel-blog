@@ -65,6 +65,7 @@ class AuthTest extends Tester\TestCase
         while ($this->Database->rowExists("Users", "userEmail", "reserved@for.testing")) {
             $this->wait();
         }
+        Tester\Environment::print("Succesfully reserved database for testing ^-^");
 
         foreach ($accounts as $account) {
             $name = $account[0];
