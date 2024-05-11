@@ -55,6 +55,7 @@ class Auth
                     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
                     $sql = "INSERT INTO `Users` (`idUsers`, `userName`, `user`, `userEmail`, `password`, `role`) VALUES (NULL, '$username', '$name', '$email', '$hashedPassword', 'delegate');";
                     $this->Database->query($sql);
+                    $registerResult['status'] = true;
                     $registerResult['msg'] = "Registrace proběhla úspěšně";
                 } else {
                     $registerResult['msg'] =  "Zadaná hesla nesouhlasí";
