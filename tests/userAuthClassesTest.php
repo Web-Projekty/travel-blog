@@ -55,39 +55,62 @@ class AuthTest extends Tester\TestCase
             ["Testing User 5", "@testingmail.test", "forTestingPurposes", "forTestingPurposes", false],
             ["Testing User 6", "testuser6testingmail.test", "forTestingPurposes", "forTestingPurposes", false],
             ["Testing User 7", "testuser7@testingst", "forTestingPurposes", "forTestingPurposes", false],
-            ["Testing User 8", "testuser8@tes#&@|€[|€^˘[Đ]][Đ][tiail.test", "forTestingPurposes", "forTestingPurposes", false]
+            ["Testing User 8", "testuser8@tes#&@|€[|€^˘[Đ]][Đ][tiail.test", "forTestingPurposes", "forTestingPurposes", false],
+            [null, null, null, null, null] // end test
         ];
     }
-    /**
-     *@dataProvider getAccounts
-     */
-    public function testRegister($name, $email, $password, $Cpassword, $exitCode)
+    public function testRegister()
     {
-        if ($this->Database->rowExists("Users", "userEmail", $email)) {
-            sleep(15);
+        $accounts = $this->getAccounts();
+        while ($this->Database->rowExists("Users", "userEmail", "reserved@for.testing")) {
+            $this->wait();
         }
-        if ($this->Database->rowExists("Users", "userEmail", "existujicimail@existujicimail.mail")) {
-            sleep(15);
+
+        foreach ($accounts as $account) {
+            $name = $account[0];
+            $email = $account[1];
+            $password = $account[2];
+            $Cpassword = $account[3];
+            $exitCode = $account[4];
+            if ($name != null) {
+                // vytvoří účet pro rezervaci testování
+                $result = $this->Auth->register("heslo", "heslo", "Rezervující účet", "reserved@for.testing");
+                // vytvoření účtu pro simulaci existujícího účtu
+                $result = $this->Auth->register("heslo", "heslo", "Účet pro simulaci existujícího účtu", "existujicimail@existujicimail.mail");
+
+                //vytvoření právě testovaného účtu
+                $result = $this->Auth->register($password, $Cpassword, $name, $email);
+
+                Assert::same($exitCode, $result['status']);
+
+                Assert::type("bool", $result['status']);
+                Assert::type("string", $result['msg']);
+
+                // cleanup
+                $sql = "DELETE FROM `Users` WHERE `Users`.`userEmail` = '$email';";
+                $this->Database->query($sql);
+            } else {
+                // smazání testovacího účtu
+                $sql = "DELETE FROM `Users` WHERE `Users`.`userEmail` = 'existujicimail@existujicimail.mail';";
+                $this->Database->query($sql);
+
+                //smazání rezervujícího účtu
+                $sql = "DELETE FROM `Users` WHERE `Users`.`userEmail` = 'reserved@for.testing';";
+                $this->Database->query($sql);
+            }
         }
-        // vytvoření účtu pro simulaci existujícího účtu
-        $result = $this->Auth->register("heslo", "heslo", "Účet pro simulaci existujícího účtu", "existujicimail@existujicimail.mail");
-
-        //vytvoření právě testovaného účtu
-        $result = $this->Auth->register($password, $Cpassword, $name, $email);
-
-        Assert::same($exitCode, $result['status']);
-
-        Assert::type("bool", $result['status']);
-        Assert::type("string", $result['msg']);
-
-        // cleanup
-        $sql = "DELETE FROM `Users` WHERE `Users`.`userEmail` = '$email';";
-        $this->Database->query($sql);
-
-        // smazání testovacího účtu
-        $sql = "DELETE FROM `Users` WHERE `Users`.`userEmail` = 'existujicimail@existujicimail.mail';";
-        $this->Database->query($sql);
+    }
+    public function wait()
+    {
+        Tester\Environment::print("Currently ongoing testing... wait for 15s");
+        $msg = "";
+        for ($i = 0; $i < 15; $i++) {
+            $msg = $msg . ".";
+            Tester\Environment::print($msg . $i + 1 . "s");
+            sleep(1);
+        }
     }
 }
+
 
 (new AuthTest)->run();
