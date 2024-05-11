@@ -1,9 +1,11 @@
 <?php
 
 ############### autoload ###############
+require_once "../vendor/autoload.php";
+
 use Tester\Assert;
 
-require_once "../vendor/autoload.php";
+Tester\Environment::setup();
 
 class userSessionClassesTest extends Tester\TestCase
 {

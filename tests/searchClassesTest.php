@@ -1,10 +1,9 @@
 <?php
 
 ############### autoload ###############
-use Tester\Assert;
-
 require_once "../vendor/autoload.php";
-require "../src/classes/searchClasses.php";
+use Tester\Assert;
+Tester\Environment::setup();
 
 class searchClassesTest extends Tester\TestCase
 {
