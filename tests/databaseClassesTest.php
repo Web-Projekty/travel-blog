@@ -1,8 +1,7 @@
 <?php
 ############### autoload ###############
-use Tester\Assert;
-
 require_once "../vendor/autoload.php";
+use Tester\Assert;
 
 class DatabaseClassesTest extends Tester\TestCase
 /**

@@ -1,9 +1,9 @@
 <?php
 ############### autoload ###############
 
-use Tester\Assert;
-
 require_once "../vendor/autoload.php";
+
+use Tester\Assert;
 
 class AuthTest extends Tester\TestCase
 /**
@@ -55,7 +55,7 @@ class AuthTest extends Tester\TestCase
             ["Testing User 5", "@testingmail.test", "forTestingPurposes", "forTestingPurposes", false],
             ["Testing User 6", "testuser6testingmail.test", "forTestingPurposes", "forTestingPurposes", false],
             ["Testing User 7", "testuser7@testingst", "forTestingPurposes", "forTestingPurposes", false],
-            ["Testing User 8", "testuser8@tes#&@|€[|€^˘[Đ]][Đ][tiail.test", "forTestingPurposes", "forTestingPurposes", false], 
+            ["Testing User 8", "testuser8@tes#&@|€[|€^˘[Đ]][Đ][tiail.test", "forTestingPurposes", "forTestingPurposes", false]
         ];
     }
     /**
@@ -63,6 +63,12 @@ class AuthTest extends Tester\TestCase
      */
     public function testRegister($name, $email, $password, $Cpassword, $exitCode)
     {
+        if ($this->Database->rowExists("Users", "userEmail", $email)) {
+            sleep(15);
+        }
+        if ($this->Database->rowExists("Users", "userEmail", "existujicimail@existujicimail.mail")) {
+            sleep(15);
+        }
         // vytvoření účtu pro simulaci existujícího účtu
         $result = $this->Auth->register("heslo", "heslo", "Účet pro simulaci existujícího účtu", "existujicimail@existujicimail.mail");
 

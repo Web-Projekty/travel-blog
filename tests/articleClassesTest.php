@@ -1,8 +1,8 @@
 <?php
 ############### autoload ###############
+require_once "../vendor/autoload.php";
 use Tester\Assert;
 
-require_once "../vendor/autoload.php";
 
 class ArticleClassesTest extends Tester\TestCase
 {

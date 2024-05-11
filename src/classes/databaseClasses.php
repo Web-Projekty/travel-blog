@@ -35,7 +35,7 @@ class Database
         $conn->close();
         return $result;
     }
-    public function rowExists($db, $column, $row)
+    public function rowExists(string $db, string $column, string $row)
     {
         $sql = "SELECT $column FROM $db WHERE $column = '$row'";
         $result = $this->query($sql);
