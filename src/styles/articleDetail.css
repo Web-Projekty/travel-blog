@@ -8,13 +8,36 @@ main {
   width: 75%;
 }
 
+
 .content {
   display: flex;
   flex-direction: row;
+  margin-top: 10%;
+}
+
+.info {
+  margin-top: 2%;
 }
 
 .content img {
   object-fit: contain;
   width: 600px;
   height: auto;
+}
+
+.slideshow {
+  height: 40vh;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+
+  .header {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .content {
+    flex-direction: column;
+  }
 }

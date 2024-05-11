@@ -1,4 +1,5 @@
 var slideIndex = 1;
+const imbedimage = document.querySelector("#imbedimage");
 
 function plusSlides(n) {
   showSlides((slideIndex += n));

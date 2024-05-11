@@ -43,7 +43,7 @@ label {
 }
 
 .right-side {
-  background-image: url("../res/LoginImg.jpg");
+  background-image: url("../res/login/LoginImg.jpg");
   background-size: cover;
 }
 .right-side h2 {
@@ -77,6 +77,7 @@ label {
 .form input[type="submit"]:hover {
   background-color: #c97612;
 }
+
 #imbedimage {
   width: 83%;
   height: 32%;
@@ -84,6 +85,11 @@ label {
   margin: 20px;
   object-fit: contain;
 }
+
+#imbedimage:hover {
+  cursor: pointer;
+}
+
 #SText {
   color: #a8a8a8;
 }
