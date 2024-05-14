@@ -3,10 +3,10 @@
 ### a class for all database queries
 class Database
 {
-    public $servername;
-    public $username;
-    public $password;
-    public $dbname;
+    private $servername;
+    private $username;
+    private $password;
+    private $dbname;
     public $isTest = false;
     public function __construct()
     {
