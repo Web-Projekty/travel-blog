@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": ">=8.0",
-        "latte/latte": "^2.10",
+        "latte/latte": ">=3.0",
         "nette/tester": "^2.4"
     },
     "autoload": {
