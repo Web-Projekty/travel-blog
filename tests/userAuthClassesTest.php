@@ -21,6 +21,7 @@ class AuthTest extends Tester\TestCase
     {
         $this->Auth = new Auth;
         $this->Database = new Database;
+        $this->Database->isTest = true;
     }
 
     public function tearDown()
@@ -99,10 +100,7 @@ class AuthTest extends Tester\TestCase
                 $sql = "DELETE FROM `Users` WHERE `Users`.`userEmail` = 'reserved@for.testing';";
                 $this->Database->query($sql);
                 // reset AUTO_INCREMENT
-                $lastId = $this->Database->getLastId(3) + 1;
-                Tester\Environment::print("Setting last id to: " . $lastId);
-                $sql = "ALTER TABLE Users AUTO_INCREMENT = $lastId;";
-                $this->Database->query($sql);
+                $this->Database->resetIncrement(3);
             }
         }
     }

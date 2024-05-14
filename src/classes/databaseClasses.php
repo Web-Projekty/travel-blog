@@ -7,6 +7,7 @@ class Database
     public $username;
     public $password;
     public $dbname;
+    public $isTest = false;
     public function __construct()
     {
         $Config = new Config;
@@ -64,5 +65,14 @@ class Database
         //var_dump($result->fetch_array());
         $array = $result->fetch_array();
         return $array[0];
+    }
+    public function resetIncrement($db)
+    {
+        $lastId = $this->getLastId($db) + 1;
+        $sql = "ALTER TABLE Users AUTO_INCREMENT = $lastId;";
+        $this->query($sql);
+        if ($this->isTest) {
+            Tester\Environment::print("Setting last id to: " . $lastId);
+        }
     }
 }

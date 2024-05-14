@@ -6,6 +6,7 @@ $latte = new Latte\Engine;
 $latte->setTempDirectory('../temp');
 
 $Auth = new Auth;
+$File = new File;
 
 ########### redirect to selection if form not filled ###########
 if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
@@ -17,6 +18,8 @@ if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {
     $articleId = $_GET['articleId'];
 
     $article = $Articles->getArticleById($articleId);
+
+    $background = $File->getFilesByPrefix("../src/images/dest/", $article['destinationId'], "jpg");
 }
 
 $authDetail = $Auth->getAuthDetail();
@@ -28,6 +31,7 @@ if ($article['succesfull']) {
         'img' => $article['img'],
         'author' => $article['author'],
         'destination' => $article['destination'],
+        'backgrounds' => $background,
         'date' => $article['date'],
         'authStatus' => $authDetail[0],
         'username' => $authDetail[1]

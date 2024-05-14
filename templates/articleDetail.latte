@@ -21,25 +21,10 @@
     </head>
     <body onload="showSlides(1)">
         <div class="slideshow">
-            <div class="Slides fade">
-                <img src="" alt="Image Slide" />
+            <div class="Slides fade" n:foreach="$backgrounds as $background">
+                <img src="{$background}" alt="Image Slide" />
             </div>
 
-            <div class="Slides fade">
-                <img src="" alt="Image Slide" />
-            </div>
-
-            <div class="Slides fade">
-                <img src="" alt="Image Slide" />
-            </div>
-
-            <div class="Slides fade">
-                <img src="" alt="Image Slide" />
-            </div>
-
-            <div class="Slides fade">
-                <img src="" alt="Image Slide" />
-            </div>
             <div class="account-status">
                 | {if $authStatus}
                 <a href="../account/login.php">{$username}</a>
@@ -62,13 +47,13 @@
                 </nav>
             </div>
         </div>
-
         <div class="dotPlace">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
+            {for $i = 1; $i <= ($backgrounds|length); $i++}
+            <span
+                class="dot"
+                onclick="currentSlide({$i})"
+            ></span>
+            {/for}
         </div>
 
         <main>

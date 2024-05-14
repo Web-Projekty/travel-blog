@@ -53,6 +53,7 @@ class Auth
             } else {
                 if ($password == $cpassword) {
                     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+                    $this->Database->resetIncrement(3); // resets AUTO_INCREMENT in table Users
                     $sql = "INSERT INTO `Users` (`idUsers`, `userName`, `user`, `userEmail`, `password`, `role`) VALUES (NULL, '$username', '$name', '$email', '$hashedPassword', 'delegate');";
                     $this->Database->query($sql);
                     $registerResult['status'] = true;

@@ -37,6 +37,7 @@ class Articles
                 $article['img'] = $row['profileImg'];
                 $article['author'] = $row['user'];
                 $article['destination'] = $row['name'];
+                $article['destinationId'] = $row['idDestination'];
                 $article['date'] = $row['datePublic'];
             }
             $article['succesfull'] = true;
@@ -73,7 +74,7 @@ class Articles
         return $result->fetch_array()[0];
     }
     ### fetches the last id used ###
-    
+
     ### get all ids from any database ###
     function getIdArray($database)
     {
