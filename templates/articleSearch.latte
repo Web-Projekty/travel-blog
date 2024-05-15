@@ -55,13 +55,12 @@
                     Your browser does not support the video tag.
                 </video>
             </div>
-
             <div class="account-status">
                 | {if $authStatus}
-                <a href="../account/login.php">{$username}</a>
+                <a href="../account/login.php">{$username}</a> | <a href="../account/logout.php"><img id="logout-image" src="../src/images/logout.png" alt="logout-image"></a>
                 {else}
                 <a href="../account/login.php">Účet</a>
-                {/if} |
+                {/if}
             </div>
             <div class="header">
                 <h1>Traveler's Trove</h1>
