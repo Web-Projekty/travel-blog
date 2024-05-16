@@ -41,13 +41,19 @@
   font-size: 18px;
   margin: 10px 0;
 }
-<<<<<<< HEAD
-=======
 
 @media screen and (max-width: 768px) {
   .header {
     font-size: 20px;
     text-align: center;
   }
+
+  .postPlace {
+   flex-direction: column;
+   align-items: center;
+  }
+
+  .post {
+    width: 100%;
+  }
 }
->>>>>>> b8d58f4f2fc865adc7d783a47fda54c46b093bc7
