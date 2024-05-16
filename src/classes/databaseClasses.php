@@ -117,18 +117,21 @@ class Database
     {
         switch ($database) {
             case 1:
+                $sql = "SELECT idArticles FROM `Articles`";
                 $idName = "idArticles";
                 break;
             case 2:
+                $sql = "SELECT idDestination FROM `Destinations`";
                 $idName = "idDestination";
                 break;
             case 3:
+                $sql = "SELECT idUsers FROM `Users`";
                 $idName = "idUsers";
                 break;
             default:
                 return false;
         }
-        $sql = "SELECT $idName FROM `Destinations`";
+
         $result = $this->query($sql);
 
         ### adds values to array $ids
