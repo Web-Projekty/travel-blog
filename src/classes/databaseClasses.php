@@ -43,7 +43,7 @@ class Database
 
         return !empty($result->fetch_column());
     }
-    function getLastId($database)
+    public function getLastId($database)
     {
         ### chooses the right db and connects to mysql ###
         switch ($database) {
@@ -69,10 +69,96 @@ class Database
     public function resetIncrement($db)
     {
         $lastId = $this->getLastId($db) + 1;
-        $sql = "ALTER TABLE Users AUTO_INCREMENT = $lastId;";
+        switch ($db) {
+            case 1:
+                $dbName = "Articles";
+                break;
+            case 2:
+                $dbName = "Destinations";
+                break;
+            case 3:
+                $dbName = "Users";
+                break;
+            default:
+                return false;
+        }
+        $sql = "ALTER TABLE $dbName AUTO_INCREMENT = $lastId;";
         $this->query($sql);
         if ($this->isTest) {
             Tester\Environment::print("Setting last id to: " . $lastId);
         }
+    }
+    ### returns count of rows in specified database ###
+    public function countRows($database)
+    {
+        ### set sql for specific database ###
+        switch ($database) {
+            case 1:
+                $sql = "SELECT COUNT(title) FROM `Articles`";
+                break;
+            case 2:
+                $sql = "SELECT COUNT(title) FROM `Destinations`";
+                break;
+            case 3:
+                $sql = "SELECT COUNT(title) FROM `Users`";
+                break;
+            default:
+                return false;
+        }
+
+        $result = $this->query($sql);
+
+        return $result->fetch_array()[0];
+    }
+    ### fetches the last id used ###
+
+    ### get all ids from any database ###
+    public function getIdArray(int $database)
+    {
+        switch ($database) {
+            case 1:
+                $sql = "SELECT idArticles FROM `Articles`";
+                $idName = "idArticles";
+                break;
+            case 2:
+                $sql = "SELECT idDestination FROM `Destinations`";
+                $idName = "idDestination";
+                break;
+            case 3:
+                $sql = "SELECT idUsers FROM `Users`";
+                $idName = "idUsers";
+                break;
+            default:
+                return false;
+        }
+
+        $result = $this->query($sql);
+
+        ### adds values to array $ids
+        if ($result->num_rows > 0) {
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $ids[$i] = intval($row[$idName]);
+                $i++;
+            }
+            return $ids;
+        }
+    }
+    public function getRowById(int $db, int $id, string $columnName)
+    {
+        switch ($db) {
+            case 1:
+                $sql = "SELECT $columnName FROM Articles WHERE idArticles = $id";
+                break;
+            case 2:
+                $sql = "SELECT $columnName FROM Destinations WHERE idDestination = $id";
+                break;
+            case 3:
+                $sql = "SELECT $columnName FROM Users WHERE idUsers = $id";
+                break;
+            default:
+                return false;
+        }
+        return $this->query($sql);
     }
 }

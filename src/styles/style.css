@@ -164,7 +164,7 @@ nav ul li a:hover {
 
 #hiddenSearchInput {
   visibility: hidden;
-  position: absolute;
+  position: fixed;
 }
 
 #logout-image {

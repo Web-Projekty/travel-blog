@@ -7,6 +7,7 @@ $latte->setTempDirectory('../temp');
 
 $Auth = new Auth;
 $File = new File;
+$Database = new Database;
 
 ########### redirect to selection if form not filled ###########
 if (!isset($_GET['articleId']) || $_GET['articleId'] == null) {

@@ -33,7 +33,7 @@ class IndexTest extends Tester\TestCase
         ];
     }
 
-    function testTestRun()
+    function testGetFileById()
     {
         Assert::same(0, 0);
     }

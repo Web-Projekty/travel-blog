@@ -51,57 +51,5 @@ class Articles
 
         return $article;
     }
-    ### returns count of rows in specified database ###
-    function countRows($database)
-    {
-        ### set sql for specific database ###
-        switch ($database) {
-            case 1:
-                $sql = "SELECT COUNT(title) FROM `Articles`";
-                break;
-            case 2:
-                $sql = "SELECT COUNT(title) FROM `Destinations`";
-                break;
-            case 3:
-                $sql = "SELECT COUNT(title) FROM `Users`";
-                break;
-            default:
-                return false;
-        }
-
-        $result = $this->Database->query($sql);
-
-        return $result->fetch_array()[0];
-    }
-    ### fetches the last id used ###
-
-    ### get all ids from any database ###
-    function getIdArray($database)
-    {
-        switch ($database) {
-            case 1:
-                $sql = "SELECT idArticles FROM `Articles`";
-                break;
-            case 2:
-                $sql = "SELECT idArticles FROM `Destinations`";
-                break;
-            case 3:
-                $sql = "SELECT idArticles FROM `Users`";
-                break;
-            default:
-                return false;
-        }
-        $sql = "SELECT idArticles FROM Articles";
-        $result = $this->Database->query($sql);
-
-        ### adds values to array $ids
-        if ($result->num_rows > 0) {
-            $i = 0;
-            while ($row = $result->fetch_assoc()) {
-                $ids[$i] = intval($row['idArticles']);
-                $i++;
-            }
-            return $ids;
-        }
-    }
+    
 }
