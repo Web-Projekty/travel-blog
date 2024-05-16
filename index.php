@@ -16,12 +16,13 @@ if (isset($_GET['searchInput'])) {
 
 $authDetail = $Auth->getAuthDetail();
 
-$ids = $Database->getIdArray(2);
+$sql = "SELECT * FROM Destinations";
 
-foreach ($ids as $id) {
-    $destImgs[$id] = [$File->getFilesByPrefix("src/images/dest/", $id, "jpg")[0], $Database->getRowById(2, $id, "name")];
+$result = $Database->query($sql);
+
+while ($row = $result->fetch_assoc()) {
+    $destImgs[$row['idDestination']] = [$File->getFilesByPrefix("src/images/dest/", $row['idDestination'], "jpg")[0], $row['name']];
 }
-var_dump($destImgs);
 
 $params = [
     'authStatus' => $authDetail[0],
