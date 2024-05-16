@@ -98,8 +98,8 @@
         <div class="blogpost">
             <h2>Nejnovější články</h2>
             <div class="postPlace">
-                <div class="post">
-                    <img src="src/res/home/img1.jpg" alt="Post Image" />
+                <div class="post" n:foreach="$destImgs as $destImg">
+                    <img src="{$destImg[0]}" alt="Post Image" />
                     <h3>New York</h3>
                 </div>
                 <div class="post">
@@ -110,8 +110,6 @@
                     <img src="src/res/home/img3.jpg" alt="Post Image" />
                     <h3>Paříž</h3>
                 </div>
-            </div>
-            <div class="postPlace">
                 <div class="post">
                     <img src="src/res/home/img4.jpg" alt="Post Image" />
                     <h3>Alpy</h3>

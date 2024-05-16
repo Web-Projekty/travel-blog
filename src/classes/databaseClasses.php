@@ -43,7 +43,7 @@ class Database
 
         return !empty($result->fetch_column());
     }
-    function getLastId($database)
+    public function getLastId($database)
     {
         ### chooses the right db and connects to mysql ###
         switch ($database) {
@@ -89,7 +89,7 @@ class Database
         }
     }
     ### returns count of rows in specified database ###
-    function countRows($database)
+    public function countRows($database)
     {
         ### set sql for specific database ###
         switch ($database) {
@@ -113,29 +113,29 @@ class Database
     ### fetches the last id used ###
 
     ### get all ids from any database ###
-    function getIdArray($database)
+    public function getIdArray(int $database)
     {
         switch ($database) {
             case 1:
-                $sql = "SELECT idArticles FROM `Articles`";
+                $idName = "idArticles";
                 break;
             case 2:
-                $sql = "SELECT idArticles FROM `Destinations`";
+                $idName = "idDestination";
                 break;
             case 3:
-                $sql = "SELECT idArticles FROM `Users`";
+                $idName = "idUsers";
                 break;
             default:
                 return false;
         }
-        $sql = "SELECT idArticles FROM Articles";
+        $sql = "SELECT $idName FROM `Destinations`";
         $result = $this->query($sql);
 
         ### adds values to array $ids
         if ($result->num_rows > 0) {
             $i = 0;
             while ($row = $result->fetch_assoc()) {
-                $ids[$i] = intval($row['idArticles']);
+                $ids[$i] = intval($row[$idName]);
                 $i++;
             }
             return $ids;
