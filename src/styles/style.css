@@ -167,6 +167,11 @@ nav ul li a:hover {
   position: absolute;
 }
 
+#logout-image {
+  width: 24px;
+  object-fit: contain;
+}
+
 img {
   animation: var(--blend-in);
 }
@@ -180,14 +185,6 @@ img {
   .order, .type {
     font-size: 25px;
   }
-<<<<<<< HEAD
-=======
-
-  .account-status {
-    top: 10%;
-    left: 35%;
-  }
->>>>>>> b8d58f4f2fc865adc7d783a47fda54c46b093bc7
 }
 
 @keyframes blendIn {

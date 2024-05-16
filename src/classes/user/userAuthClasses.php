@@ -17,22 +17,24 @@ class Auth
         $result = $this->Database->query($sql);
         $row = $result->fetch_row();
 
-        if (isset($row)) {
-            $hash = $row[0];
-            $uid = $row[1];
-            if (password_verify($password, $hash)) {
-                $loginResult['status'] = true;
-                $loginResult['msg'] = "Přihlášení proběhlo úspěšně";
-                $this->Session->setSession($uid);
-                return $loginResult;
-            } else {
-                $loginResult['msg'] = "Špatné heslo";
-                return $loginResult;
-            }
+        if ($this->getAuthDetail()[0]) {
+            $loginResult['msg'] = "Uživatel je již přihlášen. Prosíme nejprve se odhlašte ze stávajícího účtu.";
         } else {
-            $loginResult['msg'] = "Uživatel neexistuje";
-            return $loginResult;
+            if (isset($row)) {
+                $hash = $row[0];
+                $uid = $row[1];
+                if (password_verify($password, $hash)) {
+                    $loginResult['status'] = true;
+                    $loginResult['msg'] = "Přihlášení proběhlo úspěšně";
+                    $this->Session->setSession($uid);
+                } else {
+                    $loginResult['msg'] = "Špatné heslo";
+                }
+            } else {
+                $loginResult['msg'] = "Uživatel neexistuje";
+            }
         }
+        return $loginResult;
     }
 
     ### registration function ###

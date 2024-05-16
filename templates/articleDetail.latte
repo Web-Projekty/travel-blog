@@ -13,6 +13,9 @@
             href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
             rel="stylesheet"
         />
+        <link rel="apple-touch-icon" sizes="180x180" href="../src/res/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../src/res/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../src/res/favicon/favicon-16x16.png" />
 
         <script src="../src/scripts/script.js"></script>
     </head>
@@ -21,13 +24,12 @@
             <div class="Slides fade" n:foreach="$backgrounds as $background">
                 <img src="{$background}" alt="Image Slide" />
             </div>
-
             <div class="account-status">
                 | {if $authStatus}
-                <a href="../account/login.php">{$username}</a>
+                <a href="../account/login.php">{$username}</a> | <a href="../account/logout.php"><img id="logout-image" src="../src/images/logout.png" alt="logout-image"></a>
                 {else}
-                <a href="../account/login.php">Účet</a>
-                {/if} |
+                <a href="../account/login.php">Účet</a> |
+                {/if}
             </div>
             <div class="header">
                 <h1>Traveler's Trove</h1>
@@ -46,10 +48,7 @@
         </div>
         <div class="dotPlace">
             {for $i = 1; $i <= ($backgrounds|length); $i++}
-            <span
-                class="dot"
-                onclick="currentSlide({$i})"
-            ></span>
+            <span class="dot" onclick="currentSlide({$i})"></span>
             {/for}
         </div>
 
