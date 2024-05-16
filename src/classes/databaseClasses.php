@@ -141,4 +141,21 @@ class Database
             return $ids;
         }
     }
+    public function getRowById(int $db, int $id, string $columnName)
+    {
+        switch ($db) {
+            case 1:
+                $sql = "SELECT $columnName FROM Articles WHERE idArticles = $id";
+                break;
+            case 2:
+                $sql = "SELECT $columnName FROM Destinations WHERE idDestination = $id";
+                break;
+            case 3:
+                $sql = "SELECT $columnName FROM Users WHERE idUsers = $id";
+                break;
+            default:
+                return false;
+        }
+        return $this->query($sql);
+    }
 }

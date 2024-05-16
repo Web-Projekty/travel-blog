@@ -19,7 +19,7 @@ $authDetail = $Auth->getAuthDetail();
 $ids = $Database->getIdArray(2);
 
 foreach ($ids as $id) {
-    $destImgs[$id] = $File->getFilesByPrefix("src/images/dest/", $id, "jpg");
+    $destImgs[$id] = [$File->getFilesByPrefix("src/images/dest/", $id, "jpg")[0], $Database->getRowById(2, $id, "name")];
 }
 var_dump($destImgs);
 
