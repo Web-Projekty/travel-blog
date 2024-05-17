@@ -67,7 +67,6 @@ class FileTest extends Tester\TestCase
      */
     function testGetFilesByPrefix($id, $content, $fileList, $prefix, $suffix)
     {
-        var_dump($this->File->getFilesByPrefix("files/moreFiles/", $prefix, $suffix));
         // tests for correct file content
         Assert::matchFile($this->File->getFilesByPrefix("files/", "test file", "file")[$id], $content);
 
