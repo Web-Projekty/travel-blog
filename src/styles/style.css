@@ -3,6 +3,7 @@
   --blend-in: blendIn linear 1.5s;
   --hover-transition: transform 0.3s ease;
   --hover-translateY: translateY(-5px);
+  --hover-text-color: #eb910a;
 }
 
 * {

@@ -1,158 +1,202 @@
 <!DOCTYPE html>
 <html lang="cs">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Traveler's Trove - Seznam článků</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traveler's Trove - Seznam článků</title>
 
-        <link rel="stylesheet" href="../src/styles/style.css" />
-        <link rel="stylesheet" href="../src/styles/articleSearch.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="apple-touch-icon" sizes="180x180" href="../src/res/favicon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="../src/res/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="../src/res/favicon/favicon-16x16.png" />
+    <link rel="stylesheet" href="../src/styles/style.css" />
+    <link rel="stylesheet" href="../src/styles/articleSearch.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../src/res/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../src/res/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../src/res/favicon/favicon-16x16.png"
+    />
 
-        <script src="../src/scripts/script.js"></script>
-    </head>
-    <body onload="showSlides(1)">
-        <div class="slideshow">
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="../src/res/vid/v1.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+    <script src="../src/scripts/script.js"></script>
+  </head>
+  <body onload="showSlides(1)">
+    <div class="slideshow">
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/vid/v1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="../src/res/vid/v2.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/vid/v2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="../src/res/vid/v3.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/vid/v3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="../src/res/vid/v4.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/vid/v4.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="../src/res/vid/v5.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="account-status">
-                | {if $authStatus}
-                <a href="../account/login.php">{$username}</a> | <a href="../account/logout.php"><img id="logout-image" src="../src/images/logout.png" alt="logout-image"></a>
-                {else}
-                <a href="../account/login.php">Účet</a> |
-                {/if}
-            </div>
-            <div class="header">
-                <h1>Traveler's Trove</h1>
-                <nav>
-                    <ul>
-                        <li><a href="../">Domů</a></li>
-                        |
-                        <li><a href="./articleSearch.php">Články</a></li>
-                        |
-                        <li><a href="#">O nás</a></li>
-                        |
-                        <li><a href="#">Kontakt</a></li>
-                    </ul>
-                </nav>
-            </div>
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="../src/res/vid/v5.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="account-status">
+        | {if $authStatus}
+        <a href="../account/login.php">{$username}</a> |
+        <a href="../account/logout.php"
+          ><img
+            id="logout-image"
+            src="../src/images/logout.png"
+            alt="logout-image"
+            title="Odhlásit se"
+        /></a>
+        {else}
+        <a href="../account/login.php">Účet</a> | {/if}
+      </div>
+      <div class="header">
+        <h1>Traveler's Trove</h1>
+        <nav>
+          <ul>
+            <li><a href="../">Domů</a></li>
+            |
+            <li><a href="./articleSearch.php">Články</a></li>
+            |
+            <li><a href="#">O nás</a></li>
+            |
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="dotPlace">
+      <!-- Can go to any slide you want -->
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+
+    <form
+      class="searchbar"
+      action="articleSearch.php?searchInput=hi"
+      method="get"
+    >
+      <select class="type" name="type">
+        <option value="title" n:if="$type==='title'" selected>Titul</option>
+        <option value="title" n:else>Titul</option>
+        <option value="author" n:if="$type==='author'" selected>Autor</option>
+        <option value="author" n:else>Autor</option>
+        <option value="destination" n:if="$type==='destination'" selected>
+          Destinace
+        </option>
+        <option value="destination" n:else>Destinace</option>
+      </select>
+      <input
+        id="searchInput"
+        name="searchInput"
+        type="text"
+        placeholder="Vyhledávání..."
+        value="{$searchInput}"
+      />
+
+      <select class="order" name="orderBy">
+        <option
+          value="datePublic DESC"
+          n:if="$orderBy==='datePublic DESC'"
+          selected
+        >
+          Nejnovější
+        </option>
+        <option value="datePublic DESC" n:else>Nejnovější</option>
+
+        <option
+          value="datePublic ASC"
+          n:if="$orderBy==='datePublic ASC'"
+          selected
+        >
+          Nejstarší
+        </option>
+        <option value="datePublic ASC" n:else>Nejstarší</option>
+
+        <option value="title ASC" n:if="$orderBy==='title ASC'" selected>
+          Název A-Z
+        </option>
+        <option value="title ASC" n:else>Název A-Z</option>
+
+        <option
+          value="destination ASC"
+          n:if="$orderBy==='destination ASC'"
+          selected
+        >
+          Destinace A-Z
+        </option>
+        <option value="destination ASC" n:else>Destinace A-Z</option>
+
+        <option value="author ASC" n:if="$orderBy==='author ASC'" selected>
+          Autor A-Z
+        </option>
+        <option value="author ASC" n:else>Autor A-Z</option>
+      </select>
+      <input id="hiddenSearchInput" type="submit" />
+    </form>
+
+    <div class="article-container">
+      {if $foundResults} {foreach $lists as $list}
+      <div class="article">
+        <div class="article-info">
+          <a href="articleDetail.php?articleId={$list['3']}">
+            <h2 id="article-title">{$list['0']}</h2>
+          </a>
+          <p>{$list['1']}</p>
+          <p>{$list['2']}</p>
+          <p>{$list['4']}</p>
         </div>
+        <img src="../src/images/article/{$list['5']}" />
+      </div>
+      {/foreach}
+      <div class="pages-number">
+        {foreach $pages as $page}
+        <a href="{$page[1]}">
+          <div>{$page[0]}</div>
+        </a>
+        {/foreach}
+      </div>
+      {else}
+      <p>Nebyly nalezeny žádné výsledky</p>
+    </div>
+    {/if}
 
-        <div class="dotPlace">
-            <!-- Can go to any slide you want -->
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-        </div>
-
-        <form class="searchbar" action="articleSearch.php?searchInput=hi" method="get">
-            <select class="type" name="type">
-                <option value="title" n:if="$type==='title'" selected>Titul</option>
-                <option value="title" n:else>Titul</option>
-                <option value="author" n:if="$type==='author'" selected>Autor</option>
-                <option value="author" n:else>Autor</option>
-                <option value="destination" n:if="$type==='destination'" selected>Destinace</option>
-                <option value="destination" n:else>Destinace</option>
-            </select>
-            <input
-                id="searchInput"
-                name="searchInput"
-                type="text"
-                placeholder="Vyhledávání..."
-                value="{$searchInput}"
-            />
-
-            <select class="order" name="orderBy">
-                <option value="datePublic DESC" n:if="$orderBy==='datePublic DESC'" selected>
-                    Nejnovější
-                </option>
-                <option value="datePublic DESC" n:else>Nejnovější</option>
-
-                <option value="datePublic ASC" n:if="$orderBy==='datePublic ASC'" selected>Nejstarší</option>
-                <option value="datePublic ASC" n:else>Nejstarší</option>
-
-                <option value="title ASC" n:if="$orderBy==='title ASC'" selected>Název A-Z</option>
-                <option value="title ASC" n:else>Název A-Z</option>
-
-                <option value="destination ASC" n:if="$orderBy==='destination ASC'" selected>
-                    Destinace A-Z
-                </option>
-                <option value="destination ASC" n:else>Destinace A-Z</option>
-
-                <option value="author ASC" n:if="$orderBy==='author ASC'" selected>Autor A-Z</option>
-                <option value="author ASC" n:else>Autor A-Z</option>
-            </select>
-            <input id="hiddenSearchInput" type="submit" />
-        </form>
-
-        <div class="article-container">
-            {if $foundResults} {foreach $lists as $list}
-            <div class="article">
-                <div class="article-info">
-                    <a href="articleDetail.php?articleId={$list['3']}">
-                        <h2 id="article-title">{$list['0']}</h2>
-                    </a>
-                    <p>{$list['1']}</p>
-                    <p>{$list['2']}</p>
-                    <p>{$list['4']}</p>
-                </div>
-                <img src="../src/images/article/{$list['5']}" />
-            </div>
-            {/foreach}
-            <div class="pages-number">
-                {foreach $pages as $page}
-                <a href="{$page[1]}">
-                    <div>{$page[0]}</div>
-                </a>
-                {/foreach}
-            </div>
-            {else}
-            <p>Nebyly nalezeny žádné výsledky</p>
-        </div>
-        {/if}
-
-        <footer></footer>
-    </body>
+    <footer></footer>
+  </body>
 </html>
