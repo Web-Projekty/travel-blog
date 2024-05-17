@@ -30,6 +30,15 @@
   transform: var(--hover-translateY);
 }
 
+.post a {
+  text-decoration: none;
+  color: black
+}
+
+.post a:hover {
+  color: var(--hover-text-color);
+}
+
 .post img {
   width: 100%;
   height: auto;
