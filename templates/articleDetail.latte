@@ -3,65 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel Blog</title>
+    <title>Traveler's Trove - {$title}</title>
 
     <link rel="stylesheet" href="../src/styles/style.css" />
     <link rel="stylesheet" href="../src/styles/articleDetail.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <!-- Font, can be changed but this one is decent -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../src/res/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../src/res/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../src/res/favicon/favicon-16x16.png"
     />
 
     <script src="../src/scripts/script.js"></script>
   </head>
   <body onload="showSlides(1)">
     <div class="slideshow">
-      <!-- Video slideshow, genereted by ChatGpt since i have no idea how to do a slideshow -->
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div class="Slides fade" n:foreach="$backgrounds as $background">
+        <img src="{$background}" alt="Image Slide" />
       </div>
-
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div class="account-status">
+        | {if $authStatus}
+        <a href="../account/login.php">{$username}</a> |
+        <a href="../account/logout.php"
+          ><img
+            id="logout-image"
+            src="../src/images/logout.png"
+            alt="logout-image"
+            title="Odhlásit se"
+        /></a>
+        {else}
+        <a href="../account/login.php">Účet</a> | {/if}
       </div>
-
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v3.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v4.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/v5.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
       <div class="header">
         <h1>Traveler's Trove</h1>
         <nav>
           <ul>
-            <li><a href="../index.php">Domů</a></li>
+            <li><a href="../">Domů</a></li>
             |
-            <li><a href="articleSearch.php">Články</a></li>
+            <li><a href="./articleSearch.php">Články</a></li>
             |
             <li><a href="#">O nás</a></li>
             |
@@ -70,30 +66,24 @@
         </nav>
       </div>
     </div>
-
     <div class="dotPlace">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
-      <span class="dot" onclick="currentSlide(5)"></span>
+      {for $i = 1; $i <= ($backgrounds|length); $i++}
+      <span class="dot" onclick="currentSlide({$i})"></span>
+      {/for}
     </div>
 
     <main>
-      <div>
-        <h1>{$title}</h1>
-        <p>{$author} {$destination} {$date}</p>
-      </div>
       <div class="content">
-        
-        <p>{$content}</p>
-        <img src="../src/images/{$img}" />
+        <div class="info">
+          <h1>{$title}</h1>
+          <p>{$author} {$destination} {$date}</p>
+          <p>{$content}</p>
+        </div>
+
+        <img src="../src/images/article/{$img}" />
       </div>
-      
     </main>
 
-    <footer>
-      <!-- Nothing yet but it should be the basic stuff-->
-    </footer>
+    <footer></footer>
   </body>
 </html>

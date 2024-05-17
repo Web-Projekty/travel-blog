@@ -1,125 +1,143 @@
 <!DOCTYPE html>
 <html lang="cs">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Travel Blog</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Cestovní blog o destinacích." />
+    <meta
+      name="author"
+      content="Ondřej Pták, Adam Vlček, Jan Rehák, Matyáš Duchek"
+    />
+    <title>Traveler's Trove - Domů</title>
 
-        <link rel="stylesheet" href="src/styles/style.css" />
-        <link rel="stylesheet" href="src/styles/homePage.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-            rel="stylesheet"
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <link rel="stylesheet" href="src/styles/homePage.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="src/res/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="src/res/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="src/res/favicon/favicon-16x16.png"
+    />
+
+    <script src="src/scripts/script.js"></script>
+  </head>
+  <body onload="showSlides(1)">
+    <div class="slideshow">
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="src/res/vid/v1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="src/res/vid/v2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="src/res/vid/v3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="src/res/vid/v4.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="Slides fade">
+        <video autoplay muted loop onended="nextSlide()">
+          <source src="src/res/vid/v5.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="account-status">
+        | {if $authStatus}
+        <a href="account/login.php">{$username}</a> |
+        <a href="account/logout.php"
+          ><img
+            id="logout-image"
+            src="src/images/logout.png"
+            alt="logout-image"
+            title="Odhlásit se"
+        /></a>
+        {else}
+        <a href="account/login.php">Účet</a> | {/if}
+      </div>
+      <div class="header">
+        <h1>Traveler's Trove</h1>
+        <nav>
+          <ul>
+            <li><a href="#">Domů</a></li>
+            |
+            <li><a href="blog/articleSearch.php">Články</a></li>
+            |
+            <li><a href="#">O nás</a></li>
+            |
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="dotPlace">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+
+    <div class="searchbar">
+      <form action="blog/articleSearch.php" method="get">
+        <input
+          id="search"
+          name="searchInput"
+          type="text"
+          placeholder="Vyhledávání..."
         />
+        <input id="hiddenSearchInput" type="submit" />
+      </form>
+    </div>
 
-        <script src="src/scripts/script.js"></script>
-    </head>
-    <body onload="showSlides(1)">
-        <div class="slideshow">
-            <!-- Video slideshow, genereted by ChatGpt since i have no idea how to do a slideshow -->
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="src/res/v1.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+    <div class="blogpost">
+      <h2>Vyberte si destinaci</h2>
+      <div class="postPlace">
+        <div class="post" n:foreach="$destImgs as $destImg">
+          <a
+            href="http://localhost/travel-blog/blog/articleSearch.php?type=destination&searchInput={$destImg[1]}&orderBy=datePublic+DESC"
+          >
+            <img src="{$destImg[0]}" alt="Post Image" />
 
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="src/res/v2.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="src/res/v3.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="src/res/v4.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <div class="Slides fade">
-                <video autoplay muted loop onended="nextSlide()">
-                    <source src="src/res/v5.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <div class="header">
-                <!-- Header but not header, overlay on video slideshow -->
-                <h1>Traveler's Trove</h1>
-                <nav>
-                    <ul>
-                        <li><a href="#">Domů</a></li>
-                        |
-                        <li><a href="blog/articleSearch.php">Články</a></li>
-                        |
-                        <li><a href="#">O nás</a></li>
-                        |
-                        <li><a href="#">Kontakt</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <h3>{$destImg[1]}</h3></a
+          >
         </div>
+      </div>
+    </div>
 
-        <div class="dotPlace">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-        </div>
-
-        <div class="searchbar">
-            <form action="blog/articleSearch.php?searchInput=hi" method="get">
-                <input id="search" name="searchInput" type="text" placeholder="Vyhledávání..." />
-                <input id="hiddenSearchInput" type="submit" />
-            </form>
-        </div>
-
-        <div class="blogpost">
-            <h2>Recent Blog Posts</h2>
-            <div class="postPlace">
-                <div class="post">
-                    <img src="src/res/img1.jpg" alt="Post Image" />
-                    <h3>New York</h3>
-                </div>
-                <div class="post">
-                    <img src="src/res/img2.jpg" alt="Post Image" />
-                    <h3>Florida</h3>
-                </div>
-                <div class="post">
-                    <img src="src/res/img3.jpg" alt="Post Image" />
-                    <h3>Paříž</h3>
-                </div>
-            </div>
-            <div class="postPlace">
-                <div class="post">
-                    <img src="src/res/img4.jpg" alt="Post Image" />
-                    <h3>Alpy</h3>
-                </div>
-                <div class="post">
-                    <img src="src/res/img5.jpg" alt="Post Image" />
-                    <h3>Japonsko</h3>
-                </div>
-                <div class="post">
-                    <img src="src/res/img6.jpg" alt="Post Image" />
-                    <h3>Phuket</h3>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <!-- Nothing yet but it should be the basic stuff-->
-        </footer>
-    </body>
+    <footer></footer>
+  </body>
 </html>

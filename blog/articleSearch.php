@@ -3,8 +3,9 @@
 require_once "../vendor/autoload.php";
 $latte = new Latte\Engine;
 
-include "../src/searchClasses.php";
 $latte->setTempDirectory('../temp');
+
+$Auth = new Auth;
 
 ######## class declaration ########
 $ArticleSearch = new ArticleSearch();
@@ -20,13 +21,12 @@ $orderBy = $ArticleSearch->filterInput();
 
 $searchInput = $ArticleSearch->searchInput();
 
-
-
-
 ######## article list data processing ########
 $lists = $ArticleSearch->getArticleList($page, $type, $orderBy, $searchInput);
 
 $pages = $ArticleSearch->getPages();
+
+$authDetail = $Auth->getAuthDetail();
 
 $params = [
     'lists' => $lists,
@@ -34,7 +34,9 @@ $params = [
     'searchInput' => $searchInput,
     'orderBy' => $orderBy,
     'pages' => $pages,
-    'foundResults' => $ArticleSearch->foundResults
+    'foundResults' => $ArticleSearch->foundResults,
+    'authStatus' => $authDetail[0],
+    'username' => $authDetail[1]
 ];
 
 $latte->render('../templates/articleSearch.latte', $params);

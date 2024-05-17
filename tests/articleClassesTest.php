@@ -1,20 +1,27 @@
 <?php
 ############### autoload ###############
+require_once "../vendor/autoload.php";
+
 use Tester\Assert;
 
-require_once "../vendor/autoload.php";
-require "../src/articleClasses.php";
-require "../config/mysql.php";
 
 class ArticleClassesTest extends Tester\TestCase
 {
-    public $Article = 0;
+    /**
+     * TEST: Basic database query test.
+     *
+     * @phpVersion 8.0
+     */
+
+    public $Article;
+    public $Database;
     function __construct()
     {
         $this->Article = new Articles;
+        $this->Database = new Database;
     }
 
-    function testGetTittleArray()
+    function testGetTitleArray()
     {
         $titles = $this->Article->getTitleArray();
         ### tests for data type ###
@@ -28,17 +35,16 @@ class ArticleClassesTest extends Tester\TestCase
 
         ### checks if funciton selected all titles ###
         $sql = "SELECT COUNT(title) FROM `Articles` ";
-        include("../config/mysql.php");
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        $result = $conn->query($sql);
+
+
+        $result = $this->Database->query($sql);
 
         Assert::count($result->fetch_array()[0], $titles);
-        $conn->close();
     }
 
     function getLoopArgs()
     {
-        return [[-1], [0], [1], [2], [1654], [intval($this->Article->getLastId(1))]];
+        return [[-1], [0], [1], [2], [1654], [intval($this->Database->getLastId(1))]];
     }
     /**
      *@dataProvider getLoopArgs
@@ -47,7 +53,7 @@ class ArticleClassesTest extends Tester\TestCase
     {
         ### checks for different cases of input ###
         $article = $this->Article->getArticleById($id);
-        if (is_int(array_search($id, $this->Article->getIdArray()))) {
+        if (is_int(array_search($id, $this->Database->getIdArray(1)))) {
             Assert::true($article['succesfull']);
             foreach ($article as $key) {
                 Assert::notNull($key);

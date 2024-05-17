@@ -1,8 +1,16 @@
+:root {
+  --font-family: "Courier Prime", monospace;
+  --blend-in: blendIn linear 1.5s;
+  --hover-transition: transform 0.3s ease;
+  --hover-translateY: translateY(-5px);
+  --hover-text-color: #eb910a;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Courier Prime", monospace;
+  font-family: var(--font-family);
   font-weight: 400;
   font-style: normal;
 }
@@ -45,6 +53,7 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: var(--blend-in);
 }
 
 /* Text overlay */
@@ -66,6 +75,24 @@ header h1 {
   margin-bottom: 20px;
   background-color: transparent;
   padding: 10px 20px;
+}
+
+.account-status {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  z-index: 2;
+  color: white;
+  font-size: 20px;
+}
+
+.account-status a {
+  text-decoration: none;
+  color: white;
+}
+
+.account-status a:hover {
+  color: #eb910a;
 }
 
 nav ul {
@@ -90,10 +117,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: #999;
-}
-nav ul li:hover {
-  transform: scale(1.1);
+  color: #eb910a;
 }
 
 .dotPlace {
@@ -133,12 +157,51 @@ nav ul li:hover {
 }
 
 .searchbar input {
-  width: 400px;
+  width: 500px;
   height: 40px;
   border-radius: 12px;
+  padding-left: 2%;
 }
 
 #hiddenSearchInput {
   visibility: hidden;
-  position: absolute;
+  position: fixed;
+}
+
+#logout-image {
+  width: 24px;
+  object-fit: contain;
+}
+
+img {
+  animation: var(--blend-in);
+}
+
+@media screen and (max-width: 768px) {
+
+  #searchInput {
+    font-size: 25px;
+  }
+
+  .order, .type {
+    font-size: 25px;
+  }
+}
+
+@keyframes blendIn {
+  0% {
+    opacity: 0;
+  }
+  /*25% {
+    opacity: .25;
+  }*/
+  50% {
+    opacity: .5;
+  }
+  /*75% {
+    opacity: .75;
+  }*/
+  100% {
+    opacity: 1;
+  }
 }

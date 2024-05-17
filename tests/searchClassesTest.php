@@ -1,48 +1,104 @@
 <?php
-############### autoload ###############
-use Tester\Assert;
 
+############### autoload ###############
 require_once "../vendor/autoload.php";
-require "../src/searchClasses.php";
-require "../config/mysql.php";
+
+use Tester\Assert;
 
 class searchClassesTest extends Tester\TestCase
 {
-    public $articleSearch;
+    /**
+     * TEST: Basic database query test.
+     *
+     * @phpVersion 8.0
+     */
+    private $ArticleSearch;
 
-    protected function setUp(): void
+    protected function setUp()
     {
-        $this->articleSearch = new ArticleSearch();
+        $this->ArticleSearch = new ArticleSearch();
     }
 
-    public function testGetArticleList()
+    function getRandomString()
     {
-        $result = $this->articleSearch->getArticleList(1, "datePublic DESC", "šumava");
-        Assert::isArray($result);
-        $this->assertIsArray($result);
-        $this->assertNotEmpty($result);
+        return [["apple"], ["banana"], ["cat"], ["dog"], ["sun"], ["moon"], ["book"], ["pen"], ["red"], ["blue"], ["happy"], ["sad"], ["tree"], ["flower"], ["ocean"], ["river"], ["mountain"], ["valley"], ["star"], ["planet"]];
     }
-
-    public function testFilterInput()
+    /**
+     *@dataProvider getRandomString
+     */
+    public function testTypeInput($randomString)
     {
-        $_GET['orderBy'] = "datePublic DESC";
-        $result = $this->articleSearch->filterInput();
-        $this->assertEquals("datePublic DESC", $result);
+
+        $_GET['type'] = $randomString;
+        Assert::same($randomString, $this->ArticleSearch->typeInput());
+
+        unset($_GET['type']);
+        Assert::same("title", $this->ArticleSearch->typeInput());
+
+        Assert::notNull($this->ArticleSearch->typeInput());
+
+        Assert::type("string", $this->ArticleSearch->typeInput());
     }
-
-    public function testSearchInput()
+    /**
+     *@dataProvider getRandomString
+     */
+    public function testFilterInput($randomString)
     {
-        $_GET['searchInput'] = "šumava";
-        $result = $this->articleSearch->searchInput();
-        $this->assertEquals("šumava", $result);
+        $_GET['orderBy'] = $randomString;
+        Assert::same($randomString, $this->ArticleSearch->filterInput());
+
+        unset($_GET['orderBy']);
+        Assert::same("datePublic DESC", $this->ArticleSearch->filterInput());
+
+        Assert::notNull($this->ArticleSearch->filterInput());
+
+        Assert::type("string", $this->ArticleSearch->filterInput());
     }
-
-    public function testGetPages()
+    /**
+     *@dataProvider getRandomString
+     */
+    public function testSearchInput($randomString)
     {
-        $result = $this->articleSearch->getPages();
-        $this->assertIsArray($result);
-        $this->assertNotEmpty($result);
+        $_GET['searchInput'] = $randomString;
+        Assert::same($randomString, $this->ArticleSearch->searchInput());
+
+        unset($_GET['searchInput']);
+        Assert::same("", $this->ArticleSearch->searchInput());
+
+        Assert::true(empty($this->ArticleSearch->searchInput()));
+
+        Assert::type("string", $this->ArticleSearch->searchInput());
+    }
+    function getRandomNumbers()
+    {
+        for ($i = 0; $i < 9253; $i++) {
+            $nums[$i] = [rand(-1000, 1000), rand(-1000, 1000)];
+        }
+        return $nums;
+    }
+    /**
+     *@dataProvider getRandomNumbers
+     */
+
+    public function testGetPages($counter, $pagesPerList)
+    {
+        $_SERVER['PHP_SELF'] = "/test.php";
+
+        // Test with no GET parameters
+        Assert::same([[null, null]], $this->ArticleSearch->getPages());
+
+        // Test with GET parameters
+        Assert::same([[null, null]], $this->ArticleSearch->getPages());
+        //$_GET[]
+
+        // echo $this->ArticleSearch->counter = $counter;
+        //echo $this->ArticleSearch->pagesPerList = $pagesPerList;
+        //var_dump($this->ArticleSearch->getPages());
+        if (ceil($this->ArticleSearch->counter / $this->ArticleSearch->articlesPerPage) >= 1) {
+            Assert::count(ceil($this->ArticleSearch->counter / $this->ArticleSearch->articlesPerPage), $this->ArticleSearch->getPages());
+        } else {
+            Assert::count(1, $this->ArticleSearch->getPages());
+        }
     }
 }
 (new searchClassesTest())->run();
-?>

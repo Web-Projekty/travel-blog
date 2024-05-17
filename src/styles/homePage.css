@@ -1,43 +1,68 @@
 .blogpost {
-    text-align: center;
-    margin-top: 20px;
-    z-index: 2;
+  text-align: center;
+  margin-top: 20px;
+  z-index: 2;
 }
 
 .blogpost h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .postPlace {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .post {
-    width: 30%;
-    margin: 0 1.5%;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+  width: 30%;
+  margin: 0 1.5%;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: var(--hover-transition);
 }
 
 .post:hover {
-    transform: translateY(-5px);
+  transform: var(--hover-translateY);
+}
+
+.post a {
+  text-decoration: none;
+  color: black
+}
+
+.post a:hover {
+  color: var(--hover-text-color);
 }
 
 .post img {
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid #ccc;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ccc;
+  animation: var(--blend-in);
 }
 
 .post h3 {
-    font-size: 18px;
-    margin: 10px 0;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
+@media screen and (max-width: 768px) {
+  .header {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .postPlace {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .post {
+    width: 100%;
+  }
+}
