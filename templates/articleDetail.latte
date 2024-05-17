@@ -1,69 +1,89 @@
 <!DOCTYPE html>
 <html lang="cs">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Traveler's Trove - {$title}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traveler's Trove - {$title}</title>
 
-        <link rel="stylesheet" href="../src/styles/style.css" />
-        <link rel="stylesheet" href="../src/styles/articleDetail.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="apple-touch-icon" sizes="180x180" href="../src/res/favicon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="../src/res/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="../src/res/favicon/favicon-16x16.png" />
+    <link rel="stylesheet" href="../src/styles/style.css" />
+    <link rel="stylesheet" href="../src/styles/articleDetail.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../src/res/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../src/res/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../src/res/favicon/favicon-16x16.png"
+    />
 
-        <script src="../src/scripts/script.js"></script>
-    </head>
-    <body onload="showSlides(1)">
-        <div class="slideshow">
-            <div class="Slides fade" n:foreach="$backgrounds as $background">
-                <img src="{$background}" alt="Image Slide" />
-            </div>
-            <div class="account-status">
-                | {if $authStatus}
-                <a href="../account/login.php">{$username}</a> | <a href="../account/logout.php"><img id="logout-image" src="../src/images/logout.png" alt="logout-image"></a>
-                {else}
-                <a href="../account/login.php">Účet</a> |
-                {/if}
-            </div>
-            <div class="header">
-                <h1>Traveler's Trove</h1>
-                <nav>
-                    <ul>
-                        <li><a href="../">Domů</a></li>
-                        |
-                        <li><a href="./articleSearch.php">Články</a></li>
-                        |
-                        <li><a href="#">O nás</a></li>
-                        |
-                        <li><a href="#">Kontakt</a></li>
-                    </ul>
-                </nav>
-            </div>
+    <script src="../src/scripts/script.js"></script>
+  </head>
+  <body onload="showSlides(1)">
+    <div class="slideshow">
+      <div class="Slides fade" n:foreach="$backgrounds as $background">
+        <img src="{$background}" alt="Image Slide" />
+      </div>
+      <div class="account-status">
+        | {if $authStatus}
+        <a href="../account/login.php">{$username}</a> |
+        <a href="../account/logout.php"
+          ><img
+            id="logout-image"
+            src="../src/images/logout.png"
+            alt="logout-image"
+            title="Odhlásit se"
+        /></a>
+        {else}
+        <a href="../account/login.php">Účet</a> | {/if}
+      </div>
+      <div class="header">
+        <h1>Traveler's Trove</h1>
+        <nav>
+          <ul>
+            <li><a href="../">Domů</a></li>
+            |
+            <li><a href="./articleSearch.php">Články</a></li>
+            |
+            <li><a href="#">O nás</a></li>
+            |
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="dotPlace">
+      {for $i = 1; $i <= ($backgrounds|length); $i++}
+      <span class="dot" onclick="currentSlide({$i})"></span>
+      {/for}
+    </div>
+
+    <main>
+      <div class="content">
+        <div class="info">
+          <h1>{$title}</h1>
+          <p>{$author} {$destination} {$date}</p>
+          <p>{$content}</p>
         </div>
-        <div class="dotPlace">
-            {for $i = 1; $i <= ($backgrounds|length); $i++}
-            <span class="dot" onclick="currentSlide({$i})"></span>
-            {/for}
-        </div>
 
-        <main>
-            <div class="content">
-                <div class="info">
-                    <h1>{$title}</h1>
-                    <p>{$author} {$destination} {$date}</p>
-                    <p>{$content}</p>
-                </div>
+        <img src="../src/images/article/{$img}" />
+      </div>
+    </main>
 
-                <img src="../src/images/article/{$img}" />
-            </div>
-        </main>
-
-        <footer></footer>
-    </body>
+    <footer></footer>
+  </body>
 </html>

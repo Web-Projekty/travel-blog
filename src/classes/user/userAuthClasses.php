@@ -25,7 +25,7 @@ class Auth
                 $uid = $row[1];
                 if (password_verify($password, $hash)) {
                     $loginResult['status'] = true;
-                    $loginResult['msg'] = "Přihlášení proběhlo úspěšně";
+                    $loginResult['msg'] = "Přihlášení proběhlo úspěšně!";
                     $this->Session->setSession($uid);
                 } else {
                     $loginResult['msg'] = "Špatné heslo";
