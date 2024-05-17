@@ -9,5 +9,5 @@ $Auth = new Auth;
 if ($Auth->getAuthDetail()[0]) {
     echo "good";
 } else {
-    echo "forbidden";
+    include "../src/error/404.html";
 }
