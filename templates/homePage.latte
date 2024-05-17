@@ -127,8 +127,13 @@
       <h2>Vyberte si destinaci</h2>
       <div class="postPlace">
         <div class="post" n:foreach="$destImgs as $destImg">
-          <img src="{$destImg[0]}" alt="Post Image" />
-          <h3>{$destImg[1]}</h3>
+          <a
+            href="http://localhost/travel-blog/blog/articleSearch.php?type=destination&searchInput={$destImg[1]}&orderBy=datePublic+DESC"
+          >
+            <img src="{$destImg[0]}" alt="Post Image" />
+
+            <h3>{$destImg[1]}</h3></a
+          >
         </div>
       </div>
     </div>
