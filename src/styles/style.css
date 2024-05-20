@@ -92,7 +92,7 @@ header h1 {
 }
 
 .account-status a:hover {
-  color: #eb910a;
+  color: var(--hover-text-color);
 }
 
 nav ul {
@@ -175,6 +175,14 @@ nav ul li a:hover {
 
 img {
   animation: var(--blend-in);
+}
+
+.form a {
+  color: black;
+}
+
+.form a:hover {
+  color: var(--hover-text-color);
 }
 
 @media screen and (max-width: 768px) {
