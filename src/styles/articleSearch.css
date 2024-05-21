@@ -68,6 +68,19 @@
   gap: 1rem;
 }
 
+.pages-number a {
+  text-decoration: none;
+  color: black;
+}
+
+.pages-number a:hover {
+  color: var(--hover-text-color);
+}
+
+.pages-number a.active {
+  color: var(--hover-text-color);
+}
+
 @media screen and (max-width: 768px) {
   .header {
     font-size: 20px;
