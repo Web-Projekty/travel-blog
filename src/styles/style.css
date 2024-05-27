@@ -139,7 +139,6 @@ nav ul li a:hover {
 
 .active {
   color: var(--hover-text-color);
-  text-decoration: none;
 }
 
 .prev,
