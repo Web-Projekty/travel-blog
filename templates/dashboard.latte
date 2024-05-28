@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traveler's Trove - {$userName} Dashboard</title>
+
+    <link rel="stylesheet" href="../src/styles/style.css" />
+    <link rel="stylesheet" href="../src/styles/dashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../src/res/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../src/res/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../src/res/favicon/favicon-16x16.png"
+    />
+
+    <script src="../src/scripts/script.js"></script>
+  </head>
+  <body>
+    <div class="slideshow">
+      <div class="header">
+        <h1>Traveler's Trove - {$userName} Dashboard</h1>
+        <nav>
+          <ul>
+            <li><a href="#">Domů</a></li>
+            |
+            <li><a href="#">Články</a></li>
+            |
+            <li><a href="#">O nás</a></li>
+            |
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <main class="dashboard">
+      <h1>{$userName}</h1>
+      <p>{$email}</p>
+      <a href="../account/logout.php">Odhlásit se</a>
+    </main>
+    <footer></footer>
+  </body>
+</html>
