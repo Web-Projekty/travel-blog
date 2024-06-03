@@ -76,7 +76,7 @@
       </div>
       <div class="account-status">
         | {if $authStatus}
-        <a href="account/login.php">{$username}</a> |
+        <a href="account/dashboard.php">{$username}</a> |
         <a href="account/logout.php"
           ><img
             id="logout-image"
@@ -128,7 +128,7 @@
       <div class="postPlace">
         <div class="post" n:foreach="$destImgs as $destImg">
           <a
-            href="http://localhost/travel-blog/blog/articleSearch.php?type=destination&searchInput={$destImg[1]}&orderBy=datePublic+DESC"
+            href="blog/articleSearch.php?type=destination&searchInput={$destImg[1]}&orderBy=datePublic+DESC"
           >
             <img src="{$destImg[0]}" alt="Post Image" />
 
