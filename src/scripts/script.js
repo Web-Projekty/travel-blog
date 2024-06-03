@@ -8,13 +8,15 @@ function plusSlides(n) {
 function currentSlide(n) {
     showSlides((slideIndex = n));
 }
-var video = document.getElementById("video");
-var slide = document.getElementById("slide");
-var fade = document.getElementsByClassName("fade");
-var dots = document.getElementsByClassName("dot");
+
 function showSlides(n) {
     console.log(n);
     var i;
+    var video = document.getElementById("video");
+    var slide = document.getElementById("slide");
+    var fade = document.getElementsByClassName("fade");
+    var dots = document.getElementsByClassName("dot");
+
 
     //create
     var newVideo = document.createElement("video");
@@ -58,26 +60,33 @@ function showSlides(n) {
     dots[slideIndex - 1].className += " active";*/
 
     //event listeners
-    loadingVideo.addEventListener("loadeddata", changeSlides());
+    
+   
+    loadingVideo.addEventListener("loadeddata", changeSlides);
 }
 function changeSlides() {
+    var video = document.getElementById("video");
+    var slide = document.getElementById("slide");
     console.log("loaded");
 
     //remove old video
     if (slide != null) {
-        slide.remove;
+        slide.remove();
     }
     if (video != null) {
-        video.remove;
+        video.remove();
     }
 
+    
     //rename ids
+    loadingVideo.load();
+    
     loadingSlide.id = "slide";
     loadingVideo.id = "video";
-    loadingVideo.load();
-
+    
+    console.log("fad");
     loadingVideo.style.opacity = "1";
-    loadingVideo.removeEventListener("loadeddata",changeSlides())
+    loadingVideo.removeEventListener("loadeddata", changeSlides);
 }
 
 function nextSlide() {
