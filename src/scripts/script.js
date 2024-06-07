@@ -1,15 +1,7 @@
 var slideIndex = 1;
 const imbedimage = document.querySelector("#imbedimage");
 
-function plusSlides(n) {
-  showSlides((slideIndex += n));
-}
-
-function currentSlide(n) {
-  showSlides((slideIndex = n));
-}
-
-function showSlides(n, d) {
+function showSlidesNew(n, d) {
   console.log(n);
   var i;
   var video = document.getElementById("video");
@@ -28,7 +20,7 @@ function showSlides(n, d) {
   for (let i = 0; i < d; i++) {
     path = path + "../";
   }
-  console.log(path)
+  console.log(path);
   newSource.src = path + "src/res/vid/v" + n + ".mp4";
   newSource.type = "video/mp4";
 
@@ -44,6 +36,7 @@ function showSlides(n, d) {
   loadingVideo.appendChild(newSource);
   loadingSlide = document.getElementById("loadingSlide");
 
+  loadingVideo.play();
   //old
   //video.style.opacity = "0";
   //slide.src = "src/res/vid/v" + n + ".mp4";
@@ -51,7 +44,7 @@ function showSlides(n, d) {
   /*if (n > slides.length) {
         slideIndex = 1;
     }
-    /*if (n < 1) {
+    if (n < 1) {
     slideIndex = slides.length;
   }
     for (i = 0; i < slides.length; i++) {
@@ -61,8 +54,8 @@ function showSlides(n, d) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
     slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";*/
-
+    dots[slideIndex - 1].className += " active";
+*/
   //event listeners
 
   loadingVideo.addEventListener("loadeddata", changeSlides);
@@ -89,6 +82,34 @@ function changeSlides() {
   console.log("fad");
   loadingVideo.style.opacity = "1";
   loadingVideo.removeEventListener("loadeddata", changeSlides);
+}
+
+function plusSlides(n) {
+  showSlides((slideIndex += n));
+}
+
+function currentSlide(n) {
+  showSlides((slideIndex = n));
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("Slides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
 }
 
 function nextSlide() {
