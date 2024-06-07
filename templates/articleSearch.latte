@@ -33,41 +33,10 @@
 
     <script src="../src/scripts/script.js"></script>
   </head>
-  <body onload="showSlides(1)">
+  <body onload="showSlides(1,1)">
     <div class="slideshow">
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/vid/v1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      <div class="fade">
 
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/vid/v2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/vid/v3.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/vid/v4.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="Slides fade">
-        <video autoplay muted loop onended="nextSlide()">
-          <source src="../src/res/vid/v5.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
       </div>
       <div class="account-status">
         | {if $authStatus}
@@ -100,11 +69,11 @@
 
     <div class="dotPlace">
       <!-- Can go to any slide you want -->
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
-      <span class="dot" onclick="currentSlide(5)"></span>
+      <span class="dot" onclick="showSlides(1,1)"></span>
+      <span class="dot" onclick="showSlides(2,1)"></span>
+      <span class="dot" onclick="showSlides(3,1)"></span>
+      <span class="dot" onclick="showSlides(4,1)"></span>
+      <span class="dot" onclick="showSlides(5,1)"></span>
     </div>
 
     <form
