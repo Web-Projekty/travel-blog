@@ -11,3 +11,6 @@ if ($Auth->getAuthDetail()[0]) {
 } else {
     include "../src/error/404.html";
 }
+
+$params = [];
+$latte->render("../templates/dashboard.latte", $params);
