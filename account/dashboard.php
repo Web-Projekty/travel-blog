@@ -14,6 +14,7 @@ if (!$Auth->getAuthDetail()[0]) {
 $params = [
     'authStatus' => $Auth->getAuthDetail()[0],
     'userName' => $Auth->getAuthDetail()[1],
-    'email' => $Auth->getAuthDetail()[2]
+    'email' => $Auth->getAuthDetail()[2],
+    'background' => "../src/images/dest/2_1.jpg"
 ];
 $latte->render("../templates/dashboard.latte", $params);
