@@ -6,11 +6,14 @@ $latte->setTempDirectory('../temp');
 
 $Auth = new Auth;
 
-if ($Auth->getAuthDetail()[0]) {
-    echo "good";
-} else {
+if (!$Auth->getAuthDetail()[0]) {
     include "../src/error/404.html";
+    die();
 }
 
-$params = [];
+$params = [
+    'authStatus' => $Auth->getAuthDetail()[0],
+    'userName' => $Auth->getAuthDetail()[1],
+    'email' => $Auth->getAuthDetail()[2]
+];
 $latte->render("../templates/dashboard.latte", $params);
