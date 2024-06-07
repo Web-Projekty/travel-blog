@@ -1,4 +1,13 @@
 .dashboard {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 5rem;
+}
+
+.slideshow {
+  height: 40vh;
+  width: 100%;
 }
