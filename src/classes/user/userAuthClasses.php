@@ -5,6 +5,15 @@ class Auth
     public $Database;
     public function __construct()
     {
+        echo "<!-- Google tag (gtag.js) -->
+        <script async src='https://www.googletagmanager.com/gtag/js?id=G-XMFSNLFC9L'></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-XMFSNLFC9L');
+        </script>";
         $this->Session = new Session;
         $this->Database = new Database;
     }
