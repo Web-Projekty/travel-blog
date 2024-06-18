@@ -66,3 +66,7 @@
     width: 100%;
   }
 }
+#video{
+  transition: 2000ms;
+  opacity: 0;
+}

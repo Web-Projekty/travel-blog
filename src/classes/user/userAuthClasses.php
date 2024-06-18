@@ -5,6 +5,15 @@ class Auth
     public $Database;
     public function __construct()
     {
+        echo "<!-- Google tag (gtag.js) -->
+        <script async src='https://www.googletagmanager.com/gtag/js?id=G-XMFSNLFC9L'></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-XMFSNLFC9L');
+        </script>";
         $this->Session = new Session;
         $this->Database = new Database;
     }
@@ -49,9 +58,9 @@ class Auth
             $username = $emailParts[0];
 
             if ($this->Database->rowExists("Users", "userName", $username)) {
-                $registerResult['msg'] =  "Uživatel s tímto uživatelským jménem již existuje";
+                $registerResult['msg'] = "Uživatel s tímto uživatelským jménem již existuje";
             } elseif ($this->Database->rowExists("Users", "userEmail", $email)) {
-                $registerResult['msg'] =  "Někdo už používá tento e-mail";
+                $registerResult['msg'] = "Někdo už používá tento e-mail";
             } else {
                 if ($password == $cpassword) {
                     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -61,11 +70,11 @@ class Auth
                     $registerResult['status'] = true;
                     $registerResult['msg'] = "Registrace proběhla úspěšně";
                 } else {
-                    $registerResult['msg'] =  "Zadaná hesla nesouhlasí";
+                    $registerResult['msg'] = "Zadaná hesla nesouhlasí";
                 }
             }
         } else {
-            $registerResult['msg'] =  "Zadaný e-mail není validní";
+            $registerResult['msg'] = "Zadaný e-mail není validní";
         }
         return $registerResult;
     }
@@ -82,10 +91,12 @@ class Auth
         }
         $sql = "SELECT user FROM Users WHERE idUsers = $uid";
         $username = $this->Database->query($sql)->fetch_column();
+        $sql = "SELECT userEmail FROM Users WHERE idUsers = $uid";
+        $email = $this->Database->query($sql)->fetch_column();
 
         $status = $this->Session->getAuthStatus();
 
-        return [$status, $username];
+        return [$status, $username, $email];
     }
     public function logout()
     {

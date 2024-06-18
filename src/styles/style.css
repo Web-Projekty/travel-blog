@@ -22,6 +22,8 @@ body {
   color: #333;
   margin: 0;
   padding: 0;
+
+  animation: var(--blend-in);
 }
 
 header {
@@ -43,7 +45,7 @@ header {
 }
 
 .Slides {
-  display: none;
+  /*display: none;*/
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -92,7 +94,7 @@ header h1 {
 }
 
 .account-status a:hover {
-  color: #eb910a;
+  color: var(--hover-text-color);
 }
 
 nav ul {
@@ -138,7 +140,7 @@ nav ul li a:hover {
 }
 
 .active {
-  background-color: #717171;
+  color: var(--hover-text-color);
 }
 
 .prev,
@@ -175,6 +177,14 @@ nav ul li a:hover {
 
 img {
   animation: var(--blend-in);
+}
+
+.form a {
+  color: black;
+}
+
+.form a:hover {
+  color: var(--hover-text-color);
 }
 
 @media screen and (max-width: 768px) {

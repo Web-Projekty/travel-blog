@@ -14,6 +14,9 @@ $page = 1;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 }
+else{
+    $page = 1;
+}
 
 $type = $ArticleSearch->typeInput();
 
@@ -34,6 +37,7 @@ $params = [
     'searchInput' => $searchInput,
     'orderBy' => $orderBy,
     'pages' => $pages,
+    'currentPage' => $page,
     'foundResults' => $ArticleSearch->foundResults,
     'authStatus' => $authDetail[0],
     'username' => $authDetail[1]
