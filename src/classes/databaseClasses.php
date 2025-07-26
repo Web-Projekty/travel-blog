@@ -17,61 +17,26 @@ class Database
         $this->dbname = $Config->dbname;
     }
     public function connect()
-    {   
-        set_error_handler(function($errno, $errstr, $errfile, $errline) {
-            throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-        });
-        
-        try {
-            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
-                if ($conn->connect_error) {
-                    throw new Exception("Connection failed: " . $conn->connect_error);
-                }
-        }catch (Exception $e) {
-            $dir = __DIR__ . '/../src/db';
+    {
 
-            if (!is_dir($dir)) {
-                mkdir($dir, 0777, true);
-            }
-
-            $path = $dir . '/test.db';
-
-            if (!is_writable($dir)) {
-                throw new RuntimeException("Directory not writable: $dir");
-            }
-
-            $conn = new PDO('sqlite:' . $path);
-
-            if (!file_exists('../src/db/test.db')) {
-                $conn = new PDO('sqlite:' . $path);
-                $sql = file_get_contents('../TravelBlog-sqlite.sql');
-                $conn->exec($sql);
-            } else {
-                $conn = new PDO('sqlite:' . $path);
-            }           
+        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
-
-        restore_error_handler();
-
         return $conn;
     }
     public function query($sql)
     {
-        $conn = $this->connect();
-        if ($conn instanceof PDO) {
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } elseif ($conn instanceof mysqli) {
-            $result = $conn->query($sql);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $result = $conn->query($sql);
-            $conn->close();
+        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
+
+        $result = $conn->query($sql);
+        $conn->close();
         return $result;
     }
+    
     public function rowExists(string $db, string $column, string $row)
     {
         $sql = "SELECT $column FROM $db WHERE $column = '$row'";
