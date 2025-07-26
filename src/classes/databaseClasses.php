@@ -44,7 +44,7 @@ class Database
 
             if (!file_exists('../src/db/test.db')) {
                 $conn = new PDO('sqlite:' . $path);
-                $sql = file_get_contents('../TravelBlog.sql');
+                $sql = file_get_contents('../TravelBlog-sqlite.sql');
                 $conn->exec($sql);
             } else {
                 $conn = new PDO('sqlite:' . $path);
