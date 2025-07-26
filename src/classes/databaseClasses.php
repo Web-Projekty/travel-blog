@@ -19,6 +19,7 @@ class Database
     }
     public function connect()
     {
+        var_dump($this->isTest);
         if ($this->isTest) {
             if (!file_exists('../src/db/test.db')) {
                 $conn = new PDO('sqlite:../src/db/test.db');
