@@ -7,7 +7,7 @@ class Database
     public $username;
     public $password;
     public $dbname;
-    public bool $isTest = false;
+    public bool $isTest;
     public function __construct()
     {
         $Config = new Config;
