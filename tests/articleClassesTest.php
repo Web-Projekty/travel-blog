@@ -20,6 +20,7 @@ class ArticleClassesTest extends Tester\TestCase
         $this->Article = new Articles;
         $this->Database = new Database;
         $this->Database->isTest = true;
+        echo $this->Database->isTest;
     }
 
     function testGetTitleArray()
