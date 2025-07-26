@@ -15,6 +15,7 @@ class Database
         $this->username = $Config->username;
         $this->password = $Config->password;
         $this->dbname = $Config->dbname;
+        $this->isTest = false;
     }
     public function connect()
     {
