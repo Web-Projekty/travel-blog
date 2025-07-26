@@ -58,9 +58,18 @@ class Database
     public function query($sql)
     {
         $conn = $this->connect();
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        if ($conn instanceof PDO) {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } elseif ($conn instanceof mysqli) {
+            $result = $conn->query($sql);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
         }
+
+       
 
         $result = $conn->query($sql);
         $conn->close();
