@@ -5,7 +5,6 @@ RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/
 
 # install dependencies
 WORKDIR /var/www/html
-COPY ./ ./
 
 RUN a2enmod rewrite
 RUN a2enmod actions
@@ -16,6 +15,8 @@ RUN apt-get update && apt-get install -y \
 # configure PHP
 #COPY php.ini /usr/local/etc/php/php.ini
 RUN docker-php-ext-install pdo_mysql mysqli zip
+
+COPY ./ ./
 
 RUN chown -R www-data:www-data /var/www/html
 
