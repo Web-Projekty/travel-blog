@@ -18,21 +18,21 @@ class Database
     }
     public function connect()
     {
-
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-        if ($conn->connect_error) {
-            if ($this->isTest) {
-                if (!file_exists('../src/db/test.db')) {
-                    $conn = new PDO('sqlite:../src/db/test.db');
-                    $sql = file_get_contents('../src/sql/TravelBlog.sql');
-                    $conn->exec($sql);
-                } else {
-                    $conn = new PDO('sqlite:../src/db/test.db');
+        if (!$this->isTest) {
+            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
                 }
+        } else {
+            if (!file_exists('../src/db/test.db')) {
+                $conn = new PDO('sqlite:../src/db/test.db');
+                $sql = file_get_contents('../src/sql/TravelBlog.sql');
+                $conn->exec($sql);
             } else {
-                die("Connection failed: " . $conn->connect_error);
+                $conn = new PDO('sqlite:../src/db/test.db');
             }
         }
+        
         return $conn;
     }
     public function query($sql)
