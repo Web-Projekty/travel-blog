@@ -18,5 +18,8 @@ jobs:
             - name: Install Composer Dependencies
               run: composer install
 
+            - name: Perms
+              run: sudo chmod -vR 777 *
+
             - name: Run Latte Tests
               run: cd tests ; php testAutorun.php;
