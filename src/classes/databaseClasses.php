@@ -8,33 +8,31 @@ class Database
     public $password;
     public $dbname;
     public bool $isTest;
-    public function __construct($isTest = false)
+    public function __construct()
     {
         $Config = new Config;
         $this->servername = $Config->servername;
         $this->username = $Config->username;
         $this->password = $Config->password;
         $this->dbname = $Config->dbname;
-        $this->isTest = $isTest;
     }
     public function connect()
-    {
-        var_dump($this->isTest);
-        if ($this->isTest) {
+    {        
+        try {
+            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+        }catch (Exception $e) {
             if (!file_exists('../src/db/test.db')) {
                 $conn = new PDO('sqlite:../src/db/test.db');
                 $sql = file_get_contents('../src/sql/TravelBlog.sql');
                 $conn->exec($sql);
             } else {
                 $conn = new PDO('sqlite:../src/db/test.db');
-            }            
-        } else {
-            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+            }           
         }
-        
+
         return $conn;
     }
     public function query($sql)

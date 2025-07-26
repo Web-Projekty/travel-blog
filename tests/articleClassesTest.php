@@ -18,9 +18,7 @@ class ArticleClassesTest extends Tester\TestCase
     function __construct()
     {
         $this->Article = new Articles;
-        $this->Database = new Database(true);
-        $this->Database->isTest = true;
-        echo $this->Database->isTest;
+        $this->Database = new Database;
     }
 
     function testGetTitleArray()
