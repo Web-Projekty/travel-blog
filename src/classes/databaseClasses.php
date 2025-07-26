@@ -21,7 +21,7 @@ class Database
         try {
             $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
                 if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
+                    throw new Exception("Connection failed: " . $conn->connect_error);
                 }
         }catch (Exception $e) {
             if (!file_exists('../src/db/test.db')) {
