@@ -1,0 +1,20 @@
+services:
+    travel-blog:
+        container_name: travel-blog
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "9123:80"
+        volumes:
+            - ./:/var/www/html
+        #environment:
+        #    DATABASE_URL: "mysql://root:root@db:3306/travel-blog"
+        restart: always
+        networks:
+            - universal-db-network
+
+networks:
+    universal-db-network:
+        driver: bridge
+        name: universal-db-network
