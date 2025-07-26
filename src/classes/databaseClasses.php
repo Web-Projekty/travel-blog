@@ -37,7 +37,7 @@ class Database
     }
     public function query($sql)
     {
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $conn = $this->connect();
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
