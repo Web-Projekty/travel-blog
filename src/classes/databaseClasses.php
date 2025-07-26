@@ -28,14 +28,20 @@ class Database
                     throw new Exception("Connection failed: " . $conn->connect_error);
                 }
         }catch (Exception $e) {
-            $path = realpath(__DIR__ . '/../src/db') . '/test.db';
-            $dir = dirname($path);
+            $dir = __DIR__ . '/../src/db';
+
             if (!is_dir($dir)) {
                 mkdir($dir, 0777, true);
             }
+
+            $path = $dir . '/test.db';
+
             if (!is_writable($dir)) {
-               throw new RuntimeException("Directory not writable: $dir");
+                throw new RuntimeException("Directory not writable: $dir");
             }
+
+            $conn = new PDO('sqlite:' . $path);
+
             if (!file_exists('../src/db/test.db')) {
                 $conn = new PDO('sqlite:' . $path);
                 $sql = file_get_contents('../TravelBlog.sql');
