@@ -8,14 +8,14 @@ class Database
     public $password;
     public $dbname;
     public bool $isTest;
-    public function __construct()
+    public function __construct($isTest = false)
     {
         $Config = new Config;
         $this->servername = $Config->servername;
         $this->username = $Config->username;
         $this->password = $Config->password;
         $this->dbname = $Config->dbname;
-        $this->isTest = false;
+        $this->isTest = $isTest;
     }
     public function connect()
     {
