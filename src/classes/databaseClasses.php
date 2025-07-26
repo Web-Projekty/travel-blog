@@ -17,7 +17,11 @@ class Database
         $this->dbname = $Config->dbname;
     }
     public function connect()
-    {        
+    {   
+        set_error_handler(function($errno, $errstr, $errfile, $errline) {
+            throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+        });
+        
         try {
             $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
                 if ($conn->connect_error) {
@@ -33,6 +37,8 @@ class Database
             }           
         }
 
+        restore_error_handler();
+        
         return $conn;
     }
     public function query($sql)
