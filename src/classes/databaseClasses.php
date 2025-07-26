@@ -28,13 +28,12 @@ class Database
                     throw new Exception("Connection failed: " . $conn->connect_error);
                 }
         }catch (Exception $e) {
-            echo getcwd();
-            if (!file_exists('../db/test.db')) {
-                $conn = new PDO('sqlite:../db/test.db');
-                $sql = file_get_contents('../sql/TravelBlog.sql');
+            if (!file_exists('../src/db/test.db')) {
+                $conn = new PDO('sqlite:../src/db/test.db');
+                $sql = file_get_contents('../TravelBlog.sql');
                 $conn->exec($sql);
             } else {
-                $conn = new PDO('sqlite:../db/test.db');
+                $conn = new PDO('sqlite:../src/db/test.db');
             }           
         }
 
