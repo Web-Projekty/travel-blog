@@ -7,7 +7,7 @@ class Database
     public $username;
     public $password;
     public $dbname;
-    public $isTest = false;
+    public bool $isTest = false;
     public function __construct()
     {
         $Config = new Config;
@@ -18,19 +18,19 @@ class Database
     }
     public function connect()
     {
-        if (!$this->isTest) {
-            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-        } else {
+        if ($this->isTest) {
             if (!file_exists('../src/db/test.db')) {
                 $conn = new PDO('sqlite:../src/db/test.db');
                 $sql = file_get_contents('../src/sql/TravelBlog.sql');
                 $conn->exec($sql);
             } else {
                 $conn = new PDO('sqlite:../src/db/test.db');
-            }
+            }            
+        } else {
+            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
         }
         
         return $conn;
