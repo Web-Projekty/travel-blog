@@ -7,7 +7,7 @@ class Database
     public $username;
     public $password;
     public $dbname;
-    public $isTest = false;
+    public bool $isTest;
     public function __construct()
     {
         $Config = new Config;
@@ -36,6 +36,7 @@ class Database
         $conn->close();
         return $result;
     }
+    
     public function rowExists(string $db, string $column, string $row)
     {
         $sql = "SELECT $column FROM $db WHERE $column = '$row'";

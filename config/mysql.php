@@ -1,7 +1,7 @@
 <?php
 class Config
 {
-    public $servername = "vlastas.cc";
+    public $servername = "universal-db";
     public $username = "travelblog";
     public $password = "heslovymyslim";
     public $dbname = "travelblog";

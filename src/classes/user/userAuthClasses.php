@@ -5,6 +5,7 @@ class Auth
     public $Database;
     public function __construct()
     {
+        $this->Session = new Session;
         echo "<!-- Google tag (gtag.js) -->
         <script async src='https://www.googletagmanager.com/gtag/js?id=G-XMFSNLFC9L'></script>
         <script>
@@ -14,7 +15,6 @@ class Auth
         
           gtag('config', 'G-XMFSNLFC9L');
         </script>";
-        $this->Session = new Session;
         $this->Database = new Database;
     }
     ### automated login method, returns true or false of based on status ###
