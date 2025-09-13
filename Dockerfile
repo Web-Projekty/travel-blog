@@ -6,6 +6,9 @@ WORKDIR /var/www/html
 
 COPY ./ /var/www/html
 
+RUN apt-get update && apt-get install -y \
+    libzip-dev
+
 RUN composer install
 
 FROM php:8.3-apache
