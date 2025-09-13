@@ -16,9 +16,9 @@ RUN apt-get update && apt-get install -y \
 #COPY php.ini /usr/local/etc/php/php.ini
 RUN docker-php-ext-install pdo_mysql mysqli zip
 
-COPY ./ ./
+COPY ./ /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html
+# RUN chown -R www-data:www-data /var/www/html
 
 # set open ports
 #EXPOSE 9000
