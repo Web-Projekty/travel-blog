@@ -1,7 +1,19 @@
-FROM php:8.3.23-apache-bullseye
+FROM php:8.3-apache AS composer
 
-# install Composer
 RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+WORKDIR /var/www/html
+
+COPY ./ /var/www/html
+
+RUN apt-get update && apt-get install -y \
+    libzip-dev
+
+RUN docker-php-ext-install zip
+
+RUN composer install
+
+FROM php:8.3-apache
 
 # install dependencies
 WORKDIR /var/www/html
@@ -16,9 +28,9 @@ RUN apt-get update && apt-get install -y \
 #COPY php.ini /usr/local/etc/php/php.ini
 RUN docker-php-ext-install pdo_mysql mysqli zip
 
-COPY ./ ./
+COPY --from=composer /var/www/html /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html
+# RUN chown -R www-data:www-data /var/www/html
 
 # set open ports
 #EXPOSE 9000
@@ -28,7 +40,7 @@ RUN chown -R www-data:www-data /var/www/html
 #ENV COMPOSER_CACHE_DIR=/app/vendor/composer/cache
 
 # prod
-CMD ["bash", "-c", "composer install --no-dev --no-scripts && apache2-foreground" ]
+CMD ["bash", "-c", "apache2-foreground" ]
 
 # dev
 #CMD ["bash", "-c", "composer install && apache2-foreground" ] 
