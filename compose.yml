@@ -1,9 +1,9 @@
 services:
     travel-blog:
         container_name: travel-blog
-        build:
-            context: .
-            dockerfile: Dockerfile
+        image: wlczak/travel-blog:latest
+        labels:
+            - com.centurylinklabs.watchtower.enable=true
         ports:
             - "9123:80"
         #volumes:
@@ -11,6 +11,7 @@ services:
         #environment:
         #    DATABASE_URL: "mysql://root:root@db:3306/travel-blog"
         restart: always
+        init: true
         networks:
             - universal-db-network
 
@@ -18,3 +19,4 @@ networks:
     universal-db-network:
         driver: bridge
         name: universal-db-network
+        external: true
