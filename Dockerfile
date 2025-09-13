@@ -1,7 +1,12 @@
-FROM php:8.3-apache
+FROM composer:latest AS composer
 
-# install Composer
-RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+WORKDIR /var/www/html
+
+COPY ./ /var/www/html
+
+RUN composer install
+
+FROM php:8.3-apache
 
 # install dependencies
 WORKDIR /var/www/html
@@ -28,7 +33,7 @@ COPY ./ /var/www/html
 #ENV COMPOSER_CACHE_DIR=/app/vendor/composer/cache
 
 # prod
-CMD ["bash", "-c", "composer install --no-dev --no-scripts && apache2-foreground" ]
+CMD ["bash", "-c", "apache2-foreground" ]
 
 # dev
 #CMD ["bash", "-c", "composer install && apache2-foreground" ] 
