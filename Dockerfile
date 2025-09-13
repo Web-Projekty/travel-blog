@@ -1,4 +1,6 @@
-FROM composer:latest AS composer
+FROM php:8.3-apache AS composer
+
+RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
 
